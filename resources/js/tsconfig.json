@@ -5,13 +5,16 @@
     "moduleResolution": "node",
     "jsx": "react",
     "rootDir": ".",
-    "outDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "composite": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
     "types": ["vite/client"]
-  },
-  "files":["vite.config.ts"]
+  }, 
+  "references": [
+      {"path" : "../../"}
+    ]
 }
