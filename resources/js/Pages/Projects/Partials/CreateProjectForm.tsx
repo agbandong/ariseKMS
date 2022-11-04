@@ -17,8 +17,9 @@ export default function CreateTeamForm() {
     name: '',
   });
 
+  //Create a project controller
   function createProject() {
-    form.post(route('create.store'), {
+    form.post(route('projects.store'), {
       errorBag: 'createTeam',
       preserveScroll: true,
     });
