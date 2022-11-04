@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('team_project', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->constrained();
+            $table->foreignId('project_id')->constrained();
+            $table->string('role')->nullable();
             $table->timestamps();
+
+            $table->unique(['team_id', 'project_id']);
         });
     }
 
