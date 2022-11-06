@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Project extends Model
 {
     use HasFactory;
@@ -14,4 +15,8 @@ class Project extends Model
         'name',
         'project_files_path'
     ];
+    
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }
