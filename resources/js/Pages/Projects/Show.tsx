@@ -1,6 +1,6 @@
-import DeleteTeamForm from '@/Pages/Teams/Partials/DeleteTeamForm';
-import TeamMemberManager from '@/Pages/Teams/Partials/TeamMemberManager';
-import UpdateTeamNameForm from '@/Pages/Teams/Partials/UpdateTeamNameForm';
+import DeleteTeamForm from '@/Pages/Projects/Partials/DeleteProjectForm';
+import TeamMemberManager from '@/Pages/Projects/Partials/ProjectMemberManager';
+import UpdateTeamNameForm from '@/Pages/Projects/Partials/UpdateProjectNameForm';
 import SectionBorder from '@/Components/SectionBorder';
 import AppLayout from '@/Layouts/AppLayout';
 import {
