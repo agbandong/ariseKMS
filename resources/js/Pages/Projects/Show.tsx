@@ -1,6 +1,6 @@
-import DeleteTeamForm from '@/Pages/Teams/Partials/DeleteTeamForm';
-import TeamMemberManager from '@/Pages/Teams/Partials/TeamMemberManager';
-import UpdateTeamNameForm from '@/Pages/Teams/Partials/UpdateTeamNameForm';
+import DeleteTeamForm from '@/Pages/Projects/Partials/DeleteProjectForm';
+import TeamMemberManager from '@/Pages/Projects/Partials/ProjectMemberManager';
+import UpdateTeamNameForm from '@/Pages/Projects/Partials/UpdateProjectNameForm';
 import SectionBorder from '@/Components/SectionBorder';
 import AppLayout from '@/Layouts/AppLayout';
 import {
@@ -40,6 +40,7 @@ export default function Show({ team, availableRoles, permissions }: Props) {
     >
       <div>
         <div className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+          {/*
           <UpdateTeamNameForm team={team} permissions={permissions} />
 
           <div className="mt-10 sm:mt-0">
@@ -58,7 +59,7 @@ export default function Show({ team, availableRoles, permissions }: Props) {
                 <DeleteTeamForm team={team} />
               </div>
             </>
-          ) : null}
+          ) : null}*/}
         </div>
       </div>
     </AppLayout>

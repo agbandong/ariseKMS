@@ -17,8 +17,9 @@ export default function CreateTeamForm() {
     name: '',
   });
 
-  function createTeam() {
-    form.post(route('teams.store'), {
+  //Create a project controller
+  function createProject() {
+    form.post(route('projects.store'), {
       errorBag: 'createTeam',
       preserveScroll: true,
     });
@@ -26,9 +27,9 @@ export default function CreateTeamForm() {
 
   return (
     <FormSection
-      onSubmit={createTeam}
-      title={'Team Details'}
-      description={'Create a new team to collaborate with others on projects.'}
+      onSubmit={createProject}
+      title={'Project Details'}
+      description={'Create a new project in Arise.'}
       renderActions={() => (
         <>
           <ActionMessage on={form.recentlySuccessful} className="mr-3">
@@ -45,7 +46,7 @@ export default function CreateTeamForm() {
       )}
     >
       <div className="col-span-6">
-        <InputLabel value="Team Owner" />
+        <InputLabel value="Project Manager" />
 
         <div className="flex items-center mt-2">
           <img

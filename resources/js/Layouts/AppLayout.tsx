@@ -72,6 +72,13 @@ export default function AppLayout({
                   >
                     Dashboard
                   </NavLink>
+                  
+                  <NavLink
+                    href={route('projects.create')}
+                    active={route().current('projects.create')}
+                  >
+                    Create Project
+                  </NavLink>
                 </div>
               </div>
 

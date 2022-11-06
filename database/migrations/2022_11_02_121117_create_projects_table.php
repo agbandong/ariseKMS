@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('team_project', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('name')->unique();
+            $table->string('project_files_path',2048);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team_project');
+        Schema::dropIfExists('projects');
     }
 };

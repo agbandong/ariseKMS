@@ -40,7 +40,7 @@ interface Props {
   userPermissions: JetstreamTeamPermissions;
 }
 
-export default function TeamMemberManager({
+export default function ProjectMemberManager({
   team,
   availableRoles,
   userPermissions,
