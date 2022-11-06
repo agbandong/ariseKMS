@@ -10,7 +10,8 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
-        'project_file_path'
+        'project_files_path'
     ];
 }

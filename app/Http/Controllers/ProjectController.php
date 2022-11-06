@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Project;
 
-class Project extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,6 +39,19 @@ class Project extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        $request->validate([
+            'name' => 'required|unique:projects|max:64',
+        ]);
+
+        
+        Project::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'project_files_path' => '/projects/' . $request->name,
+        ]);
+
+        return to_route('dashboard');
     }
 
     /**
