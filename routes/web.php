@@ -33,3 +33,8 @@ Route::middleware([
     })->name('dashboard');
     Route::resource('/projects', ProjectController::class);
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
