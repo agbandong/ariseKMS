@@ -3,68 +3,68 @@ import ActionSection from '@/Components/ActionSection';
 import ConfirmationModal from '@/Components/ConfirmationModal';
 import DangerButton from '@/Components/DangerButton';
 import SecondaryButton from '@/Components/SecondaryButton';
-import { Team } from '@/types';
+import { Project } from '@/types';
 import { useForm } from '@inertiajs/inertia-react';
 import classNames from 'classnames';
 import React, { useState } from 'react';
 
 interface Props {
-  team: Team;
+  project: Project;
 }
 
-export default function DeleteTeamForm({ team }: Props) {
+export default function DeleteProjectForm({ project }: Props) {
   const route = useRoute();
-  const [confirmingTeamDeletion, setConfirmingTeamDeletion] = useState(false);
+  const [confirmingProjectDeletion, setConfirmingProjectDeletion] = useState(false);
   const form = useForm({});
 
-  function confirmTeamDeletion() {
-    setConfirmingTeamDeletion(true);
+  function confirmProjectDeletion() {
+    setConfirmingProjectDeletion(true);
   }
 
-  function deleteTeam() {
-    form.delete(route('teams.destroy', [team]), {
-      errorBag: 'deleteTeam',
+  function deleteProject() {
+    form.delete(route('projects.destroy', [project]), {
+      errorBag: 'deleteProject',
     });
   }
 
   return (
     <ActionSection
-      title={'Delete Team'}
-      description={'Permanently delete this team.'}
+      title={'Delete Project'}
+      description={'Permanently delete this project.'}
     >
       <div className="max-w-xl text-sm text-gray-600">
-        Once a team is deleted, all of its resources and data will be
-        permanently deleted. Before deleting this team, please download any data
-        or information regarding this team that you wish to retain.
+        Once a project is deleted, all of its resources and data will be
+        permanently deleted. Before deleting this project, please download any data
+        or information regarding this project that you wish to retain.
       </div>
 
       <div className="mt-5">
-        <DangerButton onClick={confirmTeamDeletion}>
-          Delete Team
+        <DangerButton onClick={confirmProjectDeletion}>
+          Delete Project
         </DangerButton>
       </div>
 
-      {/* <!-- Delete Team Confirmation Modal --> */}
+      {/* <!-- Delete Project Confirmation Modal --> */}
       <ConfirmationModal
-        isOpen={confirmingTeamDeletion}
-        onClose={() => setConfirmingTeamDeletion(false)}
+        isOpen={confirmingProjectDeletion}
+        onClose={() => setConfirmingProjectDeletion(false)}
       >
-        <ConfirmationModal.Content title={'Delete Team'}>
-          Are you sure you want to delete this team? Once a team is deleted, all
+        <ConfirmationModal.Content title={'Delete Project'}>
+          Are you sure you want to delete this project? Once a project is deleted, all
           of its resources and data will be permanently deleted.
         </ConfirmationModal.Content>
 
         <ConfirmationModal.Footer>
-          <SecondaryButton onClick={() => setConfirmingTeamDeletion(false)}>
+          <SecondaryButton onClick={() => setConfirmingProjectDeletion(false)}>
             Cancel
           </SecondaryButton>
 
           <DangerButton
-            onClick={deleteTeam}
+            onClick={deleteProject}
             className={classNames('ml-2', { 'opacity-25': form.processing })}
             disabled={form.processing}
           >
-            Delete Team
+            Delete Project
           </DangerButton>
         </ConfirmationModal.Footer>
       </ConfirmationModal>
