@@ -13,11 +13,11 @@ import TextInput from '@/Components/TextInput';
 import SecondaryButton from '@/Components/SecondaryButton';
 import SectionBorder from '@/Components/SectionBorder';
 import {
-  JetstreamTeamPermissions,
   Nullable,
   Role,
-  Team,
-  TeamInvitation,
+  Project,
+  ProjectInvitation,
+  ProjectPermissions,
   User,
 } from '@/types';
 import { Inertia } from '@inertiajs/inertia';
@@ -32,53 +32,53 @@ interface UserMembership extends User {
 }
 
 interface Props {
-  team: Team & {
-    team_invitations: TeamInvitation[];
+  project: Project & {
+    project_invitations: ProjectInvitation[];
     users: UserMembership[];
   };
   availableRoles: Role[];
-  userPermissions: JetstreamTeamPermissions;
+  userPermissions: ProjectPermissions;
 }
 
 export default function ProjectMemberManager({
-  team,
+  project,
   availableRoles,
   userPermissions,
 }: Props) {
   const route = useRoute();
-  const addTeamMemberForm = useForm({
+  const addProjectMemberForm = useForm({
     email: '',
     role: null as Nullable<string>,
   });
   const updateRoleForm = useForm({
     role: null as Nullable<string>,
   });
-  const leaveTeamForm = useForm({});
-  const removeTeamMemberForm = useForm({});
+  const leaveProjectForm = useForm({});
+  const removeProjectMemberForm = useForm({});
   const [currentlyManagingRole, setCurrentlyManagingRole] = useState(false);
   const [managingRoleFor, setManagingRoleFor] = useState<Nullable<User>>(null);
-  const [confirmingLeavingTeam, setConfirmingLeavingTeam] = useState(false);
-  const [teamMemberBeingRemoved, setTeamMemberBeingRemoved] =
+  const [confirmingLeavingProject, setConfirmingLeavingProject] = useState(false);
+  const [projectMemberBeingRemoved, setProjectMemberBeingRemoved] =
     useState<Nullable<User>>(null);
   const page = useTypedPage();
 
-  function addTeamMember() {
-    addTeamMemberForm.post(route('team-members.store', [team]), {
-      errorBag: 'addTeamMember',
+  function addProjectMember() {
+    addProjectMemberForm.post(route('project-members.store', [project]), {
+      errorBag: 'addProjectMember',
       preserveScroll: true,
-      onSuccess: () => addTeamMemberForm.reset(),
+      onSuccess: () => addProjectMemberForm.reset(),
     });
   }
 
-  function cancelTeamInvitation(invitation: TeamInvitation) {
-    Inertia.delete(route('team-invitations.destroy', [invitation]), {
+  function cancelProjectInvitation(invitation: ProjectInvitation) {
+    Inertia.delete(route('project-invitations.destroy', [invitation]), {
       preserveScroll: true,
     });
   }
 
-  function manageRole(teamMember: UserMembership) {
-    setManagingRoleFor(teamMember);
-    updateRoleForm.setData('role', teamMember.membership.role);
+  function manageRole(projectMember: UserMembership) {
+    setManagingRoleFor(projectMember);
+    updateRoleForm.setData('role', projectMember.membership.role);
     setCurrentlyManagingRole(true);
   }
 
@@ -86,37 +86,37 @@ export default function ProjectMemberManager({
     if (!managingRoleFor) {
       return;
     }
-    updateRoleForm.put(route('team-members.update', [team, managingRoleFor]), {
+    updateRoleForm.put(route('project-members.update', [project, managingRoleFor]), {
       preserveScroll: true,
       onSuccess: () => setCurrentlyManagingRole(false),
     });
   }
 
-  function confirmLeavingTeam() {
-    setConfirmingLeavingTeam(true);
+  function confirmLeavingProject() {
+    setConfirmingLeavingProject(true);
   }
 
-  function leaveTeam() {
-    leaveTeamForm.delete(
-      route('team-members.destroy', [team, page.props.user]),
+  function leaveProject() {
+    leaveProjectForm.delete(
+      route('project-members.destroy', [project, page.props.user]),
     );
   }
 
-  function confirmTeamMemberRemoval(teamMember: User) {
-    setTeamMemberBeingRemoved(teamMember);
+  function confirmProjectMemberRemoval(projectMember: User) {
+    setProjectMemberBeingRemoved(projectMember);
   }
 
-  function removeTeamMember() {
-    if (!teamMemberBeingRemoved) {
+  function removeProjectMember() {
+    if (!projectMemberBeingRemoved) {
       return;
     }
-    removeTeamMemberForm.delete(
-      route('team-members.destroy', [team, teamMemberBeingRemoved]),
+    removeProjectMemberForm.delete(
+      route('project-members.destroy', [project, projectMemberBeingRemoved]),
       {
-        errorBag: 'removeTeamMember',
+        errorBag: 'removeProjectMember',
         preserveScroll: true,
         preserveState: true,
-        onSuccess: () => setTeamMemberBeingRemoved(null),
+        onSuccess: () => setProjectMemberBeingRemoved(null),
       },
     );
   }
@@ -127,21 +127,21 @@ export default function ProjectMemberManager({
 
   return (
     <div>
-      {userPermissions.canAddTeamMembers ? (
+      {userPermissions.canAddProjectMembers ? (
         <div>
           <SectionBorder />
 
-          {/* <!-- Add Team Member --> */}
+          {/* <!-- Add Project Member --> */}
           <FormSection
-            onSubmit={addTeamMember}
-            title={'Add Team Member'}
+            onSubmit={addProjectMember}
+            title={'Add Project Member'}
             description={
-              'Add a new team member to your team, allowing them to collaborate with you.'
+              'Add a new project member to your project, allowing them to collaborate with you.'
             }
             renderActions={() => (
               <>
                 <ActionMessage
-                  on={addTeamMemberForm.recentlySuccessful}
+                  on={addProjectMemberForm.recentlySuccessful}
                   className="mr-3"
                 >
                   Added.
@@ -149,9 +149,9 @@ export default function ProjectMemberManager({
 
                 <PrimaryButton
                   className={classNames({
-                    'opacity-25': addTeamMemberForm.processing,
+                    'opacity-25': addProjectMemberForm.processing,
                   })}
-                  disabled={addTeamMemberForm.processing}
+                  disabled={addProjectMemberForm.processing}
                 >
                   Add
                 </PrimaryButton>
@@ -161,7 +161,7 @@ export default function ProjectMemberManager({
             <div className="col-span-6">
               <div className="max-w-xl text-sm text-gray-600">
                 Please provide the email address of the person you would like to
-                add to this team.
+                add to this project.
               </div>
             </div>
 
@@ -172,13 +172,13 @@ export default function ProjectMemberManager({
                 id="email"
                 type="email"
                 className="mt-1 block w-full"
-                value={addTeamMemberForm.data.email}
+                value={addProjectMemberForm.data.email}
                 onChange={e =>
-                  addTeamMemberForm.setData('email', e.currentTarget.value)
+                  addProjectMemberForm.setData('email', e.currentTarget.value)
                 }
               />
               <InputError
-                message={addTeamMemberForm.errors.email}
+                message={addProjectMemberForm.errors.email}
                 className="mt-2"
               />
             </div>
@@ -188,7 +188,7 @@ export default function ProjectMemberManager({
               <div className="col-span-6 lg:col-span-4">
                 <InputLabel htmlFor="roles" value="Role" />
                 <InputError
-                  message={addTeamMemberForm.errors.role}
+                  message={addProjectMemberForm.errors.role}
                   className="mt-2"
                 />
 
@@ -205,15 +205,15 @@ export default function ProjectMemberManager({
                         },
                       )}
                       onClick={() =>
-                        addTeamMemberForm.setData('role', role.key)
+                        addProjectMemberForm.setData('role', role.key)
                       }
                       key={role.key}
                     >
                       <div
                         className={classNames({
                           'opacity-50':
-                            addTeamMemberForm.data.role &&
-                            addTeamMemberForm.data.role != role.key,
+                            addProjectMemberForm.data.role &&
+                            addProjectMemberForm.data.role != role.key,
                         })}
                       >
                         {/* <!-- Role Name --> */}
@@ -221,13 +221,13 @@ export default function ProjectMemberManager({
                           <div
                             className={classNames('text-sm text-gray-600', {
                               'font-semibold':
-                                addTeamMemberForm.data.role == role.key,
+                                addProjectMemberForm.data.role == role.key,
                             })}
                           >
                             {role.name}
                           </div>
 
-                          {addTeamMemberForm.data.role == role.key ? (
+                          {addProjectMemberForm.data.role == role.key ? (
                             <svg
                               className="ml-2 h-5 w-5 text-green-400"
                               fill="none"
@@ -256,22 +256,22 @@ export default function ProjectMemberManager({
         </div>
       ) : null}
 
-      {team.team_invitations.length > 0 && userPermissions.canAddTeamMembers ? (
+      {project.project_invitations.length > 0 && userPermissions.canAddProjectMembers ? (
         <div>
           <SectionBorder />
 
-          {/* <!-- Team Member Invitations --> */}
+          {/* <!-- Project Member Invitations --> */}
           <div className="mt-10 sm:mt-0" />
 
           <ActionSection
-            title={'Pending Team Invitations'}
+            title={'Pending Project Invitations'}
             description={
-              'These people have been invited to your team and have been sent an invitation email. They may join the team by accepting the email invitation.'
+              'These people have been invited to your project and have been sent an invitation email. They may join the project by accepting the email invitation.'
             }
           >
-            {/* <!-- Pending Team Member Invitation List --> */}
+            {/* <!-- Pending Project Member Invitation List --> */}
             <div className="space-y-6">
-              {team.team_invitations.map(invitation => (
+              {project.project_invitations.map(invitation => (
                 <div
                   className="flex items-center justify-between"
                   key={invitation.id}
@@ -279,11 +279,11 @@ export default function ProjectMemberManager({
                   <div className="text-gray-600">{invitation.email}</div>
 
                   <div className="flex items-center">
-                    {/* <!-- Cancel Team Invitation --> */}
-                    {userPermissions.canRemoveTeamMembers ? (
+                    {/* <!-- Cancel Project Invitation --> */}
+                    {userPermissions.canRemoveProjectMembers ? (
                       <button
                         className="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                        onClick={() => cancelTeamInvitation(invitation)}
+                        onClick={() => cancelProjectInvitation(invitation)}
                       >
                         Cancel
                       </button>
@@ -296,20 +296,20 @@ export default function ProjectMemberManager({
         </div>
       ) : null}
 
-      {team.users.length > 0 ? (
+      {project.users.length > 0 ? (
         <div>
           <SectionBorder />
 
-          {/* <!-- Manage Team Members --> */}
+          {/* <!-- Manage Project Members --> */}
           <div className="mt-10 sm:mt-0" />
 
           <ActionSection
-            title={'Team Members'}
-            description={'All of the people that are part of this team.'}
+            title={'Project Members'}
+            description={'All of the people that are part of this project.'}
           >
-            {/* <!-- Team Member List --> */}
+            {/* <!-- Project Member List --> */}
             <div className="space-y-6">
-              {team.users.map(user => (
+              {project.users.map(user => (
                 <div
                   className="flex items-center justify-between"
                   key={user.id}
@@ -324,8 +324,8 @@ export default function ProjectMemberManager({
                   </div>
 
                   <div className="flex items-center">
-                    {/* <!-- Manage Team Member Role --> */}
-                    {userPermissions.canAddTeamMembers &&
+                    {/* <!-- Manage Project Member Role --> */}
+                    {userPermissions.canAddProjectMembers &&
                     availableRoles.length ? (
                       <button
                         className="ml-2 text-sm text-gray-400 underline"
@@ -339,21 +339,21 @@ export default function ProjectMemberManager({
                       </div>
                     ) : null}
 
-                    {/* <!-- Leave Team --> */}
+                    {/* <!-- Leave Project --> */}
                     {page.props.user.id === user.id ? (
                       <button
                         className="cursor-pointer ml-6 text-sm text-red-500"
-                        onClick={confirmLeavingTeam}
+                        onClick={confirmLeavingProject}
                       >
                         Leave
                       </button>
                     ) : null}
 
-                    {/* <!-- Remove Team Member --> */}
-                    {userPermissions.canRemoveTeamMembers ? (
+                    {/* <!-- Remove Project Member --> */}
+                    {userPermissions.canRemoveProjectMembers ? (
                       <button
                         className="cursor-pointer ml-6 text-sm text-red-500"
-                        onClick={() => confirmTeamMemberRemoval(user)}
+                        onClick={() => confirmProjectMemberRemoval(user)}
                       >
                         Remove
                       </button>
@@ -448,50 +448,50 @@ export default function ProjectMemberManager({
         </DialogModal.Footer>
       </DialogModal>
 
-      {/* <!-- Leave Team Confirmation Modal --> */}
+      {/* <!-- Leave Project Confirmation Modal --> */}
       <ConfirmationModal
-        isOpen={confirmingLeavingTeam}
-        onClose={() => setConfirmingLeavingTeam(false)}
+        isOpen={confirmingLeavingProject}
+        onClose={() => setConfirmingLeavingProject(false)}
       >
-        <ConfirmationModal.Content title={'Leave Team'}>
-          Are you sure you would like to leave this team?
+        <ConfirmationModal.Content title={'Leave Project'}>
+          Are you sure you would like to leave this project?
         </ConfirmationModal.Content>
         <ConfirmationModal.Footer>
-          <SecondaryButton onClick={() => setConfirmingLeavingTeam(false)}>
+          <SecondaryButton onClick={() => setConfirmingLeavingProject(false)}>
             Cancel
           </SecondaryButton>
 
           <DangerButton
-            onClick={leaveTeam}
+            onClick={leaveProject}
             className={classNames('ml-2', {
-              'opacity-25': leaveTeamForm.processing,
+              'opacity-25': leaveProjectForm.processing,
             })}
-            disabled={leaveTeamForm.processing}
+            disabled={leaveProjectForm.processing}
           >
             Leave
           </DangerButton>
         </ConfirmationModal.Footer>
       </ConfirmationModal>
 
-      {/* <!-- Remove Team Member Confirmation Modal --> */}
+      {/* <!-- Remove Project Member Confirmation Modal --> */}
       <ConfirmationModal
-        isOpen={!!teamMemberBeingRemoved}
-        onClose={() => setTeamMemberBeingRemoved(null)}
+        isOpen={!!projectMemberBeingRemoved}
+        onClose={() => setProjectMemberBeingRemoved(null)}
       >
-        <ConfirmationModal.Content title={'Remove Team Member'}>
-          Are you sure you would like to remove this person from the team?
+        <ConfirmationModal.Content title={'Remove Project Member'}>
+          Are you sure you would like to remove this person from the project?
         </ConfirmationModal.Content>
         <ConfirmationModal.Footer>
-          <SecondaryButton onClick={() => setTeamMemberBeingRemoved(null)}>
+          <SecondaryButton onClick={() => setProjectMemberBeingRemoved(null)}>
             Cancel
           </SecondaryButton>
 
           <DangerButton
-            onClick={removeTeamMember}
+            onClick={removeProjectMember}
             className={classNames('ml-2', {
-              'opacity-25': removeTeamMemberForm.processing,
+              'opacity-25': removeProjectMemberForm.processing,
             })}
-            disabled={removeTeamMemberForm.processing}
+            disabled={removeProjectMemberForm.processing}
           >
             Remove
           </DangerButton>

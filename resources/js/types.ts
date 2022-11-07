@@ -95,3 +95,19 @@ export interface Project {
   created_at: DateTime;
   updated_at: DateTime;
 }
+
+export interface ProjectInvitation {
+  id : number;
+  name: string;
+  email: string;
+  project_files_path: string;
+  created_at: DateTime;
+  updated_at: DateTime;
+}
+
+export interface ProjectPermissions {
+  canAddProjectMembers: boolean;
+  canDeleteProject: boolean;
+  canRemoveProjectMembers: boolean;
+  canUpdateProject: boolean;
+}
