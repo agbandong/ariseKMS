@@ -87,3 +87,11 @@ export interface TeamInvitation {
   created_at: DateTime;
   updated_at: DateTime;
 }
+
+export interface Project {
+  id : number;
+  name: string;
+  project_files_path: string;
+  created_at: DateTime;
+  updated_at: DateTime;
+}

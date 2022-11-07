@@ -28,7 +28,7 @@ interface Props {
   permissions: JetstreamTeamPermissions;
 }
 
-export default function Show({ team, availableRoles, permissions }: Props) {
+export default function Settings({ team, availableRoles, permissions }: Props) {
   return (
     <AppLayout
       title="Team Settings"

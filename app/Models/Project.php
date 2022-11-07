@@ -16,7 +16,7 @@ class Project extends Model
         'project_files_path'
     ];
     
-    public function user(){
+    public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 }
