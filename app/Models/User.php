@@ -59,7 +59,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function project(){
-        return $this->belongsToMany(Project::class);
+    public function projects(){
+        return $this->belongsToMany(Project::class)->withTimestamps();
     }
 }

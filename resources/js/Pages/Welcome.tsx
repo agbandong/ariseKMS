@@ -14,8 +14,6 @@ interface Props {
 export default function Welcome({
   canLogin,
   canRegister,
-  laravelVersion,
-  phpVersion,
 }: Props) {
   const route = useRoute();
   const page = useTypedPage();

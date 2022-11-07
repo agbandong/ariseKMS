@@ -17,6 +17,10 @@ class ProjectController extends Controller
     public function index()
     {
         //
+
+        $userProjects = Auth::user()->projects()->get()->all();
+        //return dd($userProjects);
+        return Inertia::render('Dashboard', ['projects' => $userProjects]);
     }
 
     /**
@@ -44,12 +48,10 @@ class ProjectController extends Controller
             'name' => 'required|unique:projects|max:64',
         ]);
 
-        
         Project::create([
-            'user_id' => Auth::user()->id,
             'name' => $request->name,
             'project_files_path' => '/projects/' . $request->name,
-        ]);
+        ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
         return to_route('dashboard');
     }
