@@ -38,3 +38,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/project', function () {
+    return view('project');
+});
