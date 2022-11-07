@@ -22,7 +22,7 @@ export default function Dashboard(prop:Props) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             {prop.projects.length > 0 ?  prop.projects.map(userProject=>
-              <ShowProject project={userProject}/>  
+              <ShowProject project={userProject} key={userProject.id}/>  
             ): 'You have no projects'}
           </div>
         </div>
