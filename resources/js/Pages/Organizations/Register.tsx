@@ -23,7 +23,7 @@ export default function Register() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    form.post(route('register'), {
+    form.post(route('register3'), {
       onFinish: () => form.reset('password', 'password_confirmation'),
     });
   }
@@ -129,10 +129,10 @@ export default function Register() {
 
         <div className="flex items-center justify-end mt-4">
           <InertiaLink
-            href={route('login')}
+            href={route('register1')}
             className="underline text-sm text-gray-600 hover:text-gray-900"
           >
-            Already registered?
+            Company already registered?
           </InertiaLink>
 
           <PrimaryButton
