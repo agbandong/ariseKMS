@@ -41,3 +41,7 @@ Route::get('/dashboard', function () {
 Route::get('/project', function () {
     return view('project');
 });
+
+Route::get('/member', function () {
+    return view('member');
+});

@@ -177,7 +177,7 @@
                         <a>01.01.2019</a>
                     </td>
                     <td>
-                        <a>James Alvarz</a>
+                        <a>James Alvarez</a>
                     </td>
                     <td class="project-state">
                         <span class="badge badge-success">Success</span>
