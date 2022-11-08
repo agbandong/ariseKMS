@@ -21,7 +21,7 @@ class Organization extends Model
         'is_in_trade_association',
         'exchange_name',
         'exchange_symbol',
-        'is_subsiary_details',
+        'is_subsidiary_details',
         'number_employees',
         'past_annual_revenue',
         'description_business_and_activities',

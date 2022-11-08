@@ -113,5 +113,39 @@ export interface ProjectPermissions {
 }
 
 export interface Organization {
+  id: number;
   name: string;
+  companyCountry : string;
+  headquartersCountry : string;
+  legalCompanyCountry : string;
+  hasProof : boolean;
+  registrationProofsPath : string;
+  companyFax : Nullable<number>;
+  website : string;
+  isTradeOrg : boolean;
+  isInTradeAssociation :boolean;
+  exchangeName : Nullable<string>;
+  exchangeSymbol : Nullable<string>;
+  numberEmployees : number;
+  pastAnnualRevenue : number;
+  descriptionBusinessAndActivities : string;
+  countryFocus : Nullable<string>;
+  currentEngagementPath : string;
+  sector : string;
+  //legal representative
+  legalRepresentativeCountry : string;
+  legalRepresentativeStreet : string;
+  legalRepresentativeCity : string;
+  legalRepresentativeProvinceState : string;
+  legalRepresentativePostZipCode : string;
+  legalRepresentativePhone : number;
+  //Primary contact
+  contactCountry : string;
+  contactStreet : string;
+  contactCity : string;
+  contactProvinceState : string;
+  contactPostZipCode : string;
+  contactPhone : number;
+  created_at: DateTime;
+  updated_at: DateTime;
 }
