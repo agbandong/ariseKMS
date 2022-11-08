@@ -19,13 +19,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('legal_representative_name');
             $table->string('legal_representative_title');
-            //Duped in application?
-            $table->string('company_country');
             $table->string('headquarters_country');
             $table->string('legal_company_country');
             $table->boolean('has_proof');
             $table->string('registration_proofs_path', 2048)->nullable();
             //Address
+            //Note is Country Duped in application?
+            $table->string('company_country');
             $table->string('company_street');
             $table->string('company_city');
             $table->string('company_province_state');
@@ -34,6 +34,8 @@ return new class extends Migration
             $table->unsignedInteger('company_phone', 20);
             $table->unsignedInteger('company_fax', 20)->nullable();
             $table->string('website', 2048);
+
+
             $table->boolean('is_trade_org');
             $table->boolean('is_in_association');
             $table->string('exchange_name')->nullable();
@@ -41,12 +43,11 @@ return new class extends Migration
             $table->string('is_subsiary_details')->nullable();
             $table->unsignedInteger('number_employees', 10000000);
             $table->unsignedInteger('past_annual_revenue');
-            //UN AND CSR RELATED AFFILIATIONS
-            $table->boolean('is_member_UN_compact');
-            $table->string('affiliated_UN_agency')->nullable();
-            //TODO
-            //list organizations or platforms in the area of DRR, CSR or sustainable development that you are a member of
-            //AKA create a table for UN Affiliations
+            
+            //For UN AND CSR RELATED AFFILIATIONS
+            //See affiliated agencies table
+
+            //The link to documents on current engagements
             $table->string('current_engangement_path', 2048)->nullable();
             $table->string('sector');
             //Other
@@ -55,7 +56,14 @@ return new class extends Migration
             $table->timestamps();
             //Primary Contact
             $table->foreignId('primary_contact_id');
-            
+            $table->string('contact_country');
+            $table->string('contact_street');
+            $table->string('contact_city');
+            $table->string('contact_province_state');
+            $table->string('contact_post_zip_code');
+            $table->string('contact_street');
+            $table->unsignedInteger('contact_phone', 20);
+            //Other invited users
         });
     }
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('title');
-            $table->foreignId('organization_id');
+            $table->foreignId('organization_id')->constrained();
             $table->string('position');
             */
             $table->string('email')->unique();
