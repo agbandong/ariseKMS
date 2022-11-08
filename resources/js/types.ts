@@ -126,12 +126,12 @@ export interface Organization {
   isInTradeAssociation :boolean;
   exchangeName : Nullable<string>;
   exchangeSymbol : Nullable<string>;
-  //isSubsidiary : Nullable<string>;
+  isSubsidiaryDetails : Nullable<string>;
   numberEmployees : number;
-  //pastAnnualRevenue : number;
+  pastAnnualRevenue : number;
   descriptionBusinessAndActivities : string;
-  //countryFocus : Nullable<string>;
-  //currentEngagementPath : string;
+  countryFocus : Nullable<string>;
+  currentEngagementPath : string;
   sector : string;
   /*Legal representative*/
   //legalRepresentativeCountry : string;
@@ -141,12 +141,12 @@ export interface Organization {
   //legalRepresentativePostZipCode : string;
   //legalRepresentativePhone : number;
   /*Primary contact*/
-  contactCountry : string;
-  contactStreet : string;
-  contactCity : string;
-  contactProvinceState : string;
-  contactPostZipCode : string;
-  contactPhone : number;
-  created_at: DateTime;
-  updated_at: DateTime;
+  //contactCountry : string;
+  //contactStreet : string;
+  //contactCity : string;
+  //contactProvinceState : string;
+  //contactPostZipCode : string;
+  //contactPhone : number;
+  //created_at: DateTime;
+  //updated_at: DateTime;
 }
