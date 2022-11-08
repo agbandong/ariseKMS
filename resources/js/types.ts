@@ -111,3 +111,7 @@ export interface ProjectPermissions {
   canRemoveProjectMembers: boolean;
   canUpdateProject: boolean;
 }
+
+export interface Organization {
+  name: string;
+}

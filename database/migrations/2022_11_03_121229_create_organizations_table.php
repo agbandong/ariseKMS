@@ -64,6 +64,7 @@ return new class extends Migration
             $table->string('contact_street');
             $table->unsignedInteger('contact_phone', 20);
             //Other invited users
+            //See organization invitations table
         });
     }
 
