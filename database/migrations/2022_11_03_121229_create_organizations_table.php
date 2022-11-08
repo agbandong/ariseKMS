@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('exchange_name')->nullable();
             $table->string('exchange_symbol', 10)->nullable();
             $table->string('is_subsidiary_details')->nullable();
-            $table->unsignedInteger('number_employees', 10000000);
-            $table->unsignedInteger('past_annual_revenue');
+            $table->integer('number_employees');
+            $table->integer('past_annual_revenue');
             $table->string('description_business_and_activities');
             //$table->string('country_focus')->nullable();
             /*The link to documents on current engagements*/
@@ -45,19 +45,19 @@ return new class extends Migration
             //$table->string('legal_representative_city');
             //$table->string('legal_representative_province_state');
             //$table->string('legal_representative_post_zip_code');
-            //$table->unsignedInteger('legal_representative_phone', 20);
+            //$table->integer('legal_representative_phone', $unsigned = true);
             
             /*For UN AND CSR RELATED AFFILIATIONS
             See affiliated agencies table*/
             
             /*Primary Contact*/
-            $table->foreignId('primary_contact_id');
-            $table->string('contact_country');
-            $table->string('contact_street');
-            $table->string('contact_city');
-            $table->string('contact_province_state');
-            $table->string('contact_post_zip_code');
-            $table->unsignedInteger('contact_phone', 20);
+            //$table->foreignId('primary_contact_id');
+            //$table->string('contact_country');
+            //$table->string('contact_street');
+            //$table->string('contact_city');
+            //$table->string('contact_province_state');
+            //$table->string('contact_post_zip_code');
+            //$table->integer('contact_phone', $unsigned = true);
             /*For other invited users
             See organization invitations table*/
             $table->timestamps();
