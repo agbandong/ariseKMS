@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('name');
             /*
             Remove later when fixing user model
+            $table->string('title');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('title');
             $table->foreignId('organization_id')->constrained();
             $table->string('position');
             */
