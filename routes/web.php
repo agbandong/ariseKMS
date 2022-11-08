@@ -49,3 +49,7 @@ Route::get('/member', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/registerorg', function () {
+    return view('registerorg');
+});
