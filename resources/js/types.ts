@@ -118,28 +118,29 @@ export interface Organization {
   companyCountry : string;
   headquartersCountry : string;
   legalCompanyCountry : string;
-  hasProof : boolean;
-  registrationProofsPath : string;
-  companyFax : Nullable<number>;
-  website : string;
+  //hasProof : boolean;
+  //registrationProofsPath : string;
+  //companyFax : Nullable<number>;
+  //website : string;
   isTradeOrg : boolean;
   isInTradeAssociation :boolean;
   exchangeName : Nullable<string>;
   exchangeSymbol : Nullable<string>;
+  //isSubsidiary : Nullable<string>;
   numberEmployees : number;
-  pastAnnualRevenue : number;
+  //pastAnnualRevenue : number;
   descriptionBusinessAndActivities : string;
-  countryFocus : Nullable<string>;
-  currentEngagementPath : string;
+  //countryFocus : Nullable<string>;
+  //currentEngagementPath : string;
   sector : string;
-  //legal representative
-  legalRepresentativeCountry : string;
-  legalRepresentativeStreet : string;
-  legalRepresentativeCity : string;
-  legalRepresentativeProvinceState : string;
-  legalRepresentativePostZipCode : string;
-  legalRepresentativePhone : number;
-  //Primary contact
+  /*Legal representative*/
+  //legalRepresentativeCountry : string;
+  //legalRepresentativeStreet : string;
+  //legalRepresentativeCity : string;
+  //legalRepresentativeProvinceState : string;
+  //legalRepresentativePostZipCode : string;
+  //legalRepresentativePhone : number;
+  /*Primary contact*/
   contactCountry : string;
   contactStreet : string;
   contactCity : string;

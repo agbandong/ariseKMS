@@ -15,42 +15,42 @@ return new class extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            //Company Information
+            /*Company Information*/
             $table->string('name');
             $table->string('company_country');
             $table->string('headquarters_country');
             $table->string('legal_company_country');
-            $table->boolean('has_proof');
-            $table->string('registration_proofs_path', 2048)->nullable();
-            $table->unsignedInteger('company_fax', 20)->nullable();
-            $table->string('website', 2048);
+            //$table->boolean('has_proof');
+            //$table->string('registration_proofs_path', 2048)->nullable();
+            //$table->unsignedInteger('company_fax', 20)->nullable();
+            //$table->string('website', 2048);
             $table->boolean('is_trade_org');
             $table->boolean('is_in_trade_association');
             $table->string('exchange_name')->nullable();
             $table->string('exchange_symbol', 10)->nullable();
-            $table->string('is_subsidiary_details')->nullable();
+            //$table->string('is_subsidiary_details')->nullable();
             $table->unsignedInteger('number_employees', 10000000);
-            $table->unsignedInteger('past_annual_revenue');
+            //$table->unsignedInteger('past_annual_revenue');
             $table->string('description_business_and_activities');
-            $table->string('country_focus')->nullable();
-            //The link to documents on current engagements
-            $table->string('current_engangement_path', 2048)->nullable();
-            //Check if need to create sector table
+            //$table->string('country_focus')->nullable();
+            /*The link to documents on current engagements*/
+            //$table->string('current_engangement_path', 2048)->nullable();
+            /*Check if need to create sector table*/
             $table->string('sector');
 
-            //Company representative
-            $table->foreignId('legal_representative_id');
-            $table->string('legal_representative_country');
-            $table->string('legal_representative_street');
-            $table->string('legal_representative_city');
-            $table->string('legal_representative_province_state');
-            $table->string('legal_representative_post_zip_code');
-            $table->unsignedInteger('legal_representative_phone', 20);
+            /*Company representative*/
+            //$table->foreignId('legal_representative_id');
+            //$table->string('legal_representative_country');
+            //$table->string('legal_representative_street');
+            //$table->string('legal_representative_city');
+            //$table->string('legal_representative_province_state');
+            //$table->string('legal_representative_post_zip_code');
+            //$table->unsignedInteger('legal_representative_phone', 20);
             
-            //For UN AND CSR RELATED AFFILIATIONS
-            //See affiliated agencies table
+            /*For UN AND CSR RELATED AFFILIATIONS
+            See affiliated agencies table*/
             
-            //Primary Contact
+            /*Primary Contact*/
             $table->foreignId('primary_contact_id');
             $table->string('contact_country');
             $table->string('contact_street');
@@ -58,8 +58,8 @@ return new class extends Migration
             $table->string('contact_province_state');
             $table->string('contact_post_zip_code');
             $table->unsignedInteger('contact_phone', 20);
-            //For other invited users
-            //See organization invitations table
+            /*For other invited users
+            See organization invitations table*/
             $table->timestamps();
         });
     }
