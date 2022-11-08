@@ -45,3 +45,7 @@ Route::get('/project', function () {
 Route::get('/member', function () {
     return view('member');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
