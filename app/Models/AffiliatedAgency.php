@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class OtherAffiliatedAgency extends Model
 {
     use HasFactory;
+    
+    public function organizations(){
+        return $this->belongsToMany(Organization::class)->withTimestamps();
+    }
 }

@@ -12,10 +12,13 @@ class Project extends Model
 
     protected $fillable = [
         'user_id',
-        'name',
-        'project_files_path'
+        'name'
     ];
     
+    protected $appends =[
+        'project_files_path'
+    ];
+
     public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }

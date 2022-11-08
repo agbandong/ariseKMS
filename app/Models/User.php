@@ -64,6 +64,6 @@ class User extends Authenticatable
     }
 
     public function organization(){
-        return $this->belongsToMany(Organization::class)->withTimestamps();
+        return $this->belongsToMany(Organization::class);
     }
 }
