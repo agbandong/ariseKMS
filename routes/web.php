@@ -24,7 +24,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/register1', [OrganizationController::class, 'index'])->name('register');
+Route::get('/register1', [OrganizationController::class, 'index'])->name('register1');
+Route::get('/register2', [OrganizationController::class, 'create'])->name('register2');
+Route::get('/register3', [OrganizationController::class, 'save'])->name('register3');
 
 Route::middleware([
     'auth:sanctum',

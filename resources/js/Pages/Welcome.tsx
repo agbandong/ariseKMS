@@ -42,7 +42,7 @@ export default function Welcome({
 
               {canRegister ? (
                 <InertiaLink
-                  href={route('register')}
+                  href={route('register1')}
                   className="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
                 >
                   Register

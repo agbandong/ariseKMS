@@ -8,12 +8,15 @@ use Inertia\Inertia;
 class OrganizationController extends Controller
 {
     //
-    
-    public function create(){
-        return Inertia::render('Organizations/Create');;
+    public function index(){
+        return Inertia::render('Organizations/CheckOrganization');
     }
 
-    public function show(){
+    public function create(){
+        return Inertia::render('Organizations/Register');
+    }
+
+    public function store(){
 
     }
 
