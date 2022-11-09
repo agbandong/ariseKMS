@@ -15,37 +15,52 @@ return new class extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            //Company Information
+            /*Company Information*/
             $table->string('name');
-            $table->string('legal_representative_name');
-            $table->string('legal_representative_title');
             $table->string('company_country');
             $table->string('headquarters_country');
             $table->string('legal_company_country');
-            $table->boolean('has_proof');
-            $table->string('registration_proof_path', 2048)->nullable();
-            //TODO address
-            $table->string('website', 2048);
-            $table->boolean('is_trade_org');
-            $table->boolean('is_in_association');
+            //$table->boolean('has_proof');
+            //$table->string('registration_proofs_path', 2048)->nullable();
+            //$table->unsignedInteger('company_fax', 20)->nullable();
+            //$table->string('website', 2048);
+            $table->boolean('is_in_trade_association');
+            $table->boolean('is_in_buisness_alliance');
             $table->string('exchange_name')->nullable();
             $table->string('exchange_symbol', 10)->nullable();
-            $table->string('is_subsiary_details')->nullable();
-            $table->unsignedInteger('number_employees', 10000000);
-            $table->unsignedInteger('past_annual_revenue');
-            //UN AND CSR RELATED AFFILIATIONS
-            $table->boolean('is_member_UN_compact');
-            $table->string('affiliated_UN_agency')->nullable();
-            //TODO
-            //list any other organizations or platforms in the area of DRR, CSR or sustainable development that you are a member of
-            //list and attach a copy of any documents that showcase your current engagement in DRR, CSR or sustainable development
-            $table->string('sector');
-            //Other
+            $table->string('is_subsidiary_details')->nullable();
+            $table->integer('number_employees');
+            $table->integer('past_annual_revenue');
             $table->string('description_business_and_activities');
-            $table->string('description_business_activities');
+            //$table->string('country_focus')->nullable();
+            /*The link to documents on current engagements*/
+            //$table->string('current_engangement_path', 2048)->nullable();
+            /*Check if need to create sector table*/
+            $table->string('sector');
+            
+            /*Company representative*/
+            //$table->foreignId('legal_representative_id');
+            //$table->string('legal_representative_country');
+            //$table->string('legal_representative_street');
+            //$table->string('legal_representative_city');
+            //$table->string('legal_representative_province_state');
+            //$table->string('legal_representative_post_zip_code');
+            //$table->integer('legal_representative_phone', $unsigned = true);
+            
+            /*For UN AND CSR RELATED AFFILIATIONS
+            See affiliated agencies table*/
+            
+            /*Primary Contact*/
+            //$table->foreignId('primary_contact_id');
+            //$table->string('contact_country');
+            //$table->string('contact_street');
+            //$table->string('contact_city');
+            //$table->string('contact_province_state');
+            //$table->string('contact_post_zip_code');
+            //$table->integer('contact_phone', $unsigned = true);
+            /*For other invited users
+            See organization invitations table*/
             $table->timestamps();
-            //User
-            $table->foreignId('primary_contact_id');
         });
     }
 

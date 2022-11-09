@@ -11,11 +11,14 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'name',
-        'project_files_path'
+        'project_files_path',
     ];
     
+    protected $appends =[
+        
+    ];
+
     public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }

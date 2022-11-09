@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('organization_agency', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('project_files_path',2048);
+            //Check this later
+            $table->foreignId('organization_id') -> constrained() -> onDelete('cascade');
+            $table->foreignId('affiliated_agency_id') -> constrained()  -> onDelete('cascade');
             $table->timestamps();
+
+            
+            $table->index('organization_id');
+            $table->index('affiliated_agency_id');
         });
     }
 
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('organization_agency');
     }
 };

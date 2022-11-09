@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('affiliated_agencies', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('project_files_path',2048);
+            $table->string('name');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('affiliated_agencies');
     }
 };
