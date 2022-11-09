@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('leader_id');
             $table->string('name')->unique();
             $table->string('project_files_path',2048);
             $table->timestamps();

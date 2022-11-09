@@ -11,12 +11,12 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'name'
+        'name',
+        'project_files_path',
     ];
     
     protected $appends =[
-        'project_files_path'
+        
     ];
 
     public function users(){
