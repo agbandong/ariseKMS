@@ -10,12 +10,13 @@ class Organization extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        //'company_country',
+        'company_country',
         'headquarters_country',
         'legal_company_country',
         //'has_proof',
         //'registration_proofs_path',
-        'company_fax',
+        //'registration_proofs_excuse',
+        //'company_fax',
         //'website',
         'is_in_trade_association',
         'is_in_business_alliance',
@@ -41,7 +42,6 @@ class Organization extends Model
         //'contact_city',
         //'contact_province_state',
         //'contact_post_zip_code',
-        //'contact_street',
         //'contact_phone',
     ];
 

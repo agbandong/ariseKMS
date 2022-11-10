@@ -20,8 +20,8 @@ export default function Register() {
 
   interface Props{
     newUsers : {
-      firstName: string;
-      lastName: string;
+      first_name: string;
+      last_name: string;
       email: string;
       //position;
     }[]
@@ -29,42 +29,42 @@ export default function Register() {
 
   const form = useForm({
     name: '',
-    companyCountry : '',
-    headquartersCountrySame : false,
-    headquartersCountry : '',
-    legalCompanyCountrySame : false,
-    legalCompanyCountry : '',
+    company_country : '',
+    headquarters_country_same : false,
+    headquarters_country : '',
+    legal_company_country_same : false,
+    legal_company_country : '',
     //hasProof : boolean;
     //registrationProofsPath : string;
     //companyFax : Nullable<number>;
     //website : string;
-    isInTradeAssociation : false,
-    isInBusinessAlliance : false,
-    isPublicallyTraded : false,
-    exchangeName : '',
-    exchangeSymbol : '',
-    isSubsidiary : false,
-    isSubsidiaryDetails : '',
-    numberEmployees : 1,
-    pastAnnualRevenue : 0,
-    //descriptionBusinessAndActivities : string;
-    //countryFocus : Nullable<string>;
-    //currentEngagementPath : string;
+    is_in_trade_association : false,
+    is_in_business_alliance : false,
+    is_publically_traded : false,
+    exchange_name : '',
+    exchange_symbol : '',
+    is_subsidiary : false,
+    is_subsidiary_details : '',
+    number_employees : 1,
+    past_annual_revenue : 0,
+    //description_business_and_activities : string;
+    //country_focus : Nullable<string>;
+    //current_engagement_path : string;
     sector : '',
     /*Legal representative*/
-    //legalRepresentativeCountry : string;
-    //legalRepresentativeStreet : string;
-    //legalRepresentativeCity : string;
-    //legalRepresentativeProvinceState : string;
-    //legalRepresentativePostZipCode : string;
-    //legalRepresentativePhone : number;
+    //legal_reprentative_country : string;
+    //legal_reprentative_street : string;
+    //legal_reprentative_city : string;
+    //legal_reprentative_province_state : string;
+    //legal_reprentative_post_zip_code : string;
+    //legal_representative_phone : number;
     /*Primary contact*/
-    //contactCountry : '',
-    //contactStreet : '',
-    //contactCity : '',
-    //contactProvinceState : '',
-    //contactPostZipCode : '',
-    //contactPhone : '',
+    //contact_country : '',
+    //contact_street : '',
+    //contact_city : '',
+    //contact_province_state : '',
+    //contact_post_zip_code : '',
+    //contact_phone : '',
     terms : false,
     //newUsers : [],
   });
@@ -97,42 +97,42 @@ export default function Register() {
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="companyCountry">Country location of applicant company:</InputLabel>
+            <InputLabel htmlFor="company_country">Country location of applicant company:</InputLabel>
             <TextInput
-              id="companyCountry"
+              id="company_country"
               type="text"
               className="mt-1 block w-full"
-              value={form.data.companyCountry}
-              onChange={e => form.setData('companyCountry', e.currentTarget.value)}
+              value={form.data.company_country}
+              onChange={e => form.setData('company_country', e.currentTarget.value)}
               required
               autoFocus
             />
-            <InputError className="mt-2" message={form.errors.companyCountry} />
+            <InputError className="mt-2" message={form.errors.company_country} />
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="headquartersCountry">Country location of company headquarters:</InputLabel>
-            {!form.data.headquartersCountrySame &&
+            <InputLabel htmlFor="headquarters_country">Country location of company headquarters:</InputLabel>
+            {!form.data.headquarters_country_same &&
             (<div><TextInput
-              id="headquartersCountry"
+              id="headquarters_country"
               type="text"
               className="mt-1 block w-full"
-              value={form.data.headquartersCountry}
-              onChange={e => form.setData('headquartersCountry', e.currentTarget.value)}
+              value={form.data.headquarters_country}
+              onChange={e => form.setData('headquarters_country', e.currentTarget.value)}
               required
               autoFocus
             />
-            <InputError className="mt-2" message={form.errors.headquartersCountry} /></div>)}
+            <InputError className="mt-2" message={form.errors.headquarters_country} /></div>)}
           </div>
           
           <div className="mt-2">
-            <InputLabel htmlFor="headquartersCountrySame">
+            <InputLabel htmlFor="headquarters_country_same">
               <div className="flex items-center">
                 <Checkbox
-                  name="headquartersCountrySame"
-                  id="headquartersCountrySame"
-                  checked={form.data.headquartersCountrySame}
-                  onChange={e => form.setData('headquartersCountrySame', e.currentTarget.checked)}
+                  name="headquarters_country_same"
+                  id="headquarters_country_same"
+                  checked={form.data.headquarters_country_same}
+                  onChange={e => form.setData('headquarters_country_same', e.currentTarget.checked)}
                   /*Just edit in model later*/
                   /*
                   Doesn't work with both...
@@ -142,190 +142,187 @@ export default function Register() {
                 <div className="ml-2">Same as applicant</div>
               </div>
               
-              <InputError className="mt-2" message={form.errors.headquartersCountrySame} />
+              <InputError className="mt-2" message={form.errors.headquarters_country_same} />
             </InputLabel>
           </div>
           
           <div className="mt-4">
-            <InputLabel htmlFor="legalCompanyCountry">Country location where company is legally registered:</InputLabel>
-            {!form.data.legalCompanyCountrySame &&
+            <InputLabel htmlFor="legal_company_country">Country location where company is legally registered:</InputLabel>
+            {!form.data.legal_company_country_same &&
             (<div><TextInput
-              id="legalCompanyCountry"
+              id="legal_company_country"
               type="text"
               className="mt-1 block w-full"
-              value={form.data.legalCompanyCountry}
-              onChange={e => form.setData('legalCompanyCountry', e.currentTarget.value)}
+              value={form.data.legal_company_country}
+              onChange={e => form.setData('legal_company_country', e.currentTarget.value)}
               required
               autoFocus
             />
-            <InputError className="mt-2" message={form.errors.legalCompanyCountry} /></div>)}
+            <InputError className="mt-2" message={form.errors.legal_company_country} /></div>)}
           </div>
           
           <div className="mt-2">
-            <InputLabel htmlFor="legalCompanyCountrySame">
+            <InputLabel htmlFor="legal_company_country_same">
               <div className="flex items-center">
                 <Checkbox
-                  name="legalCompanyCountrySame"
-                  id="legalCompanyCountrySame"
-                  checked={form.data.legalCompanyCountrySame}
-                  onChange={e => form.setData('legalCompanyCountrySame', e.currentTarget.checked)}
+                  name="legal_company_country_same"
+                  id="legal_company_country_same"
+                  checked={form.data.legal_company_country_same}
+                  onChange={e => form.setData('legal_company_country_same', e.currentTarget.checked)}
                 />
                 <div className="ml-2">Same as applicant</div>
               </div>
               
-              <InputError className="mt-2" message={form.errors.legalCompanyCountrySame} />
+              <InputError className="mt-2" message={form.errors.legal_company_country_same} />
             </InputLabel>
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="isInTradeAssociation">
+            <InputLabel htmlFor="is_in_trade_association">
               <div className="flex items-center">
                 <div className="mr-2">Are you a trade association</div>
                 <Checkbox
-                  name="isInTradeAssociation"
-                  id="isInTradeAssociation"
-                  checked={form.data.isInTradeAssociation}
-                  onChange={e => form.setData('isInTradeAssociation', e.currentTarget.checked)}
+                  name="is_in_trade_association"
+                  id="is_in_trade_association"
+                  checked={form.data.is_in_trade_association}
+                  onChange={e => form.setData('is_in_trade_association', e.currentTarget.checked)}
                 />
               </div>
-              <InputError className="mt-2" message={form.errors.isInTradeAssociation} />
+              <InputError className="mt-2" message={form.errors.is_in_trade_association} />
             </InputLabel>
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="isInBusinessAlliance">
+            <InputLabel htmlFor="is_in_business_alliance">
               <div className="flex items-center">
                 <div className="mr-2">Are you a business association/alliance or network</div>
                 <Checkbox
-                  name="isInBusinessAlliance"
-                  id="isInBusinessAlliance"
-                  checked={form.data.isInBusinessAlliance}
-                  onChange={e => form.setData('isInBusinessAlliance', e.currentTarget.checked)}
+                  name="is_in_business_alliance"
+                  id="is_in_business_alliance"
+                  checked={form.data.is_in_business_alliance}
+                  onChange={e => form.setData('is_in_business_alliance', e.currentTarget.checked)}
                 />
               </div>
-              <InputError className="mt-2" message={form.errors.isInBusinessAlliance} />
+              <InputError className="mt-2" message={form.errors.is_in_business_alliance} />
             </InputLabel>
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="isPublicallyTraded">
+            <InputLabel htmlFor="is_publically_traded">
               <div className="flex items-center">
                 <div className="mr-2">Are you a publicly traded company</div>
                 <Checkbox
-                  name="isPublicallyTraded"
-                  id="isPublicallyTraded"
-                  checked={form.data.isPublicallyTraded}
-                  onChange={e => form.setData('isPublicallyTraded', e.currentTarget.checked)}
+                  name="is_publically_traded"
+                  id="is_publically_traded"
+                  checked={form.data.is_publically_traded}
+                  onChange={e => form.setData('is_publically_traded', e.currentTarget.checked)}
                 />
               </div>
-              <InputError className="mt-2" message={form.errors.isPublicallyTraded} />
+              <InputError className="mt-2" message={form.errors.is_publically_traded} />
             </InputLabel>
           </div>
-          {form.data.isPublicallyTraded && 
+          {form.data.is_publically_traded && 
           (<div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
               <div>
-              <InputLabel htmlFor="exchangeName">Exchange Name</InputLabel>
+              <InputLabel htmlFor="exchange_name">Exchange Name</InputLabel>
               <TextInput
-                id="exchangeName"
+                id="exchange_name"
                 type="text"
                 className="mt-1 block w-full"
-                value={form.data.exchangeName}
-                onChange={e => form.setData('exchangeName', e.currentTarget.value)}
+                value={form.data.exchange_name}
+                onChange={e => form.setData('exchange_name', e.currentTarget.value)}
                 required
                 autoFocus
               />
-              <InputError className="mt-2" message={form.errors.exchangeName} />
+              <InputError className="mt-2" message={form.errors.exchange_name} />
             </div>
 
             <div>
-              <InputLabel htmlFor="exchangeSymbol">Exchange Symbol</InputLabel>
+              <InputLabel htmlFor="exchange_symbol">Exchange Symbol</InputLabel>
               <TextInput
-                id="exchangeSymbol"
+                id="exchange_symbol"
                 type="text"
                 className="mt-1 block w-full"
-                value={form.data.exchangeSymbol}
-                onChange={e => form.setData('exchangeSymbol', e.currentTarget.value)}
+                value={form.data.exchange_symbol}
+                onChange={e => form.setData('exchange_symbol', e.currentTarget.value)}
                 required
                 autoFocus
               />
-              <InputError className="mt-2" message={form.errors.name} />
+              <InputError className="mt-2" message={form.errors.exchange_symbol} />
           </div>
           </div>)}
           
           <div className="mt-4">
-            <InputLabel htmlFor="open">
+            <InputLabel htmlFor="is_subsidiary">
               <div className="flex items-center">
                 <div className="mr-2">Are you a subsidiary of a company</div>
                 <Checkbox
-                  name="open"
-                  id="open"
-                  checked={form.data.isSubsidiary}
-                  onChange={e => form.setData('isSubsidiary', e.currentTarget.checked)}
+                  name="is_subsidiary"
+                  id="is_subsidiary"
+                  checked={form.data.is_subsidiary}
+                  onChange={e => form.setData('is_subsidiary', e.currentTarget.checked)}
                 />
               </div>
               <InputError className="mt-2" message={form.errors.terms} />
             </InputLabel>
           </div>
-          {form.data.isSubsidiary && 
+          {form.data.is_subsidiary && 
           (<div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <div>
-              <InputLabel htmlFor="isSubsidiaryDetails">Details</InputLabel>
+              <InputLabel htmlFor="is_subsidiary_details">Details</InputLabel>
               <TextInput
-                id="isSubsidiaryDetails"
+                id="is_subsidiary_details"
                 type="text"
                 className="mt-1 block w-full"
-                value={form.data.isSubsidiaryDetails}
-                onChange={e => form.setData('isSubsidiaryDetails', e.currentTarget.value)}
+                value={form.data.is_subsidiary_details}
+                onChange={e => form.setData('is_subsidiary_details', e.currentTarget.value)}
                 required
                 autoFocus
               />
-              <InputError className="mt-2" message={form.errors.isSubsidiaryDetails} />
+              <InputError className="mt-2" message={form.errors.is_subsidiary_details} />
             </div>
           </div>)}
           
           <div className="mt-4">
-            <InputLabel htmlFor="numberEmployees">What is your total number of staff?</InputLabel>
+            <InputLabel htmlFor="number_employees">What is your total number of staff?</InputLabel>
             <TextInput
-              id="numberEmployees"
+              id="number_employees"
               type="number"
               className="mt-1 block w-full"
-              value={form.data.numberEmployees}
-              onChange={e => form.setData('numberEmployees', e.currentTarget.valueAsNumber)}
+              value={form.data.number_employees}
+              onChange={e => form.setData('number_employees', e.currentTarget.valueAsNumber)}
               required
               autoFocus
-              autoComplete="numberEmployees"
             />
-            <InputError className="mt-2" message={form.errors.name} />
+            <InputError className="mt-2" message={form.errors.number_employees} />
           </div>
 
           <div className="mt-4">
-            <InputLabel htmlFor="pastAnnualRevenue">Indicate your annual revenue in the past fiscal year</InputLabel>
+            <InputLabel htmlFor="past_annual_revenue">Indicate your annual revenue in the past fiscal year</InputLabel>
             <TextInput
-              id="pastAnnualRevenue"
+              id="past_annual_revenue"
               type="number"
               className="mt-1 block w-full"
-              value={form.data.pastAnnualRevenue}
-              onChange={e => form.setData('pastAnnualRevenue', e.currentTarget.valueAsNumber)}
+              value={form.data.past_annual_revenue}
+              onChange={e => form.setData('past_annual_revenue', e.currentTarget.valueAsNumber)}
               required
               autoFocus
-              autoComplete="pastAnnualRevenue"
             />
-            <InputError className="mt-2" message={form.errors.pastAnnualRevenue} />
+            <InputError className="mt-2" message={form.errors.past_annual_revenue} />
           </div>
           
           <div className="mt-4">
-            <InputLabel htmlFor="name">What sector is your company in?</InputLabel>
+            <InputLabel htmlFor="sector">What sector is your company in?</InputLabel>
             <TextInput
-              id="name"
+              id="sector"
               type="text"
               className="mt-1 block w-full"
-              value={form.data.name}
-              onChange={e => form.setData('name', e.currentTarget.value)}
+              value={form.data.sector}
+              onChange={e => form.setData('sector', e.currentTarget.value)}
               required
               autoFocus
-              autoComplete="name"
             />
-            <InputError className="mt-2" message={form.errors.name} />
+            <InputError className="mt-2" message={form.errors.sector} />
           </div>
         </div>
 

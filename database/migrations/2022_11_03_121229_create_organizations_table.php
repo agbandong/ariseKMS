@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('legal_company_country');
             //$table->boolean('has_proof');
             //$table->string('registration_proofs_path', 2048)->nullable();
+            //$table->string('registration_proofs_excuse')->nullable();
             //$table->unsignedInteger('company_fax', 20)->nullable();
             //$table->string('website', 2048);
             $table->boolean('is_in_trade_association');
