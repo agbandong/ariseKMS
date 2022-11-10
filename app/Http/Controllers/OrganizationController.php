@@ -54,4 +54,14 @@ class OrganizationController extends Controller
 
         return Inertia::render('Organizations/PleaseWait');
     }
+
+    public function check(Request $request){
+        //Edit routes to prevent unauthorized access
+        //dd($request);
+        if(Organization::get()->contains('name', $request->query("organization"))){
+            return to_route('register', ['organization' => $request->query("organization")]);
+        };
+        
+        return back()->json();
+    }
 }

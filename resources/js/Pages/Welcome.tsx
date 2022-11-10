@@ -7,8 +7,6 @@ import { Head } from '@inertiajs/inertia-react';
 interface Props {
   canLogin: boolean;
   canRegister: boolean;
-  laravelVersion: string;
-  phpVersion: string;
 }
 
 export default function Welcome({
@@ -42,7 +40,7 @@ export default function Welcome({
 
               {canRegister ? (
                 <InertiaLink
-                  href={route('register1')}
+                  href={route('register/new')}
                   className="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
                 >
                   Register
