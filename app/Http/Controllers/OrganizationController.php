@@ -62,6 +62,6 @@ class OrganizationController extends Controller
             return to_route('register', ['organization' => $request->query("organization")]);
         };
         
-        return back()->json();
+        return back();
     }
 }
