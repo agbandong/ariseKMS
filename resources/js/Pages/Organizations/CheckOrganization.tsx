@@ -19,8 +19,8 @@ export default function CheckOrganization() {
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     //Edit later to check if in org list
-    form.get(route('register'), {
-      errorBag: 'createTeam',
+    form.get(route('register/organization/check'), {
+      errorBag: 'createOrganization',
       preserveScroll: true,
     });
   }
@@ -46,7 +46,7 @@ export default function CheckOrganization() {
         <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mt-4">
             <div className="flex items-center justify-end">
             <InertiaLink
-              href={route('register2')}
+              href={route('register/organization')}
               className="underline text-sm text-gray-600 hover:text-gray-900"
             >
               Register Organization?

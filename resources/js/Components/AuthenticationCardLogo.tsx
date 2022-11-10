@@ -6,7 +6,7 @@ export default function AuthenticationCardLogo() {
     <InertiaLink href="/">
       <img
         className="w-32 h-32"
-        src="logo192.png"
+        src="/logo192.png"
       />
     </InertiaLink>
   );

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OrganizationController;
+use App\Providers\JetstreamServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/register1', [OrganizationController::class, 'index'])->name('register1');
-Route::get('/register2', [OrganizationController::class, 'create'])->name('register2');
-Route::post('/register3', [OrganizationController::class, 'store'])->name('register3');
+Route::get('/register/new', [OrganizationController::class, 'index'])->name('register/new');
+Route::get('/register/organization', [OrganizationController::class, 'create'])->name('register/organization');
+Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('register/organization/check');
+Route::post('/register/organization/done', [OrganizationController::class, 'store'])->name('register/organization/done');
 
 Route::middleware([
     'auth:sanctum',

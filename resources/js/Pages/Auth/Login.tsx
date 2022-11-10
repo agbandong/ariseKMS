@@ -93,7 +93,7 @@ export default function Login({ canResetPassword, status }: Props) {
 
           <div className="flex items-center justify-end">
             <InertiaLink
-              href={route('register1')}
+              href={route('register/new')}
               className="underline text-sm text-gray-600 hover:text-gray-900"
             >
               Need an account?

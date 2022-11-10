@@ -72,7 +72,7 @@ export default function Register() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    form.post(route('register3'));
+    form.post(route('register/organization/done'));
   }
 
   return (
@@ -327,8 +327,8 @@ export default function Register() {
           </div>
 
           
-          <div>
-            <InputLabel htmlFor="description_business_and_activities">Details</InputLabel>
+          <div className='mt-4'>
+            <InputLabel htmlFor="description_business_and_activities">Please provide a brief description of your business and primary activities</InputLabel>
             <TextInput
               id="description_business_and_activities"
               type="text"
@@ -401,7 +401,7 @@ export default function Register() {
 
         <div className="flex items-center justify-end mt-4">
           <InertiaLink
-            href={route('register1')}
+            href={route('register/new')}
             className="underline text-sm text-gray-600 hover:text-gray-900"
           >
             Company already registered?
