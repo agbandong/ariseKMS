@@ -47,7 +47,7 @@ export default function Register() {
     is_subsidiary_details : '',
     number_employees : 1,
     past_annual_revenue : 0,
-    //description_business_and_activities : string;
+    description_business_and_activities : '',
     //country_focus : Nullable<string>;
     //current_engagement_path : string;
     sector : '',
@@ -65,6 +65,7 @@ export default function Register() {
     //contact_province_state : '',
     //contact_post_zip_code : '',
     //contact_phone : '',
+
     terms : false,
     //newUsers : [],
   });
@@ -323,6 +324,21 @@ export default function Register() {
               autoFocus
             />
             <InputError className="mt-2" message={form.errors.sector} />
+          </div>
+
+          
+          <div>
+            <InputLabel htmlFor="description_business_and_activities">Details</InputLabel>
+            <TextInput
+              id="description_business_and_activities"
+              type="text"
+              className="mt-1 block w-full"
+              value={form.data.description_business_and_activities}
+              onChange={e => form.setData('description_business_and_activities', e.currentTarget.value)}
+              required
+              autoFocus
+            />
+            <InputError className="mt-2" message={form.errors.is_subsidiary_details} />
           </div>
         </div>
 

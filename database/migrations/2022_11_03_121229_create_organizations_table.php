@@ -26,7 +26,7 @@ return new class extends Migration
             //$table->unsignedInteger('company_fax', 20)->nullable();
             //$table->string('website', 2048);
             $table->boolean('is_in_trade_association');
-            $table->boolean('is_in_buisness_alliance');
+            $table->boolean('is_in_business_alliance');
             $table->string('exchange_name')->nullable();
             $table->string('exchange_symbol', 10)->nullable();
             $table->string('is_subsidiary_details')->nullable();

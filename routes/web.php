@@ -36,7 +36,7 @@ Route::middleware([
     Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
 });
-
+/*
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -55,4 +55,4 @@ Route::get('/login', function () {
 
 Route::get('/registerorg', function () {
     return view('registerorg');
-});
+});*/
