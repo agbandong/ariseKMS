@@ -13,6 +13,7 @@ class Project extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'description',
         'project_files_path'
     ];
     

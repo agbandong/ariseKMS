@@ -43,23 +43,23 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="2" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox" data-title="Project 2">
-                        <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=2" data-toggle="lightbox" data-title="Project 2">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=2" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="3" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=3" data-toggle="lightbox" data-title="Project 3">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=3" data-toggle="lightbox" data-title="Project 3">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="4" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=4" data-toggle="lightbox" data-title="Project 4">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=4" data-toggle="lightbox" data-title="Project 4">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="5" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=5" data-toggle="lightbox" data-title="Project 5">
-                        <img src="https://via.placeholder.com/300/000000?text=5" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=5" data-toggle="lightbox" data-title="Project 5">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=5" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="6" data-sort="white sample">
@@ -73,13 +73,13 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="8" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox" data-title="Project 8">
-                        <img src="https://via.placeholder.com/300/000000?text=8" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=8" data-toggle="lightbox" data-title="Project 8">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=8" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="9" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox" data-title="Project 9">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=9" data-toggle="lightbox" data-title="Project 9">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="10" data-sort="white sample">
@@ -93,8 +93,8 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="12" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox" data-title="Project 12">
-                        <img src="https://via.placeholder.com/300/000000?text=12" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=12" data-toggle="lightbox" data-title="Project 12">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=12" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                   </div>
@@ -124,23 +124,23 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="2" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox" data-title="Report 2">
-                        <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=2" data-toggle="lightbox" data-title="Report 2">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=2" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="3" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=3" data-toggle="lightbox" data-title="Report 3">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=3" data-toggle="lightbox" data-title="Report 3">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="4" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=4" data-toggle="lightbox" data-title="Report 4">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=4" data-toggle="lightbox" data-title="Report 4">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="5" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=5" data-toggle="lightbox" data-title="Report 5">
-                        <img src="https://via.placeholder.com/300/000000?text=5" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=5" data-toggle="lightbox" data-title="Report 5">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=5" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="6" data-sort="white sample">
@@ -154,13 +154,13 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="8" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox" data-title="Report 8">
-                        <img src="https://via.placeholder.com/300/000000?text=8" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=8" data-toggle="lightbox" data-title="Report 8">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=8" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="9" data-sort="red sample">
-                      <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox" data-title="Report 9">
-                        <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
+                      <a href="https://via.placeholder.com/1200/F8C8DC/FFFFFF.png?text=9" data-toggle="lightbox" data-title="Report 9">
+                        <img src="https://via.placeholder.com/300/F8C8DC/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="10" data-sort="white sample">
@@ -174,8 +174,8 @@
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="12" data-sort="black sample">
-                      <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox" data-title="Report 12">
-                        <img src="https://via.placeholder.com/300/000000?text=12" class="img-fluid mb-2" alt="black sample"/>
+                      <a href="https://via.placeholder.com/1200/D3D3D3.png?text=12" data-toggle="lightbox" data-title="Report 12">
+                        <img src="https://via.placeholder.com/300/D3D3D3?text=12" class="img-fluid mb-2" alt="black sample"/>
                       </a>
                     </div>
                   </div>

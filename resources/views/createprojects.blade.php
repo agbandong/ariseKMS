@@ -1,17 +1,7 @@
 @extends('layout')
   @section('content')
 
-  <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Create a Project</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <div class="container mt-2">
+    <div class="container mt-5">
         <!-- Success message -->
         @if(Session::has('success'))
             <div class="alert alert-success">

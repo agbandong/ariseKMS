@@ -53,3 +53,14 @@ Route::get('/login', function () {
 Route::get('/registerorg', function () {
     return view('registerorg');
 });
+
+Route::get('/projects', function () {
+    return view('projects');
+});
+
+Route::get('/createprojects', function () {
+    return view('createprojects');
+});
+
+Route::get('createprojects', [ProjectController::class, 'createForm']);
+Route::post('createprojects', [ProjectController::class, 'store'])->name('project.store');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name')->unique();
+            $table->text('description');
             $table->string('project_files_path',2048);
             $table->timestamps();
         });
