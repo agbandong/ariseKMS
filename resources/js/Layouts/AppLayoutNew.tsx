@@ -10,14 +10,14 @@ import Dropdown from '@/Components/Dropdown';
 import DropdownLink from '@/Components/DropdownLink';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Team } from '@/types';
+import Sidebar from '@/Components/Sidebar';
 
 interface Props {
   title: string;
   renderHeader?(): JSX.Element;
 }
 
-export default function AppLayout({
+export default function AppLayoutNew({
   title,
   renderHeader,
   children,
@@ -26,19 +26,6 @@ export default function AppLayout({
   const route = useRoute();
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
-
-  function switchToTeam(e: React.FormEvent, team: Team) {
-    e.preventDefault();
-    Inertia.put(
-      route('current-team.update'),
-      {
-        team_id: team.id,
-      },
-      {
-        preserveState: false,
-      },
-    );
-  }
 
   function logout(e: React.FormEvent) {
     e.preventDefault();
@@ -51,73 +38,9 @@ export default function AppLayout({
 
       <Banner />
 
-      {/*<!-- Main Sidebar Container -->*/}
-      <aside className="main-sidebar sidebar-dark-primary elevation-4">
-        {/*<!-- Brand Logo -->*/}
-        
+      <Sidebar>
 
-        {/*<!-- Sidebar -->*/}
-        <div className="sidebar">
-          {/*<!-- Sidebar user panel (optional) --> Change*/}
-          <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div className="image">
-                <img src="{{ asset('dist/img/user.png') }}" alt="User Image"/>
-            </div>
-            <div className="info">
-              <a href="/profile" className="d-block">Alexander Pierce</a>
-            </div>
-          </div>
-
-          {/*<!-- Sidebar Menu -->*/}
-          <nav className="mt-2">
-            <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"/>
-              {/*<!-- Add icons to the links using the .nav-icon className
-                  with font-awesome or any other icon font library -->*/}
-              <li className="nav-item">
-                <a href="/dashboard" className="nav-link active">
-                  <i className="nav-icon fas fa-th"></i>
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/project" className="nav-link">
-                  <i className="nav-icon fas fa-tasks"></i>
-                  <p>
-                    Projects
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/report" className="nav-link">
-                  <i className="nav-icon fas fa-edit"></i>
-                  <p>
-                    Reports
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/event" className="nav-link">
-                  <i className="nav-icon fas fa-calendar-alt"></i>
-                  <p>
-                    Events
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/community" className="nav-link">
-                  <i className="nav-icon fas fa-users"></i>
-                  <p>
-                    Community
-                  </p>
-                </a>
-              </li>
-          </nav>
-          {/*<!-- /.sidebar-menu -->*/}
-        </div>
-        {/*<!-- /.sidebar -->*/}
-      </aside>
+      
       
       {/*Navbar*/}
 
@@ -162,98 +85,7 @@ export default function AppLayout({
               </div>
 
               <div className="hidden sm:flex sm:items-center sm:ml-6">
-                <div className="ml-3 relative">
-                  {/* <!-- Teams Dropdown --> */}
-                  {page.props.jetstream.hasTeamFeatures ? (
-                    <Dropdown
-                      align="right"
-                      width="60"
-                      renderTrigger={() => (
-                        <span className="inline-flex rounded-md">
-                          <button
-                            type="button"
-                            className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition"
-                          >
-                            {page.props.user.current_team?.name}
-
-                            <svg
-                              className="ml-2 -mr-0.5 h-4 w-4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </button>
-                        </span>
-                      )}
-                    >
-                      <div className="w-60">
-                        {/* <!-- Team Management --> */}
-                        {page.props.jetstream.hasTeamFeatures ? (
-                          <>
-                            <div className="block px-4 py-2 text-xs text-gray-400">
-                              Manage Team
-                            </div>
-
-                            {/* <!-- Team Settings --> */}
-                            <DropdownLink
-                              href={route('teams.show', [
-                                page.props.user.current_team!,
-                              ])}
-                            >
-                              Team Settings
-                            </DropdownLink>
-
-                            {page.props.jetstream.canCreateTeams ? (
-                              <DropdownLink href={route('teams.create')}>
-                                Create New Team
-                              </DropdownLink>
-                            ) : null}
-
-                            <div className="border-t border-gray-100"></div>
-
-                            {/* <!-- Team Switcher --> */}
-                            <div className="block px-4 py-2 text-xs text-gray-400">
-                              Switch Teams
-                            </div>
-
-                            {page.props.user.all_teams?.map(team => (
-                              <form
-                                onSubmit={e => switchToTeam(e, team)}
-                                key={team.id}
-                              >
-                                <DropdownLink as="button">
-                                  <div className="flex items-center">
-                                    {team.id ==
-                                      page.props.user.current_team_id && (
-                                      <svg
-                                        className="mr-2 h-5 w-5 text-green-400"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                      </svg>
-                                    )}
-                                    <div>{team.name}</div>
-                                  </div>
-                                </DropdownLink>
-                              </form>
-                            ))}
-                          </>
-                        ) : null}
-                      </div>
-                    </Dropdown>
-                  ) : null}
-                </div>
+                
 
                 {/* <!-- Settings Dropdown --> */}
                 <div className="ml-3 relative">
@@ -422,64 +254,7 @@ export default function AppLayout({
                   </ResponsiveNavLink>
                 </form>
 
-                {/* <!-- Team Management --> */}
-                {page.props.jetstream.hasTeamFeatures ? (
-                  <>
-                    <div className="border-t border-gray-200"></div>
-
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Manage Team
-                    </div>
-
-                    {/* <!-- Team Settings --> */}
-                    <ResponsiveNavLink
-                      href={route('teams.show', [
-                        page.props.user.current_team!,
-                      ])}
-                      active={route().current('teams.show')}
-                    >
-                      Team Settings
-                    </ResponsiveNavLink>
-
-                    {page.props.jetstream.canCreateTeams ? (
-                      <ResponsiveNavLink
-                        href={route('teams.create')}
-                        active={route().current('teams.create')}
-                      >
-                        Create New Team
-                      </ResponsiveNavLink>
-                    ) : null}
-
-                    <div className="border-t border-gray-200"></div>
-
-                    {/* <!-- Team Switcher --> */}
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Switch Teams
-                    </div>
-                    {page.props.user?.all_teams?.map(team => (
-                      <form onSubmit={e => switchToTeam(e, team)} key={team.id}>
-                        <ResponsiveNavLink as="button">
-                          <div className="flex items-center">
-                            {team.id == page.props.user.current_team_id && (
-                              <svg
-                                className="mr-2 h-5 w-5 text-green-400"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                              </svg>
-                            )}
-                            <div>{team.name}</div>
-                          </div>
-                        </ResponsiveNavLink>
-                      </form>
-                    ))}
-                  </>
-                ) : null}
+                
               </div>
             </div>
           </div>
@@ -497,6 +272,7 @@ export default function AppLayout({
         {/* <!-- Page Content --> */}
         <main>{children}</main>
       </div>
+      </Sidebar>
     </div>
   );
 }
