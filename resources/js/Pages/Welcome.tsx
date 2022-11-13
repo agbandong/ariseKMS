@@ -52,8 +52,6 @@ export default function Welcome({
       ) : null}
 
       
-        
-      
     </div>
   );
 }
