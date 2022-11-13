@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import useRoute from '@/Hooks/useRoute';
 import useTypedPage from '@/Hooks/useTypedPage';
-import AuthenticationCard from '@/Components/AuthenticationCard';
+import OrganizationRegisterCard from '@/Components/OrganizationRegisterCard';
 import Checkbox from '@/Components/Checkbox';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -76,10 +76,11 @@ export default function Register() {
   }
 
   return (
-    <AuthenticationCard>
+    <OrganizationRegisterCard>
       <Head title="Register" />
       {/*TODO create components instead of these forms*/}
       <form onSubmit={onSubmit}>
+        
         <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
           <h4>Company Details</h4>
           <div>
@@ -415,6 +416,6 @@ export default function Register() {
           </PrimaryButton>
         </div>
       </form>
-    </AuthenticationCard>
+    </OrganizationRegisterCard>
   );
 }

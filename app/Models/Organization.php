@@ -49,7 +49,7 @@ class Organization extends Model
         return $this->hasMany(User::class);
     }
 
-    public function organizationInvitations(){
+    public function userInvitations(){
         return $this->belongsToMany(OrganizationInvitation::class);
     }
 }
