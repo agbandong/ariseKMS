@@ -20,7 +20,7 @@ export default function CreateTeamForm() {
   //Create a project controller
   function createProject() {
     form.post(route('projects.store'), {
-      errorBag: 'createTeam',
+      errorBag: 'createProject',
       preserveScroll: true,
     });
   }
@@ -63,7 +63,7 @@ export default function CreateTeamForm() {
       </div>
 
       <div className="col-span-6 sm:col-span-4">
-        <InputLabel htmlFor="name" value="Team Name" />
+        <InputLabel htmlFor="name" value="Project Name" />
         <TextInput
           id="name"
           type="text"
