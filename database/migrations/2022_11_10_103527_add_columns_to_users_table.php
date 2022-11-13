@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('first_name');
             $table->string('last_name');
-            $table->foreignId('organization_id')->constrained();
+            $table->foreignId('organization_id')->constrained('organizations');
             $table->string('position');
         });
     }

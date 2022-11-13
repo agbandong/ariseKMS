@@ -64,4 +64,8 @@ class OrganizationController extends Controller
         
         return back();
     }
+
+    public function createInvitations(){
+        
+    }
 }
