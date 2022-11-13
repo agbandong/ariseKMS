@@ -51,6 +51,74 @@ export default function AppLayout({
 
       <Banner />
 
+      {/*<!-- Main Sidebar Container -->*/}
+      <aside className="main-sidebar sidebar-dark-primary elevation-4">
+        {/*<!-- Brand Logo -->*/}
+        
+
+        {/*<!-- Sidebar -->*/}
+        <div className="sidebar">
+          {/*<!-- Sidebar user panel (optional) --> Change*/}
+          <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div className="image">
+                <img src="{{ asset('dist/img/user.png') }}" alt="User Image"/>
+            </div>
+            <div className="info">
+              <a href="/profile" className="d-block">Alexander Pierce</a>
+            </div>
+          </div>
+
+          {/*<!-- Sidebar Menu -->*/}
+          <nav className="mt-2">
+            <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"/>
+              {/*<!-- Add icons to the links using the .nav-icon className
+                  with font-awesome or any other icon font library -->*/}
+              <li className="nav-item">
+                <a href="/dashboard" className="nav-link active">
+                  <i className="nav-icon fas fa-th"></i>
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/project" className="nav-link">
+                  <i className="nav-icon fas fa-tasks"></i>
+                  <p>
+                    Projects
+                  </p>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/report" className="nav-link">
+                  <i className="nav-icon fas fa-edit"></i>
+                  <p>
+                    Reports
+                  </p>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/event" className="nav-link">
+                  <i className="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Events
+                  </p>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/community" className="nav-link">
+                  <i className="nav-icon fas fa-users"></i>
+                  <p>
+                    Community
+                  </p>
+                </a>
+              </li>
+          </nav>
+          {/*<!-- /.sidebar-menu -->*/}
+        </div>
+        {/*<!-- /.sidebar -->*/}
+      </aside>
+      
       {/*Navbar*/}
 
       <div className="min-h-screen bg-gray-100">
@@ -65,9 +133,18 @@ export default function AppLayout({
                     <ApplicationMark className="block h-9 w-auto" />
                   </InertiaLink>
                 </div>
+                
+                {/*Use components*/}
+                <div className="nav-item">
+                    <a className="nav-link" data-widget="pushmenu" href="#">
+                      <i className="fas fa-bars"/>
+                    </a>
+                  </div>
+
 
                 {/* <!-- Navigation Links --> */}
                 <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  
                   <NavLink
                     href={route('dashboard')}
                     active={route().current('dashboard')}
