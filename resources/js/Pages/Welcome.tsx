@@ -51,7 +51,12 @@ export default function Welcome({
         </div>
       ) : null}
 
-      
+      <InertiaLink
+        href={route('register/new')}
+        className="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
+      >
+        Register
+      </InertiaLink>
     </div>
   );
 }
