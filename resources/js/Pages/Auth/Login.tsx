@@ -31,7 +31,7 @@ export default function Login({ canResetPassword, status }: Props) {
 
   return (
     <AuthenticationCard>
-      <Head title="login" />
+      <Head title="Login" />
 
       {status && (
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
