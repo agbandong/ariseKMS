@@ -24,7 +24,7 @@ Route::get('/', function (){
     if($loggedIn) {return to_route('dashboard');}
     else {
         //Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
-        return to_route('login'); 
+        return to_route('register/new'); 
     } 
 });
 
@@ -52,24 +52,4 @@ Route::get('/welcome', function(){
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);
-});
-
-Route::get('/newDashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/newProject', function () {
-    return view('project');
-});
-
-Route::get('/newMember', function () {
-    return view('member');
-});
-
-Route::get('/newLogin', function () {
-    return view('login');
-});
-
-Route::get('/registerorg', function () {
-    return view('registerorg');
 });
