@@ -20,7 +20,7 @@ class ProjectController extends Controller
         //Ignore error it works
         $userProjects = Auth::user()->projects()->get()->all();
         //return dd($userProjects);
-        return Inertia::render('Dashboard', ['projects' => $userProjects]);
+        return Inertia::render('Projects/ShowAll', ['projects' => $userProjects]);
     }
 
     /**

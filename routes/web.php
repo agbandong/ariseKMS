@@ -40,11 +40,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
     Route::resource('/projects', ProjectController::class);
-    Route::get('/newDashboard2', function () {
-        return Inertia::render('DashboardNew');
-    });
 });
 
 Route::get('/welcome', function(){

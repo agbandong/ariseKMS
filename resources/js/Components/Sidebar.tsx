@@ -26,14 +26,14 @@ export default function Sidebar ({children}:Props) {
         } bg-purple-600 h-screen p-5  pt-8 relative duration-300`}
       >
         <img
-          src="assets/control.png"
+          src="/assets/control.png"
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
           <img
-            src="assets/logo.png"
+            src="/logo192.png"
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
@@ -43,7 +43,7 @@ export default function Sidebar ({children}:Props) {
               !open && "scale-0"
             }`}
           >
-            Designer
+            Arise KMS
           </h1>
         </div>
         <ul className="pt-6">
@@ -55,7 +55,7 @@ export default function Sidebar ({children}:Props) {
                 index === 0 && "bg-light-white"
               } `}
             >
-              <img src={`assets/${Menu.resources}.png`} />
+              <img src={`/assets/${Menu.resources}.png`} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 {Menu.title}
               </span>
