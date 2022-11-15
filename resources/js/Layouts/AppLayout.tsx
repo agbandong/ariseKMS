@@ -10,8 +10,6 @@ import Dropdown from '@/Components/Dropdown';
 import DropdownLink from '@/Components/DropdownLink';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import Sidebar from '@/Components/Sidebar';
-
 interface Props {
   title: string;
   renderHeader?(): JSX.Element;
@@ -32,56 +30,91 @@ export default function AppLayoutNew({
     Inertia.post(route('logout'));
   }
 
-  return (
-    <div>
-      <Head title={title} />
+  const [open, setOpen] = useState(true);
+  const Menus = [
+    { title: "Dashboard", resources: "Chart_fill", url: "dashboard"},
+    { title: "Projects", resources: "Chat", url: "projects.index"},
+    { title: "Accounts", resources: "User"},
+    //{ title: "Schedule ", resources: "Calendar" },
+    //{ title: "Search", resources: "Search" },
+    //{ title: "Analytics", resources: "Chart" },
+    //{ title: "Files ", resources: "Folder", gap: true },
+    //{ title: "Setting", resources: "Setting" },
+  ];
 
+  return (
+    <div className="min-h-full flex">
+      <Head title={title} />
+      
       <Banner />
 
-      <Sidebar>
 
-      
+      {/*Sidebar*/}
+      <div
+        className={` ${
+          open ? "w-72" : "w-20 "
+        } bg-blue-900 h-screen p-5  pt-8 relative duration-300 hidden lg:block`}
+      >
+        <img
+          src="/assets/control.png"
+          className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
+           border-2 rounded-full  ${!open && "rotate-180"}`}
+          onClick={() => setOpen(!open)}
+        />
+        <div className="flex gap-x-4 items-center">
+          <img
+            src="/logo192.png"
+            className={`w-16 cursor-pointer duration-500 ${
+              open && "rotate-[360deg]"
+            }`}
+          />
+          <h1
+            className={`text-white origin-left font-medium text-xl duration-200 ${
+              !open && "scale-0"
+            }`}
+          >
+            Arise KMS
+          </h1>
+        </div>
+        <ul className="pt-6">
+          {Menus.map((Menu, index) => (
+            <li
+              key={index}
+              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+              ${/*Menu.gap ? "mt-9" : "mt-2"*/''} ${
+                index === 0 && "bg-light-white"
+              } `}
+            >
+              <img src={`/assets/${Menu.resources}.png`} />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                <InertiaLink href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>{Menu.title}</InertiaLink>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
       
       {/*Navbar*/}
-
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100 flex-1">
         <nav className="bg-white border-b border-gray-100">
           {/* <!-- Primary Navigation Menu --> */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex">
-                {/* <!-- Logo --> */}
-                <div className="flex-shrink-0 flex items-center">
-                  <InertiaLink href={route('dashboard')}>
-                    <ApplicationMark className="block h-9 w-auto" />
-                  </InertiaLink>
-                </div>
                 
+                {/* <!-- Page Heading --> */}
+                {renderHeader ? (
+                    <div className="max-w-7xl ml-auto py-6 px-4 sm:px-6 lg:px-8">
+                      {renderHeader()}
+                    </div>
+                ) : null}
+
                 {/*Use components*/}
                 <div className="nav-item">
                     <a className="nav-link" data-widget="pushmenu" href="#">
                       <i className="fas fa-bars"/>
                     </a>
                   </div>
-
-
-                {/* <!-- Navigation Links --> */}
-                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  
-                  <NavLink
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}
-                  >
-                    Dashboard
-                  </NavLink>
-                  
-                  <NavLink
-                    href={route('projects.index')}
-                    active={route().current('projects.index')}
-                  >
-                    Projects
-                  </NavLink>
-                </div>
               </div>
 
               <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -199,12 +232,14 @@ export default function AppLayoutNew({
             })}
           >
             <div className="pt-2 pb-3 space-y-1">
+              {Menus.map((Menu, index) => (
               <ResponsiveNavLink
-                href={route('dashboard')}
-                active={route().current('dashboard')}
+                key={index}
+                href={route(`${Menu.url? Menu.url: 'dashboard'}`)}
+                active={route().current(`${Menu.url? Menu.url: 'dashboard'}`)}
               >
-                Dashboard
-              </ResponsiveNavLink>
+                {Menu.title}
+              </ResponsiveNavLink>))}
             </div>
 
             {/* <!-- Responsive Settings Options --> */}
@@ -260,19 +295,12 @@ export default function AppLayoutNew({
           </div>
         </nav>
 
-        {/* <!-- Page Heading --> */}
-        {renderHeader ? (
-          <header className="bg-white shadow">
-            <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-              {renderHeader()}
-            </div>
-          </header>
-        ) : null}
+        
 
         {/* <!-- Page Content --> */}
         <main>{children}</main>
       </div>
-      </Sidebar>
+      
     </div>
   );
 }
