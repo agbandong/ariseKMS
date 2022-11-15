@@ -30,84 +30,95 @@ export default function Login({ canResetPassword, status }: Props) {
   }
 
   return (
-    <AuthenticationCard>
-      <Head title="Login" />
-
-      {status && (
-        <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
-      )}
-
-      <form onSubmit={onSubmit}>
-        <div>
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <TextInput
-            id="email"
-            type="email"
-            className="mt-1 block w-full"
-            value={form.data.email}
-            onChange={e => form.setData('email', e.currentTarget.value)}
-            required
-            autoFocus
-          />
-          <InputError className="mt-2" message={form.errors.email} />
+    <div className='grid grid-cols-2'>
+      <div className='hidden lg:block'>
+        <h1>Welcome to Arise PH</h1>
+        <p>This is the Knowledge Management System designed for the resiliency projects of Arise PH</p>
+      </div>
+      <div className='col-span-2 lg:col-span-1'>
+        <AuthenticationCard >
+        <Head title="Login" />
+        <div className='block lg:hidden'>
+          <h1>Arise KMS</h1>
         </div>
+        {status && (
+          <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
+        )}
 
-        <div className="mt-4">
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <TextInput
-            id="password"
-            type="password"
-            className="mt-1 block w-full"
-            value={form.data.password}
-            onChange={e => form.setData('password', e.currentTarget.value)}
-            required
-            autoComplete="current-password"
-          />
-          <InputError className="mt-2" message={form.errors.password} />
-        </div>
-
-        <div className="mt-4">
-          <label className="flex items-center">
-            <Checkbox
-              name="remember"
-              checked={form.data.remember === 'on'}
-              onChange={e =>
-                form.setData('remember', e.currentTarget.checked ? 'on' : '')
-              }
+        <form onSubmit={onSubmit}>
+          <div>
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <TextInput
+              id="email"
+              type="email"
+              className="mt-1 block w-full"
+              value={form.data.email}
+              onChange={e => form.setData('email', e.currentTarget.value)}
+              required
+              autoFocus
             />
-            <span className="ml-2 text-sm text-gray-600">Remember me</span>
-          </label>
-        </div>
+            <InputError className="mt-2" message={form.errors.email} />
+          </div>
 
-        <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mt-4">
-          {canResetPassword && (
-            <div>
+          <div className="mt-4">
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <TextInput
+              id="password"
+              type="password"
+              className="mt-1 block w-full"
+              value={form.data.password}
+              onChange={e => form.setData('password', e.currentTarget.value)}
+              required
+              autoComplete="current-password"
+            />
+            <InputError className="mt-2" message={form.errors.password} />
+          </div>
+
+          <div className="mt-4">
+            <label className="flex items-center">
+              <Checkbox
+                name="remember"
+                checked={form.data.remember === 'on'}
+                onChange={e =>
+                  form.setData('remember', e.currentTarget.checked ? 'on' : '')
+                }
+              />
+              <span className="ml-2 text-sm text-gray-600">Remember me</span>
+            </label>
+          </div>
+
+          <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mt-4">
+            {canResetPassword && (
+              <div>
+                <InertiaLink
+                  href={route('password.request')}
+                  className="underline text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Forgot your password?
+                </InertiaLink>
+              </div>
+            )}
+
+            <div className="flex items-center justify-end">
               <InertiaLink
-                href={route('password.request')}
+                href={route('register/new')}
                 className="underline text-sm text-gray-600 hover:text-gray-900"
               >
-                Forgot your password?
+                Register your organization
               </InertiaLink>
+
+              <PrimaryButton
+                className={classNames('ml-4', { 'opacity-25': form.processing })}
+                disabled={form.processing}
+              >
+                Log in
+              </PrimaryButton>
             </div>
-          )}
-
-          <div className="flex items-center justify-end">
-            <InertiaLink
-              href={route('register/new')}
-              className="underline text-sm text-gray-600 hover:text-gray-900"
-            >
-              Need an account?
-            </InertiaLink>
-
-            <PrimaryButton
-              className={classNames('ml-4', { 'opacity-25': form.processing })}
-              disabled={form.processing}
-            >
-              Log in
-            </PrimaryButton>
           </div>
-        </div>
-      </form>
-    </AuthenticationCard>
+        </form>
+      </AuthenticationCard>
+      </div>
+      
+    </div>
   );
 }
