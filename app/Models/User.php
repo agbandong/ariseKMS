@@ -19,8 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'title',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'organization_id',
+        'position',
     ];
 
     /**
@@ -41,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projects(){
+        return $this->belongsToMany(Project::class)->withTimestamps();
+    }
+
+    public function organization(){
+        return $this->belongsToMany(Organization::class);
+    }
 }
