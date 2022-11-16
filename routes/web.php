@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\OrganizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,38 +20,19 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
     ]);
 });
 
-Route::get('/register1', [OrganizationController::class, 'index'])->name('register1');
-Route::get('/register2', [OrganizationController::class, 'create'])->name('register2');
-Route::post('/register3', [OrganizationController::class, 'store'])->name('register3');
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
-    Route::resource('/projects', ProjectController::class);
-});
-
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/project', function () {
-    return view('project');
-});
-
-Route::get('/member', function () {
-    return view('member');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/registerorg', function () {
-    return view('registerorg');
-});
+require __DIR__.'/auth.php';
