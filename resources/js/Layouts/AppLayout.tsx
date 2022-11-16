@@ -34,7 +34,7 @@ export default function AppLayoutNew({
   const Menus = [
     { title: "Dashboard", resources: "Chart_fill", url: "dashboard"},
     { title: "Projects", resources: "Chat", url: "projects.index"},
-    { title: "Accounts", resources: "User"},
+    { title: "Organization", resources: "User"},
     //{ title: "Schedule ", resources: "Calendar" },
     //{ title: "Search", resources: "Search" },
     //{ title: "Analytics", resources: "Chart" },
@@ -53,7 +53,7 @@ export default function AppLayoutNew({
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-blue-900 h-screen p-5  pt-8 relative duration-300 hidden lg:block`}
+        } bg-slate-800 h-screen p-5  pt-8 relative duration-300 hidden lg:block`}
       >
         <img
           src="/assets/control.png"
@@ -65,7 +65,7 @@ export default function AppLayoutNew({
           <img
             src="/logo192.png"
             className={`w-16 cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
+              /*open && "rotate-[360deg]"*/""
             }`}
           />
           <h1
@@ -76,20 +76,23 @@ export default function AppLayoutNew({
             Arise KMS
           </h1>
         </div>
+        <hr className="mt-6"/>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <li
-              key={index}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${/*Menu.gap ? "mt-9" : "mt-2"*/''} ${
-                index === 0 && "bg-light-white"
-              } `}
-            >
-              <img src={`/assets/${Menu.resources}.png`} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <InertiaLink href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>{Menu.title}</InertiaLink>
-              </span>
-            </li>
+            <a href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>
+              <li
+                key={index}
+                className={`flex  rounded-md p-2 cursor-pointer hover:bg-gray-400 text-gray-300 text-sm items-center gap-x-4 
+                ${/*Menu.gap ? "mt-9" : "mt-2"*/''} ${
+                  index === 0 && "bg-light-white"
+                } `}
+              >
+                <img src={`/assets/${Menu.resources}.png`} />
+                <span className={`${!open && "hidden"} origin-left duration-200`}>
+                  {Menu.title}
+                </span>
+              </li>
+            </a>
           ))}
         </ul>
       </div>
@@ -101,7 +104,10 @@ export default function AppLayoutNew({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex">
-                
+              <img
+                src="/logo192.png"
+                className={`w-16 block lg:hidden`}
+              />
                 {/* <!-- Page Heading --> */}
                 {renderHeader ? (
                     <div className="max-w-7xl ml-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -109,17 +115,10 @@ export default function AppLayoutNew({
                     </div>
                 ) : null}
 
-                {/*Use components*/}
-                <div className="nav-item">
-                    <a className="nav-link" data-widget="pushmenu" href="#">
-                      <i className="fas fa-bars"/>
-                    </a>
-                  </div>
-              </div>
-
-              <div className="hidden sm:flex sm:items-center sm:ml-6">
                 
-
+              </div>
+              
+              <div className="hidden sm:flex sm:items-center sm:ml-6">
                 {/* <!-- Settings Dropdown --> */}
                 <div className="ml-3 relative">
                   <Dropdown

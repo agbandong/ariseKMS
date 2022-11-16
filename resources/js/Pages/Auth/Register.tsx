@@ -25,6 +25,7 @@ export default function Register() {
     password_confirmation: '',
     terms: false,
   });
+  
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,7 +50,6 @@ export default function Register() {
             className="mt-1 block w-full"
             value={form.data.title}
             onChange={e => form.setData('title', e.currentTarget.value)}
-            required
             autoFocus
           />
           <InputError className="mt-2" message={form.errors.title} /></div>)}
@@ -69,8 +69,6 @@ export default function Register() {
               
               <InputError className="mt-2" message={form.errors.has_title} />
             </InputLabel>
-
-            
         </div>
 
         <div className='mt-4'>

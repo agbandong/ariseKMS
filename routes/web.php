@@ -24,7 +24,7 @@ Route::get('/', function (){
     if($loggedIn) {return to_route('dashboard');}
     else {
         //Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
-        return to_route('register/new'); 
+        return Inertia::render('Auth/Login'); 
     } 
 });
 
