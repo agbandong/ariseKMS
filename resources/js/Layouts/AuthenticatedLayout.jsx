@@ -22,19 +22,14 @@ export default function Authenticated({ auth, header, children }) {
         //{ title: "Setting", resources: "Setting" },
     ];
 
-    const handleScroll = event => {
-        console.log('scrollTop: ', event.currentTarget.scrollTop);
-        console.log('offsetHeight: ', event.currentTarget.offsetHeight);
-      };
 
     return (
         <div className="min-h-screen bg-gray-100 flex">
             <div
             className={` ${
             open ? "w-72" : "w-20 "
-            } bg-slate-800 h-screen p-5  pt-8 relative duration-300 hidden lg:block`
+            } bg-slate-800 h-screen p-5 pt-8 top-0 sticky duration-300 hidden lg:block`
             }
-            onScroll={handleScroll}
         >
             <img
             src="/assets/control.png"
