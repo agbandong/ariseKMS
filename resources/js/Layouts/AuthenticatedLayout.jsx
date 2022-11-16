@@ -5,26 +5,87 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 
+
+
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    
+    const [open, setOpen] = useState(true);
+    const Menus = [
+        { title: "Dashboard", resources: "Chart_fill", url: "dashboard"},
+        { title: "Projects", resources: "Chat"/*, url: "projects.index"*/},
+        { title: "Organization", resources: "User"},
+        //{ title: "Schedule ", resources: "Calendar" },
+        //{ title: "Search", resources: "Search" },
+        //{ title: "Analytics", resources: "Chart" },
+        //{ title: "Files ", resources: "Folder", gap: true },
+        //{ title: "Setting", resources: "Setting" },
+    ];
+
+    const handleScroll = event => {
+        console.log('scrollTop: ', event.currentTarget.scrollTop);
+        console.log('offsetHeight: ', event.currentTarget.offsetHeight);
+      };
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 flex">
+            <div
+            className={` ${
+            open ? "w-72" : "w-20 "
+            } bg-slate-800 h-screen p-5  pt-8 relative duration-300 hidden lg:block`
+            }
+            onScroll={handleScroll}
+        >
+            <img
+            src="/assets/control.png"
+            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
+            border-2 rounded-full  ${!open && "rotate-180"}`}
+            onClick={() => setOpen(!open)}
+            />
+            <div className="flex gap-x-4 items-center">
+            <img
+                src="/logo192.png"
+                className={`w-16 cursor-pointer duration-500 ${
+                /*open && "rotate-[360deg]"*/""
+                }`}
+            />
+            <h1
+                className={`text-white origin-left font-medium text-xl duration-200 ${
+                !open && "scale-0"
+                }`}
+            >
+                Arise KMS
+            </h1>
+            </div>
+            <hr className="mt-6"/>
+            <ul className="pt-6">
+            {Menus.map((Menu, index) => (
+                <a key={index} href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>
+                <li
+                    className={`flex  rounded-md p-2 cursor-pointer hover:bg-gray-400 text-gray-300 text-sm items-center gap-x-4 
+                    ${/*Menu.gap ? "mt-9" : "mt-2"*/''} ${
+                    index === 0 && "bg-light-white"
+                    } `}
+                >
+                    <img src={`/assets/${Menu.resources}.png`} />
+                    <span className={`${!open && "hidden"} origin-left duration-200`}>
+                    {Menu.title}
+                    </span>
+                </li>
+                </a>
+            ))}
+            </ul>
+        </div>
+        <div className="min-h-screen bg-gray-100 flex-1">
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
-                            </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
-                            </div>
+                        {header && (
+                            <header>
+                                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+                            </header>
+                        )}
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -92,9 +153,14 @@ export default function Authenticated({ auth, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
-                        </ResponsiveNavLink>
+                        {Menus.map((Menu, index) => (
+                        <ResponsiveNavLink 
+                            key={index}
+                            href={route(`${Menu.url? Menu.url: 'dashboard'}`)} 
+                            active={route().current(`${Menu.url? Menu.url: 'dashboard'}`)}
+                            >
+                            {Menu.title}
+                        </ResponsiveNavLink>))}
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
@@ -115,13 +181,8 @@ export default function Authenticated({ auth, header, children }) {
                 </div>
             </nav>
 
-            {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
-                </header>
-            )}
-
             <main>{children}</main>
+            </div>
         </div>
     );
 }
