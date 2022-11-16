@@ -1,65 +1,31 @@
-import DeleteTeamForm from '@/Pages/Projects/Partials/DeleteProjectForm';
-import TeamMemberManager from '@/Pages/Projects/Partials/ProjectMemberManager';
-import UpdateTeamNameForm from '@/Pages/Projects/Partials/UpdateProjectNameForm';
-import SectionBorder from '@/Components/SectionBorder';
-import AppLayout from '@/Layouts/AppLayout';
-import {
-  JetstreamTeamPermissions,
-  Role,
-  Team,
-  TeamInvitation,
-  User,
-} from '@/types';
 import React from 'react';
+import AppLayout from '@/Layouts/AppLayout';
+import ShowProject from '@/Components/ShowProject';
+import NavLink from '@/Components/NavLink';
+import {Project} from '@/types';
+import useRoute from '@/Hooks/useRoute';
 
-interface UserMembership extends User {
-  membership: {
-    role: string;
-  };
+interface Props{
+  project:Project
 }
 
-interface Props {
-  team: Team & {
-    owner: User;
-    team_invitations: TeamInvitation[];
-    users: UserMembership[];
-  };
-  availableRoles: Role[];
-  permissions: JetstreamTeamPermissions;
-}
-
-export default function Show({ team, availableRoles, permissions }: Props) {
+export default function Dashboard(prop:Props) {
+  const route = useRoute();
   return (
     <AppLayout
-      title="Team Settings"
+      title="Dashboard"
       renderHeader={() => (
         <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-          Team Settings
+          Projects
         </h2>
       )}
     >
-      <div>
-        <div className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-          {/*
-          <UpdateTeamNameForm team={team} permissions={permissions} />
-
-          <div className="mt-10 sm:mt-0">
-            <TeamMemberManager
-              team={team}
-              availableRoles={availableRoles}
-              userPermissions={permissions}
-            />
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            {prop.project.name}
+            <span className="text-gray-800"><a href={ route('projects.edit', prop.project) }>Edit</a></span>
           </div>
-
-          {permissions.canDeleteTeam && !team.personal_team ? (
-            <>
-              <SectionBorder />
-
-              <div className="mt-10 sm:mt-0">
-                <DeleteTeamForm team={team} />
-              </div>
-            </>
-          ) : null}*/}
         </div>
       </div>
     </AppLayout>

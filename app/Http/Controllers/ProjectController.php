@@ -17,6 +17,10 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        //Ignore error it works
+        $userProjects = Auth::user()->projects()->get()->all();
+        //return dd($userProjects);
+        return Inertia::render('Projects/ShowAll', ['projects' => $userProjects]);
     }
 
     /**
@@ -48,13 +52,11 @@ class ProjectController extends Controller
             'name' => 'required|unique:project|max:64',
         ]);
 
-        
         Project::create([
-            'user_id' => Auth::user()->id,
             'name' => $request->name,
             'description' => $request->description,
             'project_files_path' => '/projects/' . $request->name,
-        ]);
+        ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
         Project::create($request->all());
 
@@ -67,9 +69,14 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
         //
+        if (!$project->users->contains(Auth::id())){
+            return abort(403);
+        }
+
+        return Inertia::render('Projects/Show', ['project' => $project]);
     }
 
     /**
@@ -78,9 +85,14 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
         //
+        if (!$project->users->contains(Auth::id())){
+            return abort(403);
+        }
+
+        return Inertia::render('Projects/Settings', ['project' => $project]);
     }
 
     /**
