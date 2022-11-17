@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Project;
 
-class ProjectController extends Controller
+class ProjectReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,6 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        //Ignore error it works
-        $userProjects = Auth::user()->projects()->get()->all();
-        //return dd($userProjects);
-        return Inertia::render('Projects/ShowAll', ['projects' => $userProjects]);
     }
 
     /**
@@ -30,8 +23,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //Create class
-        return Inertia::render('Projects/Create');
+        //
     }
 
     /**
@@ -43,17 +35,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
-        //dd($request);
-        $request->validate([
-            'name' => 'required|unique:projects|max:64',
-        ]);
-
-        Project::create([
-            'name' => $request->name,
-            'project_files_path' => '/projects/' . $request->name,
-        ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
-
-        return to_route('dashboard');
     }
 
     /**
@@ -62,14 +43,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
         //
-        if (!$project->users->contains(Auth::id())){
-            return abort(403);
-        }
-
-        return Inertia::render('Projects/Show', ['project' => $project]);
     }
 
     /**
@@ -78,14 +54,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
         //
-        if (!$project->users->contains(Auth::id())){
-            return abort(403);
-        }
-
-        return Inertia::render('Projects/Settings', ['project' => $project]);
     }
 
     /**

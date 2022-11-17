@@ -31,11 +31,7 @@ class ProjectController extends Controller
     public function create()
     {
         //Create class
-        return Inertia::render('project');
-    }
-
-    public function createForm(Request $request) {
-        return view('project');
+        return Inertia::render('Projects/Create');
     }
 
     /**
@@ -49,18 +45,15 @@ class ProjectController extends Controller
         //
         //dd($request);
         $request->validate([
-            'name' => 'required|unique:project|max:64',
+            'name' => 'required|unique:projects|max:64',
         ]);
 
         Project::create([
             'name' => $request->name,
-            'description' => $request->description,
             'project_files_path' => '/projects/' . $request->name,
         ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
-        Project::create($request->all());
-
-        return back()->with('success', 'Your project has been sent.');
+        return to_route('projects.index');
     }
 
     /**

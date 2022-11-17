@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -93,6 +94,11 @@ export default function Login({ status, canResetPassword }) {
                         <PrimaryButton className="ml-4" processing={processing}>
                             Log in
                         </PrimaryButton>
+                        <Link href={route('register')}>
+                            <SecondaryButton className="ml-4">
+                                Register Organization
+                            </SecondaryButton>
+                        </Link>
                     </div>
                 </form>
             </GuestLayout>

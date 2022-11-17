@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_invitations', function (Blueprint $table) {
+        Schema::create('persons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->string('first_name');
@@ -22,6 +22,12 @@ return new class extends Migration
             $table->string('position');
             //Remember to check current users as well
             $table->string('email')->unique();
+            $table->string('country')->nullable();
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province_state')->nullable();
+            $table->string('post_zip_code')->nullable();
+            $table->integer('phone')->nullable();
             $table->timestamps();
         });
     }
