@@ -53,7 +53,7 @@ class ProjectController extends Controller
             'project_files_path' => '/projects/' . $request->name,
         ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
-        return to_route('dashboard');
+        return to_route('projects.index');
     }
 
     /**
