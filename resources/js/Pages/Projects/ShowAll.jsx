@@ -17,7 +17,13 @@ export default function ShowAll(props) {
       }
     >
     <Head title="Projects" />
-      
+      <PrimaryButton className='mx-7 mt-7'>
+        <NavLink
+        href={route('projects.create')}
+        >
+          Create Project
+        </NavLink>
+      </PrimaryButton>
       
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -28,10 +34,6 @@ export default function ShowAll(props) {
           </div>
         </div>
       </div>
-
-      <PrimaryButton className='mx-7 mt-7 float-right' href={route('projects.create')}>
-          Create Project
-      </PrimaryButton>
     </AuthenticatedLayout>
   );
 }
