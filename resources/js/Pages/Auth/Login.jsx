@@ -9,6 +9,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Login({ status, canResetPassword }) {
+    //Data
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -30,78 +31,88 @@ export default function Login({ status, canResetPassword }) {
 
         post(route('login'));
     };
-
+    //HTML page
     return (
-        <div className='grid grid-cols-2'>
-            <div className='hidden lg:block'>
-                <h1>Welcome to Arise PH</h1>
-                <p>This is the Knowledge Management System designed for the resiliency projects of Arise PH</p>
+        
+        <div>
+            {/* Header */}
+            <div>
+
             </div>
-            <GuestLayout className="col-span-2 lg:col-span-1">
-                <Head title="Log in" />
+            <div className='grid grid-cols-2'>
+                {/*Left side*/}
+                <div className='hidden lg:block'>
+                    <h1>Welcome to Arise PH</h1>
+                    <p>This is the Knowledge Management System designed for the resiliency projects of Arise PH</p>
+                </div>
 
-                {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                {/*Right side*/}
+                <GuestLayout className="col-span-2 lg:col-span-1">
+                    <Head title="Log in" />
 
-                <form onSubmit={submit}>
-                    <div>
-                        <InputLabel forInput="email" value="Email" />
+                    {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-                        <TextInput
-                            type="text"
-                            name="email"
-                            value={data.email}
-                            className="mt-1 block w-full"
-                            autoComplete="username"
-                            isFocused={true}
-                            handleChange={onHandleChange}
-                        />
+                    <form onSubmit={submit}>
+                        <div>
+                            <InputLabel forInput="email" value="Email" />
 
-                        <InputError message={errors.email} className="mt-2" />
-                    </div>
+                            <TextInput
+                                type="text"
+                                name="email"
+                                value={data.email}
+                                className="mt-1 block w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                handleChange={onHandleChange}
+                            />
 
-                    <div className="mt-4">
-                        <InputLabel forInput="password" value="Password" />
+                            <InputError message={errors.email} className="mt-2" />
+                        </div>
 
-                        <TextInput
-                            type="password"
-                            name="password"
-                            value={data.password}
-                            className="mt-1 block w-full"
-                            autoComplete="current-password"
-                            handleChange={onHandleChange}
-                        />
+                        <div className="mt-4">
+                            <InputLabel forInput="password" value="Password" />
 
-                        <InputError message={errors.password} className="mt-2" />
-                    </div>
+                            <TextInput
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                className="mt-1 block w-full"
+                                autoComplete="current-password"
+                                handleChange={onHandleChange}
+                            />
 
-                    <div className="block mt-4">
-                        <label className="flex items-center">
-                            <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-                            <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                        </label>
-                    </div>
+                            <InputError message={errors.password} className="mt-2" />
+                        </div>
 
-                    <div className="flex items-center justify-end mt-4">
-                        {canResetPassword && (
-                            <Link
-                                href={route('password.request')}
-                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                Forgot your password?
+                        <div className="block mt-4">
+                            <label className="flex items-center">
+                                <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
+                                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                            </label>
+                        </div>
+
+                        <div className="flex items-center justify-end mt-4">
+                            {canResetPassword && (
+                                <Link
+                                    href={route('password.request')}
+                                    className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                    Forgot your password?
+                                </Link>
+                            )}
+
+                            <PrimaryButton className="ml-4" processing={processing}>
+                                Log in
+                            </PrimaryButton>
+                            <Link href={route('register')}>
+                                <SecondaryButton className="ml-4">
+                                    Register Organization
+                                </SecondaryButton>
                             </Link>
-                        )}
-
-                        <PrimaryButton className="ml-4" processing={processing}>
-                            Log in
-                        </PrimaryButton>
-                        <Link href={route('register')}>
-                            <SecondaryButton className="ml-4">
-                                Register Organization
-                            </SecondaryButton>
-                        </Link>
-                    </div>
-                </form>
-            </GuestLayout>
+                        </div>
+                    </form>
+                </GuestLayout>
+            </div>
         </div>
     );
 }
