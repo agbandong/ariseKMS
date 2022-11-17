@@ -37,7 +37,7 @@ Route::get('/', function (){
         //Route::get('/dashboard', [ProjectController::class, 'index'])->name('dashboard');
         return Inertia::render('Auth/Login'); 
     } 
-});
+})->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', function () {

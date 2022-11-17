@@ -10,6 +10,7 @@ class Organization extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        /*
         'company_country',
         'headquarters_country',
         'legal_company_country',
@@ -42,14 +43,14 @@ class Organization extends Model
         //'contact_city',
         //'contact_province_state',
         //'contact_post_zip_code',
-        //'contact_phone',
+        //'contact_phone',*/
     ];
 
     public function users(){
         return $this->hasMany(User::class);
     }
 
-    public function userInvitations(){
-        return $this->belongsToMany(OrganizationInvitation::class);
+    public function persons(){
+        return $this->hasMany(Person::class);
     }
 }

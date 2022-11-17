@@ -22,6 +22,7 @@ class OrganizationController extends Controller
 
         $request->validate([
             'name' => 'unique:organizations|max:25',
+            /*
             'company_country' => 'max:60',
             'headquarters_country' => 'max:60',
             'legal_company_country' => 'max:60',
@@ -31,11 +32,12 @@ class OrganizationController extends Controller
             'number_employees' => 'min:0',
             'past_annual_revenue' => 'min:0',
             'description_business_and_activities' => 'max:300',
-            'sector' => 'max:150'
+            'sector' => 'max:150'*/
         ]);
 
         Organization::create([
             'name' => $request->name,
+            /*
             'company_country' => $request->company_country,
             'headquarters_country' => $request->headquarters_country_same ? $request->company_country : $request->headquarters_country,
             'legal_company_country' => $request->legal_company_country_same ? $request->company_country : $request->legal_company_country,
@@ -49,7 +51,7 @@ class OrganizationController extends Controller
             'number_employees' => $request->number_employees,
             'past_annual_revenue' => $request->past_annual_revenue,
             'description_business_and_activities' => $request->description_business_and_activities,
-            'sector' => $request->sector,
+            'sector' => $request->sector,*/
         ]);
 
         return Inertia::render('Organizations/PleaseWait');

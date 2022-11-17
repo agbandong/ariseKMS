@@ -104,13 +104,20 @@ export default function Login({ status, canResetPassword }) {
                             <PrimaryButton className="ml-4" processing={processing}>
                                 Log in
                             </PrimaryButton>
-                            <Link href={route('register')}>
-                                <SecondaryButton className="ml-4">
-                                    Register Organization
-                                </SecondaryButton>
-                            </Link>
+                            
                         </div>
                     </form>
+                    <Link href={route('register/organization')}>
+                    <SecondaryButton className="my-2 ml-4 float-right">
+                        Register Organization
+                    </SecondaryButton>
+                    </Link>
+                    <p className='float-right'>Organization already registered?</p>
+                    <Link href={route('register')}>
+                        <SecondaryButton className="my-2 ml-4 float-right">
+                            Register as User
+                        </SecondaryButton>
+                    </Link>
                 </GuestLayout>
             </div>
         </div>

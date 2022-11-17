@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
-            $table->id();
-            /*Company Information*/
-            $table->string('name')->unique();
+        Schema::table('organizations', function (Blueprint $table) {
+            //
             /*
             $table->string('company_country');
             $table->string('headquarters_country');
@@ -40,30 +38,6 @@ return new class extends Migration
             
             /*Check if need to create sector table*/
             /*$table->string('sector');*/
-            
-            /*Company representative*/
-            //$table->foreignId('legal_representative_id');
-            //$table->string('legal_representative_country');
-            //$table->string('legal_representative_street');
-            //$table->string('legal_representative_city');
-            //$table->string('legal_representative_province_state');
-            //$table->string('legal_representative_post_zip_code');
-            //$table->integer('legal_representative_phone', $unsigned = true);
-            
-            /*For UN AND CSR RELATED AFFILIATIONS
-            See affiliated agencies table*/
-            
-            /*Primary Contact*/
-            //$table->foreignId('primary_contact_id');
-            //$table->string('contact_country');
-            //$table->string('contact_street');
-            //$table->string('contact_city');
-            //$table->string('contact_province_state');
-            //$table->string('contact_post_zip_code');
-            //$table->integer('contact_phone', $unsigned = true);
-            /*For other invited users
-            See organization invitations table*/
-            $table->timestamps();
         });
     }
 
@@ -74,6 +48,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations');
+        Schema::table('organizations', function (Blueprint $table) {
+            //
+        });
     }
 };
