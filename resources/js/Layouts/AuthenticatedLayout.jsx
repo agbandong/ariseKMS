@@ -13,7 +13,7 @@ export default function Authenticated({ auth, header, children }) {
     const [open, setOpen] = useState(true);
     const Menus = [
         { title: "Dashboard", resources: "Chart_fill", url: "dashboard"},
-        { title: "Projects", resources: "Chat"/*, url: "projects.index"*/},
+        { title: "Projects", resources: "Chat", url: "projects.index"},
         { title: "Organization", resources: "User"},
         //{ title: "Schedule ", resources: "Calendar" },
         //{ title: "Search", resources: "Search" },
