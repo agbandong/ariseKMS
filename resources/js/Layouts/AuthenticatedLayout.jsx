@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 
 
-
-export default function Authenticated({ auth, header, children }) {
+export default function Authenticated({ auth, header, children, head}) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     
     const [open, setOpen] = useState(true);
     const Menus = [
         { title: "Dashboard", resources: "Chart_fill", url: "dashboard"},
         { title: "Projects", resources: "Chat", url: "projects.index"},
-        { title: "Organization", resources: "User"},
+        { title: "Organization", resources: "User", url: "organization/users"},
         //{ title: "Schedule ", resources: "Calendar" },
         //{ title: "Search", resources: "Search" },
         //{ title: "Analytics", resources: "Chart" },
@@ -25,6 +22,7 @@ export default function Authenticated({ auth, header, children }) {
 
     return (
         <div className="min-h-screen bg-gray-100 flex">
+            <Head title={head} />
             <div
             className={` ${
             open ? "w-72" : "w-20 "
