@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        /*
-        Schema::table('users', function (Blueprint $table) {
-            //Note create a role table later for later
-                $table->foreignId('person_id')->constrained('persons')->onDelete('null');
-                $table->string('role');
+        Schema::create('project_reports', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
-        */
     }
 
     /**
@@ -29,9 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            
-        });
+        Schema::dropIfExists('project_reports');
     }
 };
