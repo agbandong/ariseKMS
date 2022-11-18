@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            /*The link to documents on current engagements*/
+            //$table->string('current_engangement_path', 2048)->nullable();
             $table->timestamps();
         });
     }
