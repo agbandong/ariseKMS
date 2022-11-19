@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('title');
             $table->string('position');
+            $table->string('type');
             //Remember to check current users as well
             $table->string('email')->unique();
             $table->string('country')->nullable();
@@ -39,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('contacts');
     }
 };

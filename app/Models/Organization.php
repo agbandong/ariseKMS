@@ -38,7 +38,7 @@ class Organization extends Model
         return $this->hasMany(User::class);
     }
 
-    public function persons(){
+    public function contacts(){
         return $this->hasMany(Person::class);
     }
 }
