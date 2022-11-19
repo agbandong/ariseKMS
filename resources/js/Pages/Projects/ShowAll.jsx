@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import PrimaryButton from '@/Components/PrimaryButton';
 import ShowProject from '@/Components/ShowProject';
 import NavLink from '@/Components/NavLink';
-import { Head } from '@inertiajs/inertia-react';
+import { Head, Link } from '@inertiajs/inertia-react';
 
 export default function ShowAll(props) {
   return (
@@ -27,14 +27,11 @@ export default function ShowAll(props) {
           </div>
         </div>
       </div>
-
-      <PrimaryButton className='mx-7 mt-7'>
-        <NavLink
-        href={route('projects.create')}
-        >
-          Create Project
-        </NavLink>
-      </PrimaryButton>
+      <Link href={route('projects.create')}>
+        <PrimaryButton className='mx-7 mt-7'>
+            Create Project
+        </PrimaryButton>
+      </Link>
     </AuthenticatedLayout>
   );
 }
