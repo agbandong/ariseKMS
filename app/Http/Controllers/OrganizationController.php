@@ -65,7 +65,7 @@ class OrganizationController extends Controller
         return back();
     }
 
-    public function createInvitations(){
-        
+    public function showUsers(){
+        return Inertia::render('Organizations/ShowUsers');
     }
 }

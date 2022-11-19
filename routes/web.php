@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OrganizationController;
+use App\Models\Organization;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -38,15 +39,19 @@ Route::get('/', function (){
     } 
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+    Route::resource('/projects', ProjectController::class);
+    Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization/users');
+});
 
 Route::middleware('guest')->group(function(){
     Route::get('/register/new', [OrganizationController::class, 'index'])->name('register/new');
     Route::get('/register/organization', [OrganizationController::class, 'create'])->name('register/organization');
     Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('register/organization/check');
-    Route::post('/register/organization/done', [OrganizationController::class, 'store'])->name('register/organization/done');
+    Route::post('/register/organization', [OrganizationController::class, 'store'])->name('register/organization/done');
 });
 
 Route::middleware('auth')->group(function () {
@@ -54,5 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
