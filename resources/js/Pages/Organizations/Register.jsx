@@ -114,6 +114,7 @@ export default function Register() {
                     <div className={`${(formPart == start) ? '': 'hidden'}`}>
                         <h4 className='text-2xl'>Company Details</h4>
                         
+                        {/* Company Name */}
                         <div>
                             <InputLabel forInput="name" value="Company Name*" />
 
@@ -131,6 +132,7 @@ export default function Register() {
                             <InputError message={form.errors.name} className="mt-2" />
                         </div>
 
+                        {/* Company Country */}
                         <div className='mt-4'>
                             <InputLabel forInput="company_country" value="Country of location of company*" />
 
@@ -147,6 +149,7 @@ export default function Register() {
                             <InputError message={form.errors.company_country} className="mt-2" />
                         </div>
                         
+                        {/* Company country Legal : May move */}
                         <div className='mt-4'>
                             
                             <InputLabel forInput="legal_company_country" value="Country of company where it is legally registered*" />
@@ -178,7 +181,8 @@ export default function Register() {
                             <InputError className="mt-2" message={form.errors.legal_company_country_same} />
                             </InputLabel>
                         </div>
-
+                        
+                        {/* Company headquarters country */}
                         <div className='mt-4'>
                             
                             <InputLabel forInput="headquarters_country" value="Country of company headquarters*" />
@@ -216,6 +220,7 @@ export default function Register() {
                             </InputLabel>
                         </div>
                         
+                        {/* Company business sector */}
                         <div className='mt-4'>
                             <InputLabel forInput="sector" value="Business sector of the company*" />
                             
@@ -258,7 +263,8 @@ export default function Register() {
                             <InputError message={form.errors.sectorOther} className="mt-2" />
                             <InputError message={form.errors.sector} className="mt-2" />
                         </div>
-
+                        
+                        {/* Company Website */}
                         <div className='mt-4'>
                             <InputLabel forInput="website" value="Website of company*" />
 
@@ -274,9 +280,10 @@ export default function Register() {
 
                             <InputError message={form.errors.website} className="mt-2" />
                         </div>
-
+                        
+                        {/* In trade association */}
                         <div className="mt-4 flex">
-                            <InputLabel forInput="is_in_trade_association" value="Are you a trade association?" className="mr-2"/>
+                            <InputLabel forInput="is_in_trade_association" value="Are you a trade association?*" className="mr-2"/>
                                 <Checkbox
                                 name="is_in_trade_association"
                                 value={form.data.is_in_trade_association}
@@ -284,7 +291,8 @@ export default function Register() {
                                 />
                             <InputError className="mt-2" message={form.errors.is_in_trade_association} />
                         </div>
-
+                        
+                        {/* In business alliance */}
                         <div className="mt-4 flex">
                             <InputLabel forInput="is_in_business_alliance" value="Are you a business association/alliance or network?" className="mr-2"/>
                                 <Checkbox
@@ -294,7 +302,8 @@ export default function Register() {
                                 />
                             <InputError className="mt-2" message={form.errors.is_in_business_alliance} />
                         </div>
-
+                        
+                        {/* Exchange name and Exchange Symbol */}
                         <div className="mt-4 flex">
                             <InputLabel forInput="is_publically_traded" value="Are you a publicly traded company?" className="mr-2"/>
                                 <Checkbox
@@ -307,7 +316,7 @@ export default function Register() {
                         {form.data.is_publically_traded && (
                         <div className='ml-8'>
                             <div className='mt-2'>
-                                <InputLabel forInput="exchange_name" value="What is your exchange name?" />
+                                <InputLabel forInput="exchange_name" value="What is your exchange name?*" />
                                 <TextInput
                                     type="text"
                                     name="exchange_name"
@@ -321,7 +330,7 @@ export default function Register() {
                             </div>
 
                             <div className='mt-2'>
-                                <InputLabel forInput="exchange_symbol" value="What is your exchange symbol?" />
+                                <InputLabel forInput="exchange_symbol" value="What is your exchange symbol?*" />
                                 <TextInput
                                     type="text"
                                     name="exchange_symbol"
@@ -337,6 +346,7 @@ export default function Register() {
                         </div>
                         )}
 
+                        {/* Is company a subsidiary */}
                         <div className='mt-4'>
                             <div className='flex'>
                                 <InputLabel forInput="is_subsidiary" value="Are you a subsidiary of a company?" />
@@ -352,7 +362,7 @@ export default function Register() {
                             </div>
                             {form.data.is_subsidiary && (
                             <div>
-                                <InputLabel className="mt-1" forInput="is_subsidiary" value="Explain:" />
+                                <InputLabel className="mt-1" forInput="is_subsidiary" value="Explain:*" />
                                 <TextInput
                                     type="text"
                                     name="subsidiary_details"
@@ -365,9 +375,10 @@ export default function Register() {
                             </div>)}
                             <InputError message={form.errors.subsidiary_details} className="mt-2" />
                         </div>
-
+                        
+                        {/* Number of employees */}
                         <div className='mt-4'>
-                            <InputLabel forInput="number_employees" value="Current number of employees" />
+                            <InputLabel forInput="number_employees" value="Current number of employees*" />
 
                             <TextInput
                                 type="number"
@@ -381,9 +392,10 @@ export default function Register() {
 
                             <InputError message={form.errors.number_employees} className="mt-2" />
                         </div>
-
+                        
+                        {/* Past annual revenue */}
                         <div className='mt-4'>
-                            <InputLabel forInput="past_annual_revenue" value="Past annual revenue" />
+                            <InputLabel forInput="past_annual_revenue" value="Past annual revenue*" />
 
                             <TextInput
                                 type="number"
@@ -399,7 +411,7 @@ export default function Register() {
                         </div>
 
                         <div className='mt-4'>
-                            <InputLabel forInput="description_business_and_activities" value="Please provide a brief description of your business and primary activities" />
+                            <InputLabel forInput="description_business_and_activities" value="Please provide a brief description of your business and primary activities*" />
 
                             <TextInput
                                 type="text"
@@ -414,9 +426,10 @@ export default function Register() {
                             <InputError message={form.errors.description_business_and_activities} className="mt-2" />
                         </div>
                         
+                        {/* Fax */}
                         <div className='mt-4'>
                             <div className='flex'>
-                                <InputLabel forInput="hasFax" value="Does your company have a fax machine?" />
+                                <InputLabel forInput="hasFax" value="Does your company have a fax machine?*" />
 
                                 <div className="ml-2 items-center">
                                     <Checkbox
@@ -429,7 +442,7 @@ export default function Register() {
                             </div>
                             {form.data.hasFax && (
                             <div>
-                                <InputLabel className="mt-1" forInput="companyFax" value="Enter number" />
+                                <InputLabel className="mt-1" forInput="companyFax" value="Enter number*" />
                                 <TextInput
                                     type="number"
                                     name="companyFax"
@@ -442,7 +455,8 @@ export default function Register() {
                             </div>)}
                             <InputError message={form.errors.companyFax} className="mt-2" />
                         </div>
-
+                        
+                        {/* Country Focus */}
                         <div className='mt-4'>
                             <div className='flex'>
                                 <InputLabel forInput="has_country_focus" value="Does your company have a specific country focus?" />
@@ -458,7 +472,7 @@ export default function Register() {
                             </div>
                             {form.data.has_country_focus && (
                             <div>
-                                <InputLabel className="mt-1" forInput="country_focus" value="Enter country" />
+                                <InputLabel className="mt-1" forInput="country_focus" value="Enter country*" />
                                 <TextInput
                                     type="text"
                                     name="country_focus"
