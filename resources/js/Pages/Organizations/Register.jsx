@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -102,7 +101,7 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
 
-        form.post(route('register/organization'));
+        form.post(route('organization.store'));
     };
 
     return (
@@ -136,7 +135,7 @@ export default function Register() {
 
                         {/* Company Country */}
                         <div className='mt-4'>
-                            <InputLabel forInput="company_country" value="Country of location of company*" />
+                            <InputLabel forInput="company_country" value="Country of location of applicant company*" />
 
                             <TextInput
                                 type="text"
@@ -460,7 +459,7 @@ export default function Register() {
                         {/* Fax */}
                         <div className='mt-4'>
                             <div className='flex'>
-                                <InputLabel forInput="has_fax" value="Does your company have a fax machine?*" />
+                                <InputLabel forInput="has_fax" value="Does your company have a fax machine?" />
 
                                 <div className="ml-2 items-center">
                                     <Checkbox

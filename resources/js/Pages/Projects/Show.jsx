@@ -1,7 +1,5 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ShowProject from '@/Components/ShowProject';
-import NavLink from '@/Components/NavLink';
 import { Link } from '@inertiajs/inertia-react';
 
 export default function Dashboard(props) {
@@ -15,7 +13,7 @@ export default function Dashboard(props) {
     >
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+          <div className="p-8 bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <Link href={ route('projects.edit', props.project) }>Edit</Link>
           </div>
         </div>

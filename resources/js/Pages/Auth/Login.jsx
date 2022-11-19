@@ -118,7 +118,7 @@ export default function Login({ status, canResetPassword }) {
                             
                         </div>
                         <div className='float-right block'>
-                            <Link href={route('register/organization')}>
+                            <Link href={route('organization.register')}>
                             <SecondaryButton className="my-2 ml-4 float-right">
                                 Register Organization
                             </SecondaryButton>

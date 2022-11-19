@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ShowOrganization from '@/Components/ShowOrganization';
 
 export default function ShowAll(props) {
-  const [seeApproved, setSeeApproved] = useState(true);
+  const [seeApproved, setSeeApproved] = useState(false);
 
   return (
     <AuthenticatedLayout
@@ -19,11 +19,11 @@ export default function ShowAll(props) {
         <div className="py-12">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className='float-right mb-4'>
-              <button className={`p-4 border-2 rounded-l-lg ${seeApproved? 'bg-blue-700' : null} hover:bg-blue-400`} onClick={()=>setSeeApproved(true)}>
-                Approved
-              </button>
-              <button className={`p-4 border-2 rounded-r-lg ${!seeApproved? 'bg-blue-700' : null} hover:bg-blue-400`} onClick={()=>setSeeApproved(false)}>
+              <button className={`p-4 border-2 rounded-l-lg ${!seeApproved? 'bg-blue-700' : null} hover:bg-blue-400`} onClick={()=>setSeeApproved(false)}>
                 Pending
+              </button>
+              <button className={`p-4 border-2 rounded-r-lg ${seeApproved? 'bg-blue-700' : null} hover:bg-blue-400`} onClick={()=>setSeeApproved(true)}>
+                Approved
               </button>
             </div>
             <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg block clear-right">

@@ -18,7 +18,7 @@ export default function Authenticated({ auth, header, children, head}) {
         //{ title: "Files ", resources: "Folder", gap: true },
         //{ title: "Setting", resources: "Setting" },
     ];
-
+    {/* todo Add Flash Data*/}
 
     return (
         <div className="min-h-screen bg-gray-100 flex">
