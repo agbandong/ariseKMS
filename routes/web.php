@@ -45,14 +45,18 @@ Route::middleware(['auth', 'verified'])->group(function(){
     })->name('dashboard');
     Route::resource('/projects', ProjectController::class);
     Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
-    Route::get('/organization/show', [OrganizationController::class, 'show'])->name('organization/show');
-    Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization/users');
+    Route::get('/organization/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
+    Route::post('/organization/{organization}', [OrganizationController::class, 'update'])->name('organization.update');
+    Route::delete('/organization/{organization}', [OrganizationController::class, 'destroy'])->name('organization.delete');
+    Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
+
 });
 
 Route::middleware('guest')->group(function(){
-    Route::get('/register/organization', [OrganizationController::class, 'create'])->name('register/organization');
-    Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('register/organization/check');
-    Route::post('/register/organization', [OrganizationController::class, 'store'])->name('register/organization/done');
+    Route::get('/register/organization', [OrganizationController::class, 'create'])->name('organization.register');
+    Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('organization.check');
+    Route::post('/register/organization', [OrganizationController::class, 'store'])->name('organization.store');
+    
 });
 
 Route::middleware('auth')->group(function () {
