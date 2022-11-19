@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->text('description');
             $table->string('project_files_path',2048);
             $table->timestamps();
         });
