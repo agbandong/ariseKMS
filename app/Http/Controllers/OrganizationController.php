@@ -10,7 +10,9 @@ class OrganizationController extends Controller
 {
     //
     public function index(){
-        return Inertia::render('Organizations/CheckOrganization');
+        $allOrgs = Organization::get()->all();
+        
+        return Inertia::render('Organizations/ShowAll', ['organizations' => $allOrgs]);
     }
 
     public function create(){
@@ -33,6 +35,7 @@ class OrganizationController extends Controller
             'number_employees' => 'min:0',
             'past_annual_revenue' => 'min:0',
             'description_business_and_activities' => 'max:300',
+            'currency' => 'max 50',
             'sector_other' => 'max:50',
             'country_focus' => 'max:60',
         ]);
@@ -41,7 +44,6 @@ class OrganizationController extends Controller
 
         Organization::create([
             'name' => $request->name,
-            
             'company_country' => $request->company_country,
             'headquarters_country' => $request->headquarters_country_same ? $request->company_country : $request->headquarters_country,
             'legal_company_country' => $request->legal_company_country_same ? $request->company_country : $request->legal_company_country,
@@ -53,10 +55,12 @@ class OrganizationController extends Controller
             'exchange_symbol' => $request->is_publically_traded ? $request->exchange_symbol : null,
             'is_subsidiary_details' => $request->is_subsidiary ? $request->is_subsidiary_details : null,
             'number_employees' => $request->number_employees,
+            'currency' => $request->currency,
             'past_annual_revenue' => $request->past_annual_revenue,
             'description_business_and_activities' => $request->description_business_and_activities,
             'country_focus' => $request->has_country_focus ? $request->country_focus : null,
             'sector' => $otherRequest ? $request->sectorOther : $request->sector,
+            'approved' => false,
         ]);
 
         return Inertia::render('Organizations/PleaseWait');
@@ -72,6 +76,10 @@ class OrganizationController extends Controller
         return back();
     }
 
+    public function show(){
+
+    }
+    
     public function showUsers(){
         return Inertia::render('Organizations/ShowUsers');
     }

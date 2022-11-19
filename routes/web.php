@@ -44,11 +44,12 @@ Route::middleware(['auth', 'verified'])->group(function(){
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::resource('/projects', ProjectController::class);
+    Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
+    Route::get('/organization/show', [OrganizationController::class, 'show'])->name('organization/show');
     Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization/users');
 });
 
 Route::middleware('guest')->group(function(){
-    Route::get('/register/new', [OrganizationController::class, 'index'])->name('register/new');
     Route::get('/register/organization', [OrganizationController::class, 'create'])->name('register/organization');
     Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('register/organization/check');
     Route::post('/register/organization', [OrganizationController::class, 'store'])->name('register/organization/done');

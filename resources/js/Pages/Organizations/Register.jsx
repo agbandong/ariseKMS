@@ -48,10 +48,11 @@ export default function Register() {
         headquarters_country : '',
         legal_company_country_same : false,
         legal_company_country : '',
-        //hasProof : boolean;
-        //registrationProofsPath : string;
+        //hasProof : false,
+        //registrationProofsPath : '',
         has_fax : false,
         company_fax : 0,
+        has_website : false,
         website : '',
         is_in_trade_association : false,
         is_in_business_alliance : false,
@@ -62,6 +63,7 @@ export default function Register() {
         subsidiary_details : '',
         number_employees : 1,
         past_annual_revenue : 0,
+        currency : '',
         description_business_and_activities : '',
         has_country_focus : false,
         country_focus : '',
@@ -141,7 +143,7 @@ export default function Register() {
                                 name="company_country"
                                 value={form.data.company_country}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
@@ -159,7 +161,7 @@ export default function Register() {
                                 name="legal_company_country"
                                 value={form.data.legal_company_country}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
@@ -192,7 +194,7 @@ export default function Register() {
                                 name="headquarters_country"
                                 value={form.data.headquarters_country}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
@@ -231,12 +233,12 @@ export default function Register() {
                                         name="sector"
                                         value={form.data.sector}
                                         className="mt-1 block w-full"
-                                        handleChange={onHandleChange}
-                                        isFocused={true}
+                                        
+                                        handleChange={()=>{}}
                                         required
                                     />
                                 </Dropdown.Trigger>
-                                    <Dropdown.Content align="left" width="60" height="48">
+                                    <Dropdown.Content align="left" width="auto" height="48">
                                         {sectorChoices.map((choice, index)=>(
                                         <button key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
                                             onClick={() => form.setData('sector', choice)}>
@@ -255,7 +257,7 @@ export default function Register() {
                                         value={form.data.sectorOther}
                                         className="mt-1 block w-full"
                                         handleChange={onHandleChange}
-                                        isFocused={true}
+                                        
                                         required
                                     />
                                 </div>
@@ -266,18 +268,30 @@ export default function Register() {
                         
                         {/* Company Website */}
                         <div className='mt-4'>
-                            <InputLabel forInput="website" value="Website of company*" />
-
-                            <TextInput
-                                type="text"
-                                name="website"
-                                value={form.data.website}
-                                className="mt-1 block w-full"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                required
-                            />
-
+                            <div className='flex'>
+                                <InputLabel forInput="has_website" value="Does your company have a website?*" />
+                                <div className="ml-2 items-center">
+                                    <Checkbox
+                                    name="has_website"
+                                    value={form.data.has_website}
+                                    handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <InputError className="mt-2" message={form.errors.has_website} /> 
+                            </div>
+                            {form.data.has_website && (
+                            <div>
+                                <InputLabel className="mt-1" forInput="website" value="Enter Website of company*" />
+                                <TextInput
+                                    type="text"
+                                    name="website"
+                                    value={form.data.website}
+                                    className="mt-1 block w-full"
+                                    
+                                    handleChange={onHandleChange}
+                                    required
+                                />
+                            </div>)}
                             <InputError message={form.errors.website} className="mt-2" />
                         </div>
                         
@@ -322,7 +336,7 @@ export default function Register() {
                                     name="exchange_name"
                                     value={form.data.exchange_name}
                                     className="mt-1 block w-full"
-                                    isFocused={true}
+                                    
                                     handleChange={onHandleChange}
                                     required
                                 />
@@ -336,7 +350,7 @@ export default function Register() {
                                     name="exchange_symbol"
                                     value={form.data.exchange_symbol}
                                     className="mt-1 block w-full"
-                                    isFocused={true}
+                                    
                                     handleChange={onHandleChange}
                                     required
                                 />
@@ -368,7 +382,7 @@ export default function Register() {
                                     name="subsidiary_details"
                                     value={form.data.subsidiary_details}
                                     className="mt-1 block w-full"
-                                    isFocused={true}
+                                    
                                     handleChange={onHandleChange}
                                     required
                                 />
@@ -385,24 +399,41 @@ export default function Register() {
                                 name="number_employees"
                                 value={form.data.number_employees}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
 
                             <InputError message={form.errors.number_employees} className="mt-2" />
                         </div>
+                                                                      
+                        {/* Currency */}
+                        <div className='mt-4'>
+                            <InputLabel forInput="currency" value="What currency does your company use?*" />
+
+                            <TextInput
+                                type="text"
+                                name="currency"
+                                value={form.data.currency}
+                                className="mt-1 block w-full"
+                                
+                                handleChange={onHandleChange}
+                                required
+                            />
+
+                            <InputError message={form.errors.currency} className="mt-2" />
+                        </div>
                         
                         {/* Past annual revenue */}
                         <div className='mt-4'>
-                            <InputLabel forInput="past_annual_revenue" value="Past annual revenue*" />
+                            <InputLabel forInput="past_annual_revenue" value="Past annual revenue in your currency*" />
 
                             <TextInput
                                 type="number"
                                 name="past_annual_revenue"
                                 value={form.data.past_annual_revenue}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
@@ -418,7 +449,7 @@ export default function Register() {
                                 name="description_business_and_activities"
                                 value={form.data.description_business_and_activities}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                
                                 handleChange={onHandleChange}
                                 required
                             />
@@ -429,31 +460,31 @@ export default function Register() {
                         {/* Fax */}
                         <div className='mt-4'>
                             <div className='flex'>
-                                <InputLabel forInput="hasFax" value="Does your company have a fax machine?*" />
+                                <InputLabel forInput="has_fax" value="Does your company have a fax machine?*" />
 
                                 <div className="ml-2 items-center">
                                     <Checkbox
-                                    name="hasFax"
-                                    value={form.data.hasFax}
+                                    name="has_fax"
+                                    value={form.data.has_fax}
                                     handleChange={onHandleChange}
                                     />
                                 </div>
-                                <InputError className="mt-2" message={form.errors.hasFax} /> 
+                                <InputError className="mt-2" message={form.errors.has_fax} /> 
                             </div>
-                            {form.data.hasFax && (
+                            {form.data.has_fax && (
                             <div>
-                                <InputLabel className="mt-1" forInput="companyFax" value="Enter number*" />
+                                <InputLabel className="mt-1" forInput="company_fax" value="Enter number*" />
                                 <TextInput
                                     type="number"
-                                    name="companyFax"
-                                    value={form.data.companyFax}
+                                    name="company_fax"
+                                    value={form.data.company_fax}
                                     className="mt-1 block w-full"
-                                    isFocused={true}
+                                    
                                     handleChange={onHandleChange}
                                     required
                                 />
                             </div>)}
-                            <InputError message={form.errors.companyFax} className="mt-2" />
+                            <InputError message={form.errors.company_fax} className="mt-2" />
                         </div>
                         
                         {/* Country Focus */}
@@ -478,7 +509,7 @@ export default function Register() {
                                     name="country_focus"
                                     value={form.data.country_focus}
                                     className="mt-1 block w-full"
-                                    isFocused={true}
+                                    
                                     handleChange={onHandleChange}
                                     required
                                 />
@@ -487,6 +518,7 @@ export default function Register() {
                         </div>
                     </div>
                     
+                    {/*Move to different page?*/}
                     {/*Second Form: Company Associations to public service*/}
                     <div className={`${(formPart == 1) ? '': 'hidden'}`}>
                         <h4 className='text-2xl'>Company associations to public service</h4>

@@ -10,7 +10,6 @@ class Organization extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        
         'company_country',
         'headquarters_country',
         'legal_company_country',
@@ -25,13 +24,14 @@ class Organization extends Model
         'exchange_symbol',
         'is_subsidiary_details',
         'number_employees',
+        'currency',
         'past_annual_revenue',
         'description_business_and_activities',
         'country_focus',
         'sector',
+        'approved'
         //'legal_reprentative_id',
         //'primary_contact_id',
-        
     ];
 
     public function users(){

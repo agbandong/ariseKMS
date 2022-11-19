@@ -30,7 +30,7 @@ const Trigger = ({ children }) => {
     );
 };
 
-const Content = ({ align = 'right', width = '48', height = '', contentClasses = 'py-1 bg-white', children }) => {
+const Content = ({ align = 'right', width = '48', height = '48', contentClasses = 'py-1 bg-white', children }) => {
     const { open, setOpen } = useContext(DropDownContext);
 
     let alignmentClasses = 'origin-top';
@@ -43,8 +43,11 @@ const Content = ({ align = 'right', width = '48', height = '', contentClasses = 
 
     let widthClasses = '';
 
-    if (width === '48') {
-        widthClasses = 'w-48';
+    if (width === '') {
+        widthClasses = '';
+    }
+    else{
+        widthClasses = `w-${width}`;
     }
 
     let heightClasses = '';
@@ -53,7 +56,7 @@ const Content = ({ align = 'right', width = '48', height = '', contentClasses = 
         heightClasses = '';
     }
     else{
-        heightClasses = 'h-' + height;
+        heightClasses = `h-${height}`;
     }
 
     return (

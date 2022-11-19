@@ -23,7 +23,7 @@ return new class extends Migration
             //$table->string('registration_proofs_path', 2048)->nullable();
             //$table->string('registration_proofs_excuse')->nullable();
             $table->integer('company_fax')->nullable();
-            $table->string('website', 2048);
+            $table->string('website')->nullable();
             $table->boolean('is_in_trade_association');
             $table->boolean('is_in_business_alliance');
             $table->string('exchange_name')->nullable();
@@ -31,9 +31,11 @@ return new class extends Migration
             $table->string('is_subsidiary_details')->nullable();
             $table->integer('number_employees');
             $table->integer('past_annual_revenue');
+            $table->string('currency');
             $table->string('description_business_and_activities');
             $table->string('country_focus')->nullable();
             $table->string('sector');
+            $table->boolean('approved');
         });
     }
 
