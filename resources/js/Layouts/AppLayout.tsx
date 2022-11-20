@@ -53,7 +53,7 @@ export default function AppLayoutNew({
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-slate-800 h-screen p-5  pt-8 relative duration-300 hidden lg:block`}
+        } bg-slate-800 h-screen p-5 pt-8 overflow-hidden duration-300 hidden lg:block`}
       >
         <img
           src="/assets/control.png"
@@ -79,9 +79,8 @@ export default function AppLayoutNew({
         <hr className="mt-6"/>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <a href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>
+            <a key={index} href={route(`${Menu.url? Menu.url: 'dashboard'}`)}>
               <li
-                key={index}
                 className={`flex  rounded-md p-2 cursor-pointer hover:bg-gray-400 text-gray-300 text-sm items-center gap-x-4 
                 ${/*Menu.gap ? "mt-9" : "mt-2"*/''} ${
                   index === 0 && "bg-light-white"

@@ -44,6 +44,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::resource('/projects', ProjectController::class);
+    
 });
 
 Route::get('/welcome', function(){
