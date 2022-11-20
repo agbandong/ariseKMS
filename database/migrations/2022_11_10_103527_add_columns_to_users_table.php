@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        /*
+        
         Schema::table('users', function (Blueprint $table) {
             //Note create a role table later for later
-                $table->foreignId('person_id')->constrained('persons')->onDelete('null');
+                $table->foreignId('organization_id');
+                $table->string('first_name');
+                $table->string('last_name');
                 $table->string('role');
+                $table->string('position');
         });
-        */
+        
     }
 
     /**

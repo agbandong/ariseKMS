@@ -525,8 +525,10 @@ export default function Register() {
 
                     {/*Third Form: Legal Represantative Details*/}
                     <div className={`${(formPart == 2) ? '': 'hidden'}`}>
+                        <h4 className='text-2xl'>Legal Represantative Details</h4>
+                        {/*
                         <div className='mt-4'>
-                            <h4 className='text-2xl'>Legal Represantative Details</h4>
+                            
                             <InputLabel forInput="name" value="First Name" />
 
                             <TextInput
@@ -541,13 +543,13 @@ export default function Register() {
                             />
 
                             <InputError message={form.errors.name} className="mt-2" />
-                        </div>
+                            </div>*/}
                     </div>
                     
                     {/*Last Form: Primary Contact Details*/}
                     <div className={`${(formPart == end) ? '': 'hidden'}`}>
                         <h4 className='text-2xl'>Primary Contact for Arise Engagements and Communications</h4>
-
+                        {/*
                         <div>
                             <InputLabel forInput="name" value="Last Name" />
 
@@ -563,14 +565,14 @@ export default function Register() {
                             />
 
                             <InputError message={form.errors.name} className="mt-2" />
-                        </div>
+                        </div>*/}
                     </div>
                     
 
                     <div className="flex items-center justify-end mt-8">
                         <Link
                             href={route('register')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="mr-4 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Company already registered?
                         </Link>

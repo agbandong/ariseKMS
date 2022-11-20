@@ -9,7 +9,11 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        first_name: '',
+        last_name: '',
         email: '',
+        organization: '',
+        position: '',
         password: '',
         password_confirmation: '',
     });
@@ -36,7 +40,7 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel forInput="name" value="Name" />
+                    <InputLabel forInput="name" value="User Name" />
 
                     <TextInput
                         type="text"
@@ -50,6 +54,74 @@ export default function Register() {
                     />
 
                     <InputError message={errors.name} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel forInput="first_name" value="First Name" />
+
+                    <TextInput
+                        type="text"
+                        name="first_name"
+                        value={data.first_name}
+                        className="mt-1 block w-full"
+                        autoComplete="first_name"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.first_name} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel forInput="last_name" value="Last name" />
+
+                    <TextInput
+                        type="text"
+                        name="last_name"
+                        value={data.last_name}
+                        className="mt-1 block w-full"
+                        autoComplete="last_name"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.last_name} className="mt-2" />
+                </div>
+                
+                <div className='mt-4'>
+                    <InputLabel forInput="organization" value="Organization" />
+
+                    <TextInput
+                        type="text"
+                        name="organization"
+                        value={data.organization}
+                        className="mt-1 block w-full"
+                        autoComplete="organization"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.organization} className="mt-2" />
+                </div>
+                
+                <div className='mt-4'>
+                    <InputLabel forInput="position" value="Position" />
+
+                    <TextInput
+                        type="text"
+                        name="position"
+                        value={data.position}
+                        className="mt-1 block w-full"
+                        autoComplete="position"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.position} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
