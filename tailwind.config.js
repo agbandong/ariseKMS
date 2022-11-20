@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
 
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -66,7 +67,6 @@ module.exports = {
 
     plugins: [
         require('@tailwindcss/forms'),
-        
         plugin(({ addVariant, e }) => {
             addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
               modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
