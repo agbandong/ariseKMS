@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OrganizationController;
@@ -40,9 +41,7 @@ Route::get('/', function (){
 })->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function(){
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
     Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
     Route::get('/organization/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
