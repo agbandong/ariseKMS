@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-    
+        $organization = Organization::where('name', $request->organization)->get();
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -44,14 +44,22 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'position' => 'required|string|max:255',
             'organization' => ['required', 'string', 'max:255', function ($attribute, $value, $fail) {
-                if (!Organization::where('name', $value)->exists() && Organization::where('name', $value)->get()->firstOrFail()->approved) {
-                    return $fail("The provided $attribute is not registered and approved.");
+                if (!Organization::where('name', $value)->exists()) {
+                    if(Organization::where('name', $value)->get()->firstOrFail()->approved){
+                        return $fail("The provided $attribute is not registered and approved.");
+                    }
                 }
             }],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         //dd(Organization::where('name', $request->organization)->get()->firstOrFail()->id);
+        if ($request->organization == 'Arise Philippines') {
+            $role = 'admin';
+        }
+        else{
+            $role = 'member';
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -59,9 +67,9 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'organization_id' => Organization::where('name', $request->organization)->get()->firstOrFail()->id, 
+            'organization_id' => $organization->firstOrFail()->id, 
             'position' => $request->position,
-            'role' => 'admin',
+            'role' => $role,
         ]);
 
         event(new Registered($user));
