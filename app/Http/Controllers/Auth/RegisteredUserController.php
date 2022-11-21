@@ -44,11 +44,12 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'position' => 'required|string|max:255',
             'organization' => ['required', 'string', 'max:255', function ($attribute, $value, $fail) {
-                if (!Organization::where('name', $value)->exists()) {
-                    if(Organization::where('name', $value)->get()->firstOrFail()->approved){
-                        return $fail("The provided $attribute is not registered and approved.");
+                if (Organization::where('name', $value)->exists()) {
+                    if(!Organization::where('name', $value)->get()->firstOrFail()->approved){
+                        return $fail("The provided $attribute is not approved, please wait for approval.");
                     }
                 }
+                else{ return $fail("The provided $attribute is not registered."); }
             }],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
