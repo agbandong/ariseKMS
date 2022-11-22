@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import SecondaryButton from '@/Components/SecondaryButton';
 import { Link } from '@inertiajs/inertia-react';
+import { method } from 'lodash';
 
 export default function ShowUsers(props) {
   const tableRows = ["Name", "First name", "Last Name", "Email", "Position", "Role"]
@@ -52,7 +53,8 @@ export default function ShowUsers(props) {
                       <td>{user.email}</td>
                       <td>{user.position}</td>
                       <td>{user.role}</td>
-                      <td><Link href=''><SecondaryButton>Edit</SecondaryButton></Link></td>
+                      <td><Link href={route('user.delete', user)} method="delete"><SecondaryButton>{(user.approved == seeApproved) ? 'Delete':'Reject'}</SecondaryButton></Link></td>
+                      {(user.approved == seeApproved) ?<td><Link href={route('user.approve', user)} method="post"><SecondaryButton>Approve</SecondaryButton></Link></td>:null}
                     </tr>
                     : null
                   )}

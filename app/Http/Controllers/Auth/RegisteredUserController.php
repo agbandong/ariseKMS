@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'organization' => ['required', 'string', 'max:255', function ($attribute, $value, $fail) {
                 if (Organization::where('name', $value)->exists()) {
                     if(!Organization::where('name', $value)->get()->firstOrFail()->approved){
-                        return $fail("The provided $attribute is not approved, please wait for approval.");
+                        return $fail("The provided $attribute is not yet approved, please wait for approval.");
                     }
                 }
                 else{ return $fail("The provided $attribute is not registered."); }
@@ -74,10 +74,42 @@ class RegisteredUserController extends Controller
             'approved' => $request->approved,
         ]);
 
+        /*
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);*/
+        return to_route('wait');
+    }
+
+    public function wait(){
+        return Inertia::render('Auth/PleaseWait');
+    }
+
+    public function approve(User $user){
+        $user->update(['approved' => true]);
+    }
+
+    public function destroy(User $user){
+        //Use validate later
+        /*
+        $user->validate([
+            'id' => function ($attribute, $value, $fail) {
+                if (Organization::where('name', $value)->exists()) {
+                    if(!Organization::where('name', $value)->get()->firstOrFail()->approved){
+                        return $fail("The provided $attribute is not approved, please wait for approval.");
+                    }
+                }
+                else{ return $fail("The provided $attribute is not registered."); }
+            }
+        ]);*/
+
+        if (!($user->approved && $user->role == "admin") && $user != auth::user()){
+            $user->delete();
+        }
+        else{
+            
+        }
     }
 }

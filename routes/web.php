@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -40,6 +41,7 @@ Route::get('/', function (){
     } 
 })->name('welcome');
 
+//Add roleAuth
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
@@ -48,20 +50,22 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/organization/{organization}', [OrganizationController::class, 'update'])->name('organization.update');
     Route::delete('/organization/{organization}', [OrganizationController::class, 'destroy'])->name('organization.delete');
     Route::get('/organization/{organization}/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
-
+    Route::post('/user/approve/{user}', [RegisteredUserController::class, 'approve'])->name('user.approve');
+    Route::delete('/user/delete/{user}', [RegisteredUserController::class, 'destroy'])->name('user.delete');
 });
 
 Route::middleware('guest')->group(function(){
     Route::get('/register/organization', [OrganizationController::class, 'create'])->name('organization.register');
     Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('organization.check');
     Route::post('/register/organization', [OrganizationController::class, 'store'])->name('organization.store');
-    
+    Route::get('/register/wait', [RegisteredUserController::class, 'wait'])->name('wait');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 
