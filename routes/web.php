@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/organization/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
     Route::post('/organization/{organization}', [OrganizationController::class, 'update'])->name('organization.update');
     Route::delete('/organization/{organization}', [OrganizationController::class, 'destroy'])->name('organization.delete');
-    Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
+    Route::get('/organization/{organization}/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
 
 });
 

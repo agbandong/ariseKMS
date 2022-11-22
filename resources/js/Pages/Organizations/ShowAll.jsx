@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ShowOrganization from '@/Components/ShowOrganization';
+import SecondaryButton from '@/Components/SecondaryButton';
+
 
 export default function ShowAll(props) {
   const [seeApproved, setSeeApproved] = useState(false);
@@ -28,7 +31,7 @@ export default function ShowAll(props) {
             </div>
             <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg block clear-right">
                 {props.organizations.length > 0 ?  props.organizations.map(organization=>
-                <ShowOrganization organization={organization} approved={seeApproved} key={organization.id}/>  
+                  <ShowOrganization organization={organization} approved={seeApproved} key={organization.id}/>
                 ): 'There are no organizations'}
             </div>
           </div>
