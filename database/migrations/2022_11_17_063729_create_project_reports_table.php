@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('report_files_path');
+            $table->foreignId('user_id')->nullOnDelete();
             $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });

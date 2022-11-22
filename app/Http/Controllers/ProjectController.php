@@ -51,6 +51,9 @@ class ProjectController extends Controller
         Project::create([
             'name' => $request->name,
             'project_files_path' => '/projects/' . $request->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'stage' => $request->stage,
         ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
         return to_route('projects.index');

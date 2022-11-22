@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //
+            $table->string('project_files_path');
             $table->string('location');
             $table->string('stage');
-            $table->integer('number_of_benificiaries');
+            $table->integer('number_of_benificiaries')->nullable();
         });
     }
 
