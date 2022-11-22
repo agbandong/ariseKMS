@@ -131,8 +131,10 @@ class OrganizationController extends Controller
         return Inertia::render('Organizations/Show', ['organization' => $organization]);
     }
     
-    public function showUsers(){
-        return Inertia::render('Organizations/ShowUsers');
+    public function showUsers(Organization $organization){
+        $users = $organization->users()->get()->all();
+
+        return Inertia::render('Organizations/ShowUsers', ['users' => $users, 'organization_name' => $organization->name]);
     }
 
     public function destroy(Organization $organization){
