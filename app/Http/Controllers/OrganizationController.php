@@ -113,7 +113,7 @@ class OrganizationController extends Controller
             'approved' => true,
         ]);
 
-        return to_route('organization');
+        return to_route('organization.index');
     }
 
     public function check(Request $request){
@@ -139,6 +139,6 @@ class OrganizationController extends Controller
 
     public function destroy(Organization $organization){
         $organization->delete();
-        return to_route('organization');
+        return to_route('organization.index');
     }
 }

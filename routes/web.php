@@ -5,6 +5,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\ProjectReportController;
 use App\Models\Organization;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -45,13 +46,21 @@ Route::get('/', function (){
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
-    Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
-    Route::get('/organization/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
-    Route::post('/organization/{organization}', [OrganizationController::class, 'update'])->name('organization.update');
-    Route::delete('/organization/{organization}', [OrganizationController::class, 'destroy'])->name('organization.delete');
-    Route::get('/organization/{organization}/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
+    Route::prefix('/organization')->name('organization.')->group(
+    function(){
+        Route::get('/', [OrganizationController::class, 'index'])->name('index');
+        Route::get('/{organization}', [OrganizationController::class, 'show'])->name('show');
+        Route::post('/{organization}', [OrganizationController::class, 'update'])->name('update');
+        Route::delete('/{organization}', [OrganizationController::class, 'destroy'])->name('delete');
+        Route::get('/{organization}/users', [OrganizationController::class, 'showUsers'])->name('users');
+    });
     Route::post('/user/approve/{user}', [RegisteredUserController::class, 'approve'])->name('user.approve');
     Route::delete('/user/delete/{user}', [RegisteredUserController::class, 'destroy'])->name('user.delete');
+
+    Route::prefix('/projects/projectReports')->name('projectReports.')->group(
+    function(){
+        Route::get('/{reports}', [ProjectReportController::class, 'show'])->name('show');
+    });
 });
 
 Route::middleware('guest')->group(function(){

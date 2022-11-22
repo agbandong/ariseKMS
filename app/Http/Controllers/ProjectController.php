@@ -69,6 +69,7 @@ class ProjectController extends Controller
             return abort(403);
         }
 
+        
         return Inertia::render('Projects/Show', ['project' => $project]);
     }
 
