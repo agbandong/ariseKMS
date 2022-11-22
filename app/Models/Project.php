@@ -28,6 +28,6 @@ class Project extends Model
     }
 
     public function reports(){
-        return $this->hasMany(ProjectReport::class)->withTimestamps();
+        return $this->hasMany(ProjectReport::class);
     }
 }

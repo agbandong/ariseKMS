@@ -46,6 +46,9 @@ class ProjectController extends Controller
         //dd($request);
         $request->validate([
             'name' => 'required|unique:projects|max:64',
+            'description' => 'required|max:124',
+            'location' => 'required|max:124',
+            'stage' => 'required',
         ]);
 
         Project::create([

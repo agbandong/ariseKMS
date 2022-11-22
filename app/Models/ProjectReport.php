@@ -11,14 +11,12 @@ class ProjectReport extends Model
 
     protected $fillable = [
         'name',
-        'report_files_path',
         'description',
-        'location',
-        'stage',
-        'number_of_benificiaries',
+        'user_id',
+        'report_file_path',
     ];
 
-    public function users(){
-        return $this->belongsToMany(Project::class)->withTimestamps();
+    public function project(){
+        return $this->belongsTo(Project::class);
     }
 }

@@ -111,7 +111,7 @@ export default function Show(props) {
         
         <div className="py-12">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <a href={route('organization')}><SecondaryButton>Back</SecondaryButton></a>
+          <a href={route('organization.index')}><SecondaryButton>Back</SecondaryButton></a>
           <form onSubmit={submit}>
           <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">                    
               {/* Company Name */}

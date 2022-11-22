@@ -57,9 +57,11 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/user/approve/{user}', [RegisteredUserController::class, 'approve'])->name('user.approve');
     Route::delete('/user/delete/{user}', [RegisteredUserController::class, 'destroy'])->name('user.delete');
 
-    Route::prefix('/projects/projectReports')->name('projectReports.')->group(
+    Route::prefix('/projects/{project}/projectReports')->name('reports.')->group(
     function(){
-        Route::get('/{reports}', [ProjectReportController::class, 'show'])->name('show');
+        Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
+        Route::post('/create', [ProjectReportController::class, 'store'])->name('store');
+        Route::get('/{report}', [ProjectReportController::class, 'show'])->name('show');
     });
 });
 
