@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('last_name');
                 $table->string('role');
                 $table->string('position');
+                $table->boolean('approved');
         });
         
     }

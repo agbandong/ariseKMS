@@ -71,6 +71,7 @@ class RegisteredUserController extends Controller
             'organization_id' => $organization->firstOrFail()->id, 
             'position' => $request->position,
             'role' => $role,
+            'approved' => $request->approved,
         ]);
 
         event(new Registered($user));

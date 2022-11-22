@@ -521,7 +521,6 @@ export default function Show(props) {
                   </SecondaryButton>
                 </Link>
                 
-
                 <PrimaryButton className={`ml-4`} processing={form.processing}>
                   {props.organization.approved? (<p>Edit</p>) : (<p>Approve</p>)}
                 </PrimaryButton>
