@@ -35,7 +35,7 @@ export default function Dashboard(props) {
                         <td>{report.name}</td>
                         <td>{report.description}</td>
                         <td>{report.report_file_path}</td>
-                        <a href={`/storage/${report.report_file_path}`}><td><SecondaryButton>Link</SecondaryButton></td></a>
+                        <a href={`/storage/${report.report_file_path}`}><td><SecondaryButton>Download</SecondaryButton></td></a>
                       </tr>
                     )}
                   </tbody>
