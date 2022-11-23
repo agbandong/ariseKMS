@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/inertia-react';
 import { method } from 'lodash';
 
 export default function ShowUsers(props) {
-  const tableRows = ["Name", "First name", "Last Name", "Email", "Position", "Role"]
+  const tableRows = ["Name", "First name", "Last Name", "Email", "Position", "Role"];
 
   const [seeApproved, setSeeApproved] = useState(false);
 

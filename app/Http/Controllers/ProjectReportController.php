@@ -36,5 +36,7 @@ class ProjectReportController extends Controller
             'description' => $request->description,
             'report_file_path' => $report_file_path,
         ]);
+
+        return to_route('project.show', ['project' => $project]);
     }
 }
