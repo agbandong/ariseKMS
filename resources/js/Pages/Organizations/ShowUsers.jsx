@@ -53,8 +53,8 @@ export default function ShowUsers(props) {
                       <td>{user.email}</td>
                       <td>{user.position}</td>
                       <td>{user.role}</td>
-                      <td><Link href={route('user.delete', user)} method="delete"><SecondaryButton>{(user.approved == seeApproved) ? 'Delete':'Reject'}</SecondaryButton></Link></td>
-                      {(user.approved != seeApproved) ?<td><Link href={route('user.approve', user)} method="post"><SecondaryButton>Approve</SecondaryButton></Link></td>:null}
+                      <td><Link href={route('user.delete', user)} method="delete"><SecondaryButton>{(seeApproved) ? 'Delete':'Reject'}</SecondaryButton></Link></td>
+                      {(!seeApproved) ?<td><Link href={route('user.approve', user)} method="post"><SecondaryButton>Approve</SecondaryButton></Link></td>:null}
                     </tr>
                     : null
                   )}
