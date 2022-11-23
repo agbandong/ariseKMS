@@ -5,6 +5,9 @@ import ShowOrganization from '@/Components/ShowOrganization';
 export default function ShowAll(props) {
   const [seeApproved, setSeeApproved] = useState(false);
 
+  const [data, seeData] = useState ([]);
+  const [input, setInput] = useState("");
+
   return (
     <AuthenticatedLayout
         auth={props.auth}
@@ -19,6 +22,8 @@ export default function ShowAll(props) {
         <div className="py-12">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className='float-right mb-4'>
+              Search:&nbsp;&nbsp; 
+              <input type="text" name="organization" onChange={(e)=> setInput(e.target.value)} className={`border-2`} style = {{ marginRight : 100 }}/>
               <button className={`p-4 border-2 rounded-l-lg ${!seeApproved? 'bg-blue-700' : null} hover:bg-blue-400`} onClick={()=>setSeeApproved(false)}>
                 Pending
               </button>
@@ -27,7 +32,8 @@ export default function ShowAll(props) {
               </button>
             </div>
             <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg block clear-right">
-                {props.organizations.length > 0 ?  props.organizations.map(organization=>
+                {
+                props.organizations.length > 0 ?  props.organizations.map(organization=>
                 <ShowOrganization organization={organization} approved={seeApproved} key={organization.id}/>  
                 ): 'There are no organizations'}
             </div>
