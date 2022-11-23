@@ -1,33 +1,40 @@
 import { useForm } from '@inertiajs/inertia-react';
-import React from 'react';
+import React, {useRef} from 'react';
 import FormSection from '@/Components/FormSection';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
-import PrimaryButton from '@/Components/PrimaryButton'
-import Dropdown from '@/Components/Dropdown';
+import PrimaryButton from '@/Components/PrimaryButton';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 
-export default function CreateProjectForm({auth}) {
-  const stages = [
-    "Initial",
-    "Ongoing",
-    "Review",
-    "Completed"
-  ]
-
-
+export default function createReportForm({auth, project}) {
   const form = useForm({
     name: '',
     description: '',
-    location: '',
-    stage: '',
+    report_file: null,
   });
 
+  const reportRef = useRef(null);
+  
+  function selectNewReport() {
+    reportRef.current?.click();
+  }
+
+  function updateReportFile() {
+    const report_file = reportRef.current?.files?.[0];
+
+    if (!report_file) {
+      return;
+    }
+
+    form.setData('report_file', report_file);
+  }
+
   //Create a project controller
-  function createProject() {
-    form.post(route('projects.store'), {
-      errorBag: 'createProject',
+  function createReport() {
+    form.post(route('reports.store', [project = project]), {
+      errorBag: 'createReport',
       preserveScroll: true,
     });
   }
@@ -38,7 +45,7 @@ export default function CreateProjectForm({auth}) {
 
   return (
     <FormSection
-      onSubmit={createProject}
+      onSubmit={createReport}
       title={'Project Details'}
       description={'Create a new project in Arise.'}
       renderActions={() => (
@@ -52,7 +59,7 @@ export default function CreateProjectForm({auth}) {
       )}
     >
       <div className="col-span-6">
-        <InputLabel value="Project Manager" />
+        <InputLabel value="Reports Creator" />
 
         <div className="flex items-center mt-2">
           <img
@@ -69,21 +76,22 @@ export default function CreateProjectForm({auth}) {
       </div>
 
       <div className="col-span-6 sm:col-span-4">
-        <InputLabel htmlFor="name" value="Project Name" />
+        <InputLabel htmlFor="name" value="Project Report Name" />
         <TextInput
           type="text"
           name="name"
           value={form.data.name}
           className="mt-1 block w-full"
           autoComplete="name"
+          isFocused={true}
           handleChange={onHandleChange}
           required
         />
         <InputError message={form.errors.name} className="mt-2" />
       </div>
-
-      <div className="mt-4 col-span-6 sm:col-span-4">
-        <InputLabel htmlFor="description" value="Project description" />
+      
+      <div className="col-span-6 sm:col-span-4">
+        <InputLabel htmlFor="description" value="Project Report Description" />
         <TextInput
           type="text"
           name="description"
@@ -95,46 +103,23 @@ export default function CreateProjectForm({auth}) {
         <InputError message={form.errors.description} className="mt-2" />
       </div>
       
-      <div className="mt-4 col-span-6 sm:col-span-4">
-        <InputLabel htmlFor="stage" value="Project stage" />
-        <Dropdown>
-          <Dropdown.Trigger>
-            <TextInput
-            type="text"
-            name="stage"
-            value={form.data.stage}
-            className="mt-1 block w-full"
-            handleChange={onHandleChange}
-            required
-          />
-          </Dropdown.Trigger>
-          <Dropdown.Content align="left" width="auto" height="48">
-            {stages.map((choice, index)=>(
-            <button key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
-                onClick={() => form.setData('stage', choice)}>
-                {choice}
-            </button>
-            ))}
-        </Dropdown.Content>   
-        </Dropdown>
-        
-        <InputError message={form.errors.stage} className="mt-2" />
-      </div>
-
-      <div className="mt-4 col-span-6 sm:col-span-4">
-        <InputLabel htmlFor="location" value="Project Location" />
-        <TextInput
-          type="text"
-          name="location"
-          value={form.data.location}
-          className="mt-1 block w-full"
-          handleChange={onHandleChange}
-          required
+      <div className="col-span-6 sm:col-span-4">
+        <InputLabel htmlFor="report_file" value="Project Report File" />
+        <input
+          type="file"
+          className="hidden"
+          ref={reportRef}
+          onChange={updateReportFile}
         />
-        <InputError message={form.errors.location} className="mt-2" />
-      </div>
 
-      
+        <SecondaryButton
+            className="mt-2 mr-2"
+            onClick={selectNewReport}
+          >
+            Select A New Report
+          </SecondaryButton>
+        <InputError message={form.errors.report_file} className="mt-2" />
+      </div>
 
       <PrimaryButton
             className='opacity-25'

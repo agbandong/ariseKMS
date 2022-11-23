@@ -46,11 +46,17 @@ class ProjectController extends Controller
         // dd($request);
         $request->validate([
             'name' => 'required|unique:projects|max:64',
+            'description' => 'required|max:124',
+            'location' => 'required|max:124',
+            'stage' => 'required',
         ]);
 
         Project::create([
             'name' => $request->name,
             'project_files_path' => '/projects/' . $request->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'stage' => $request->stage,
         ])->users()->attach(Auth::user()->id, ['role' => 'admin',]);
 
         return to_route('projects.index');
@@ -69,6 +75,7 @@ class ProjectController extends Controller
             return abort(403);
         }
 
+        
         return Inertia::render('Projects/Show', ['project' => $project]);
     }
 

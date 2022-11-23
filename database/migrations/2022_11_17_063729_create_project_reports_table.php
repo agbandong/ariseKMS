@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('project_reports', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('report_file_path');
+            $table->foreignId('user_id')->nullOnDelete();
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }

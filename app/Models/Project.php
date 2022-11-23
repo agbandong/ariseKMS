@@ -13,6 +13,10 @@ class Project extends Model
     protected $fillable = [
         'name',
         'project_files_path',
+        'description',
+        'location',
+        'stage',
+        'number_of_benificiaries',
     ];
     
     protected $appends =[
@@ -21,5 +25,9 @@ class Project extends Model
 
     public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function reports(){
+        return $this->hasMany(ProjectReport::class);
     }
 }

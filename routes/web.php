@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\ProjectReportController;
 use App\Models\Organization;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -40,28 +42,41 @@ Route::get('/', function (){
     } 
 })->name('welcome');
 
+//Add roleAuth
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
-    Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
-    Route::get('/organization/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
-    Route::post('/organization/{organization}', [OrganizationController::class, 'update'])->name('organization.update');
-    Route::delete('/organization/{organization}', [OrganizationController::class, 'destroy'])->name('organization.delete');
-    Route::get('/organization/users', [OrganizationController::class, 'showUsers'])->name('organization.users');
+    Route::prefix('/organization')->name('organization.')->group(
+    function(){
+        Route::get('/', [OrganizationController::class, 'index'])->name('index');
+        Route::get('/{organization}', [OrganizationController::class, 'show'])->name('show');
+        Route::post('/{organization}', [OrganizationController::class, 'update'])->name('update');
+        Route::delete('/{organization}', [OrganizationController::class, 'destroy'])->name('delete');
+        Route::get('/{organization}/users', [OrganizationController::class, 'showUsers'])->name('users');
+    });
+    Route::post('/user/approve/{user}', [RegisteredUserController::class, 'approve'])->name('user.approve');
+    Route::delete('/user/delete/{user}', [RegisteredUserController::class, 'destroy'])->name('user.delete');
 
+    Route::prefix('/projects/{project}/projectReports')->name('reports.')->group(
+    function(){
+        Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
+        Route::post('/create', [ProjectReportController::class, 'store'])->name('store');
+        Route::get('/{report}', [ProjectReportController::class, 'show'])->name('show');
+    });
 });
 
 Route::middleware('guest')->group(function(){
     Route::get('/register/organization', [OrganizationController::class, 'create'])->name('organization.register');
     Route::get('/register/organization/check', [OrganizationController::class, 'check'])->name('organization.check');
     Route::post('/register/organization', [OrganizationController::class, 'store'])->name('organization.store');
-    
+    Route::get('/register/wait', [RegisteredUserController::class, 'wait'])->name('wait');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 

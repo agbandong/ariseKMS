@@ -16,11 +16,12 @@ return new class extends Migration
         
         Schema::table('users', function (Blueprint $table) {
             //Note create a role table later for later
-                $table->foreignId('organization_id');
+                $table->foreignId('organization_id')->constrained();
                 $table->string('first_name');
                 $table->string('last_name');
                 $table->string('role');
                 $table->string('position');
+                $table->boolean('approved');
         });
         
     }
