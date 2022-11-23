@@ -116,7 +116,7 @@ export default function createReportForm({auth, project}) {
             className="mt-2 mr-2"
             onClick={selectNewReport}
           >
-            Select A New Report
+            Upload A New Report(pdf)
           </SecondaryButton>
         <InputError message={form.errors.report_file} className="mt-2" />
       </div>
