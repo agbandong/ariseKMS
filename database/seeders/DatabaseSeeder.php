@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Organization;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -40,6 +42,19 @@ class DatabaseSeeder extends Seeder
             'description_business_and_activities' => 'Arise',
             'country_focus' => 'Philippines',
             'sector' => 'Social assistance',
+            'approved' => true,
+        ]);
+
+        User::create([
+            'name' => 'Admin',
+            'first_name' => 'Admin',
+            'last_name' => 'Admin',
+            'email' => 'admin@Arise.com',
+            //Find hash
+            'password' => Hash::make('password!@#$%12345'),
+            'organization_id' => 1, 
+            'position' => 'admin',
+            'role' => 'admin',
             'approved' => true,
         ]);
     }

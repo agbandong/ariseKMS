@@ -1,36 +1,10 @@
-import DeleteTeamForm from '@/Pages/Projects/Partials/DeleteProjectForm';
-import TeamMemberManager from '@/Pages/Projects/Partials/ProjectMemberManager';
-import UpdateTeamNameForm from '@/Pages/Projects/Partials/UpdateProjectNameForm';
-import SectionBorder from '@/Components/SectionBorder';
-import AppLayout from '@/Layouts/AppLayout';
-import {
-  JetstreamTeamPermissions,
-  Role,
-  Team,
-  TeamInvitation,
-  User,
-} from '@/types';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import React from 'react';
 
-interface UserMembership extends User {
-  membership: {
-    role: string;
-  };
-}
 
-interface Props {
-  team: Team & {
-    owner: User;
-    team_invitations: TeamInvitation[];
-    users: UserMembership[];
-  };
-  availableRoles: Role[];
-  permissions: JetstreamTeamPermissions;
-}
-
-export default function Settings({ team, availableRoles, permissions }: Props) {
+export default function Settings({ team, availableRoles, permissions }) {
   return (
-    <AppLayout
+    <AuthenticatedLayout
       title="Team Settings"
       renderHeader={() => (
         <h2 className="font-semibold text-xl text-gray-800 leading-tight">
@@ -62,6 +36,6 @@ export default function Settings({ team, availableRoles, permissions }: Props) {
           ) : null}*/}
         </div>
       </div>
-    </AppLayout>
+    </AuthenticatedLayout>
   );
 }

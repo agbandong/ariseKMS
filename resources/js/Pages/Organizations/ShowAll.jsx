@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ShowOrganization from '@/Components/ShowOrganization';
+import ShowOrganization from '@/Pages/Organizations/Partials/ShowOrganization';
 
 export default function ShowAll(props) {
   const [seeApproved, setSeeApproved] = useState(false);

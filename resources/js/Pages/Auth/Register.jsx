@@ -16,6 +16,7 @@ export default function Register() {
         position: '',
         password: '',
         password_confirmation: '',
+        approved: false, 
     });
 
     useEffect(() => {

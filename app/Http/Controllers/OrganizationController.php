@@ -113,7 +113,7 @@ class OrganizationController extends Controller
             'approved' => true,
         ]);
 
-        return to_route('organization');
+        return to_route('organization.index');
     }
 
     public function check(Request $request){
@@ -131,12 +131,14 @@ class OrganizationController extends Controller
         return Inertia::render('Organizations/Show', ['organization' => $organization]);
     }
     
-    public function showUsers(){
-        return Inertia::render('Organizations/ShowUsers');
+    public function showUsers(Organization $organization){
+        $users = $organization->users()->get()->all();
+
+        return Inertia::render('Organizations/ShowUsers', ['users' => $users, 'organization_name' => $organization->name]);
     }
 
     public function destroy(Organization $organization){
         $organization->delete();
-        return to_route('organization');
+        return to_route('organization.index');
     }
 }
