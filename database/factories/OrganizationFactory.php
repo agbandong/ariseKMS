@@ -53,7 +53,7 @@ class OrganizationFactory extends Factory
             'headquarters_country' => fake()->country(),
             'legal_company_country' => fake()->country(),
             //Edit company_fax later fake->phoneNumber()
-            'company_fax' => rand(10000000,9999999),
+            'company_fax' => rand(1000000,9999999),
             'website' => 'www.' . $name . '.com',
             'is_in_trade_association' => rand(0,1) == 1,
             'is_in_business_alliance' => rand(0,1) == 1,
