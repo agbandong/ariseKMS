@@ -57,5 +57,8 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'approved' => true,
         ]);
+
+        Organization::factory(20)->create();
+        User::factory(20)->create();
     }
 }
