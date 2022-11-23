@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'name' => $firstName . ' ' . $lastName,
             'first_name' => $firstName,
             'last_name' => $lastName,
-            'organization_id' => (Organization::count() > 0) ? rand(1, Organization::count()) : null,
+            'organization_id' => (Organization::where('approved', true)->count() > 0) ? Organization::where('approved', true)->inRandomOrder()->first()->id : null,
             'role' => fake()->name(),
             'position' => fake()->jobTitle(),
             'approved'=> rand(0,1) == 1,
