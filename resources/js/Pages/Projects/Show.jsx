@@ -4,6 +4,7 @@ import { Link } from '@inertiajs/inertia-react';
 import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Dashboard(props) {
+  const tableRows = ["Name", "Description", "Link"];
   return (
     <AuthenticatedLayout
 
@@ -20,7 +21,27 @@ export default function Dashboard(props) {
             </h2>
             <Link href={ route('reports.create', props.project) } className='float-right'><SecondaryButton>Create</SecondaryButton></Link>
             <div className='clear-right'>
-              
+              {props.reports.length > 0 ? 
+                <table className='table-auto rounded-xl'>
+                  <thead>
+                    <tr>
+                    {tableRows.map((row, index)=><th key={index}>{row}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* todo add person data */}
+                    {props.reports.map(report=>
+                      <tr key={report.id}>
+                        <td>{report.name}</td>
+                        <td>{report.description}</td>
+                        <td>{report.report_file_path}</td>
+                        <a href={`/storage/${report.report_file_path}`}><td><SecondaryButton>Link</SecondaryButton></td></a>
+                      </tr>
+                    )}
+                  </tbody>
+                </table> 
+              :
+              'No users in this organization'}
             </div>
           </div>
         </div>

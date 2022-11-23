@@ -43,7 +43,7 @@ export default function Dashboard(props) {
                         </svg>
                         </div>
                         <div>
-                        <span className="inline-block text-2xl font-bold">{props.userCount}</span>
+                        <span className="inline-block text-2xl font-bold">{props.projectCount}</span>
                         <span className="block text-gray-500">Projects to Date</span>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ export default function Dashboard(props) {
                         </svg>
                         </div>
                         <div>
-                        <span className="block text-2xl font-bold">10</span>
+                        <span className="block text-2xl font-bold">{props.reportCount}</span>
                         <span className="block text-gray-500">Reports to Date</span>
                         </div>
                     </div>
