@@ -44,16 +44,16 @@ class DatabaseSeeder extends Seeder
             'sector' => 'Social assistance',
             'approved' => true,
         ]);
-
+        
+        //Use .env to create admin account
         User::create([
-            'name' => 'Admin',
-            'first_name' => 'Admin',
-            'last_name' => 'Admin',
-            'email' => 'admin@Arise.com',
-            //Find hash
-            'password' => Hash::make('password!@#$%12345'),
+            'name' => env('APP_ADMIN_NAME', 'admin'),
+            'first_name' => env('APP_ADMIN_FIRST_NAME', 'admin'),
+            'last_name' => env('APP_ADMIN_LAST_NAME', 'admin'),
+            'email' => env('APP_ADMIN_EMAIL', 'admin@arise.com'),
+            'password' => Hash::make(env('APP_ADMIN_PASSWORD', 'password12345!@#$%')),
             'organization_id' => 1, 
-            'position' => 'admin',
+            'position' => env('APP_ADMIN_POSITION', 'IT'),
             'role' => 'admin',
             'approved' => true,
         ]);
