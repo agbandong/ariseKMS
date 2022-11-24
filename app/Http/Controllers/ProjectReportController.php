@@ -17,11 +17,11 @@ class ProjectReportController extends Controller
     public function store(Request $request){
         $project = Project::where('id', $request->project)->get()->firstOrFail();
         $request->validate([
-            'name' => 'required|unique:project_reports|max:64',
-            'description' => 'required|max:124',
+            'name' => ['required', 'unique:project_reports', 'max:64'],
+            'description' => ['required|max:124'],
             'report_file' => ['required', 'mimes:pdf', 'max:2048'],
         ]);
-        
+        //Error found cache problem
         $report_file_path = null;
         if(isset($request->report_file)){
             $report_file_path = $request->report_file
