@@ -22,7 +22,9 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "chart.js": "^4.2.0",
         "flatpickr": "^4.6.13",
+        "react-chartjs-2": "^5.2.0",
         "react-icons": "^4.6.0"
     }
 }
