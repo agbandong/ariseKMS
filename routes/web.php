@@ -42,6 +42,8 @@ Route::get('/', function (){
     } 
 })->name('welcome');
 
+Route::get('/sampleCharts', function (){return Inertia::render('ChartsSample'); });
+
 //Add roleAuth
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
