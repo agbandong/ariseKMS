@@ -28,8 +28,6 @@ class BaseController extends Controller
             return date('Y/m/d', strtotime($item['email_verified_at']));
         });
 
-        dd($dateApproved);
-
         return Inertia::render('Dashboard', ['userCount' => $userCount, 'organizationCount' => $organizationCount, 
             'projectCount' => $projectCount, 'reportCount' => $reportCount, 'dateApproved' => $dateApproved]);
     }
