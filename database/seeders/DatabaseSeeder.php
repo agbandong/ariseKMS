@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => env('APP_ADMIN_FIRST_NAME', 'admin'),
             'last_name' => env('APP_ADMIN_LAST_NAME', 'admin'),
             'email' => env('APP_ADMIN_EMAIL', 'admin@arise.com'),
+            'email_verified_at' => now(),
             'password' => Hash::make(env('APP_ADMIN_PASSWORD', 'password12345!@#$%')),
             'organization_id' => 1, 
             'position' => env('APP_ADMIN_POSITION', 'IT'),
