@@ -88,7 +88,14 @@ class RegisteredUserController extends Controller
     }
 
     public function approve(User $user){
-        $user->update(['approved' => true]);
+        //TODO Remove email verified at later
+        //TODO Add function to check if user is admin or not
+        if (!($user->approved && $user->role == "admin") && $user != auth::user()){
+            $user->update(['email_verified_at' => now(), 'approved' => true]);
+        }
+        else{
+
+        }
     }
 
     public function destroy(User $user){
