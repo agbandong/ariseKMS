@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -93,6 +94,19 @@ class ProjectController extends Controller
         }
 
         return Inertia::render('Projects/Settings', ['project' => $project]);
+    }
+
+    public function addMembers(Project $project, $users)
+    {
+        foreach($users as $user){
+            $project->users()->attach($user->id(), ['role' => 'member',]);
+        }
+    }
+
+    public function removeMembers(Project $project, $users){
+        foreach($users as $user){
+            $project->users()->detach($user->id());
+        }
     }
 
     /**
