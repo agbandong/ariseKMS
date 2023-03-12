@@ -14,7 +14,7 @@ export default function Dashboard(props) {
 
     >
         <div className="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <Link href={ route('projects.edit', props.project) }><SecondaryButton>Settings</SecondaryButton></Link>
+          <Link href={ route('projects.edit', props.project) }><SecondaryButton>Settings</SecondaryButton></Link>
           <div className="p-8 bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <h2 className="font-semibold text-xl text-gray-800 leading-tight">
               Project Reports
@@ -39,9 +39,9 @@ export default function Dashboard(props) {
                       </tr>
                     )}
                   </tbody>
-                </table> 
+                </table>
               :
-              'No users in this organization'}
+              'No reports in this project'}
             </div>
           </div>
         </div>
