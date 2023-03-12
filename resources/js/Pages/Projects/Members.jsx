@@ -41,7 +41,7 @@ export default function Settings(props) {
           </h2>
           <div className='float-right mb-4'>
             <Link href={route(`project.showAddMembers`, props.project)}>
-              <button className={`hover:bg-blue-400`}>
+              <button className={`border hover:bg-blue-400`}>
                 Add member
               </button>
            </Link>
