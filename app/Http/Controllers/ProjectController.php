@@ -96,17 +96,24 @@ class ProjectController extends Controller
         return Inertia::render('Projects/Settings', ['project' => $project]);
     }
 
+    public function showAddMembers(Project $project)
+    {
+        return Inertia::render('Projects/AddMember', ['project' => $project]);
+    }
+
     public function addMembers(Project $project, $users)
     {
         foreach($users as $user){
             $project->users()->attach($user->id(), ['role' => 'member',]);
         }
+        return to_route('projects.index');
     }
 
     public function removeMembers(Project $project, $users){
         foreach($users as $user){
             $project->users()->detach($user->id());
         }
+        return to_route('projects.edit');
     }
 
     /**
@@ -127,8 +134,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
         //
+        $project->users()->detach();
+        $project->delete();
+        return to_route('projects.index');
     }
 }

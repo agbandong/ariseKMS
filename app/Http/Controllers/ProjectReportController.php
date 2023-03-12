@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectReport;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,14 @@ class ProjectReportController extends Controller
             'report_file_path' => $report_file_path,
         ]);
 
+        return to_route('projects.show', ['project' => $project]);
+    }
+
+    public function destroy(ProjectReport $projectReport)
+    {
+        //
+        $project = $projectReport->project();
+        $projectReport->delete();
         return to_route('projects.show', ['project' => $project]);
     }
 }
