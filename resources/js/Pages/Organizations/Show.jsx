@@ -101,13 +101,13 @@ export default function Show(props) {
   };
 
   return (
-      <AuthenticatedLayout
+    <AuthenticatedLayout
 
-      auth={props.auth}
-      errors={props.errors}
-      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.organization.name}</h2>}
-
-      >
+    auth={props.auth}
+    errors={props.errors}
+    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.organization.name}</h2>}
+    head={props.organization.name}
+    >
         
         <div className="py-12">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -238,10 +238,10 @@ export default function Show(props) {
                       </Dropdown.Trigger>
                           <Dropdown.Content align="left" width="auto" height="48">
                               {sectorChoices.map((choice, index)=>(
-                              <button key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
+                              <div key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
                                   onClick={() => form.setData('sector', choice)}>
                                   {choice}
-                              </button>
+                              </div>
                               ))}
                           </Dropdown.Content>              
                   </Dropdown>

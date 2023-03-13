@@ -239,10 +239,10 @@ export default function Register() {
                                 </Dropdown.Trigger>
                                     <Dropdown.Content align="left" width="auto" height="48">
                                         {sectorChoices.map((choice, index)=>(
-                                        <button key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
+                                        <div key={index} className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" 
                                             onClick={() => form.setData('sector', choice)}>
                                             {choice}
-                                        </button>
+                                        </div>
                                         ))}
                                     </Dropdown.Content>              
                             </Dropdown>
