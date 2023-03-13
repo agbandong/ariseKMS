@@ -13,6 +13,7 @@ export default function Settings(props) {
           Team Settings
         </h2>
       }
+      head={`${props.project.name} - Members`}
     >
       <div>
         <div className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -40,7 +41,7 @@ export default function Settings(props) {
             Members
           </h2>
           <div className='float-right mb-4'>
-            <Link href={route(`project.showAddMembers`, props.project)}>
+            <Link href={route(`projects.showAddMembers`, props.project)}>
               <button className={`border hover:bg-blue-400`}>
                 Add member
               </button>

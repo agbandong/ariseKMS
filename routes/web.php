@@ -48,10 +48,12 @@ Route::get('/sampleCharts', function (){return Inertia::render('ChartsSample'); 
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
-    Route::prefix('/projects/{project}')->name('project.')->group(
+    Route::prefix('/projects/{project}')->name('projects.')->group(
         function(){
+            Route::get('/members', [ProjectController::class, 'showMembers'])->name('members');
             Route::get('/addMembers', [ProjectController::class, 'showAddMembers'])->name('showAddMembers');
-            Route::patch('/addMembers', [ProfileController::class, 'addMembers'])->name('addMembers');
+            Route::patch('/members', [ProfileController::class, 'addMembers'])->name('addMembers');
+            Route::delete('/members', [ProfileController::class, 'removeMembers'])->name('removeMembers');
         }
     );
     Route::prefix('/organization')->name('organization.')->group(

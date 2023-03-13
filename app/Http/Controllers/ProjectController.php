@@ -92,13 +92,23 @@ class ProjectController extends Controller
         if (!$project->users->contains(Auth::id())){
             return abort(403);
         }
-
+        //
         return Inertia::render('Projects/Settings', ['project' => $project]);
+    }
+
+    public function showMembers(Project $project)
+    {
+        //
+        if (!$project->users->contains(Auth::id())){
+            return abort(403);
+        }
+        //Change
+        return Inertia::render('Projects/Members', ['project' => $project]);
     }
 
     public function showAddMembers(Project $project)
     {
-        return Inertia::render('Projects/AddMember', ['project' => $project]);
+        return Inertia::render('Projects/AddMembers', ['project' => $project]);
     }
 
     public function addMembers(Project $project, $users)
