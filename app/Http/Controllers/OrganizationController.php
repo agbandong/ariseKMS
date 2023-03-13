@@ -67,7 +67,7 @@ class OrganizationController extends Controller
     }
 
     public function update(Request $request, Organization $organization){
-        if ($request->organization->name == $organization->name){
+        if ($request->name == $organization->name){
             $nameValiation = 'max:25';
         } else{
             $nameValiation = 'unique:organizations|max:25';
