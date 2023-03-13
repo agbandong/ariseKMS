@@ -33,6 +33,10 @@ export default function Settings(props){
           preserveScroll: true,
         });
       }
+    
+    function deleteProject(){
+        route('projects.delete', props.project);
+    }
 
     return (
     <AuthenticatedLayout
@@ -110,7 +114,7 @@ export default function Settings(props){
                 name="stage"
                 value={form.data.stage}
                 className="mt-1 block w-full"
-                handleChange={onHandleChange}
+                handleChange={()=>{}}
                 required
             />
             </Dropdown.Trigger>
@@ -139,15 +143,13 @@ export default function Settings(props){
             />
             <InputError message={form.errors.location} className="mt-2" />
         </div>
-
-        
-
         <PrimaryButton
                 className='opacity-25'
             >
                 Save
             </PrimaryButton>
         </FormSection>
+        <button onClick={deleteProject}>Delete</button>
     </AuthenticatedLayout>
     );
 }

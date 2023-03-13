@@ -104,7 +104,7 @@ export default function CreateProjectForm({auth}) {
             name="stage"
             value={form.data.stage}
             className="mt-1 block w-full"
-            handleChange={onHandleChange}
+            handleChange={()=>{}}
             required
           />
           </Dropdown.Trigger>
