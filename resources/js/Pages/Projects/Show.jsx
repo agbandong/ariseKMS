@@ -2,6 +2,7 @@ import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Link } from '@inertiajs/inertia-react';
 import SecondaryButton from '@/Components/SecondaryButton';
+import { method } from 'lodash';
 
 export default function Dashboard(props) {
   const tableRows = ["Name", "Description", "Link"];
@@ -37,6 +38,7 @@ export default function Dashboard(props) {
                         <td>{report.description}</td>
                         <td>{report.report_file_path}</td>
                         <a href={`/storage/${report.report_file_path}`}><td><SecondaryButton>Download</SecondaryButton></td></a>
+                        <Link href={route('reports.destroy', [props.project, report.id])} method='Delete'><td><SecondaryButton>Delete</SecondaryButton></td></Link>
                       </tr>
                     )}
                   </tbody>

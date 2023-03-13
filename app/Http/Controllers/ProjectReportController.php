@@ -7,7 +7,7 @@ use App\Models\ProjectReport;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProjectReportController extends Controller
 {
@@ -41,10 +41,10 @@ class ProjectReportController extends Controller
         return to_route('projects.show', ['project' => $project]);
     }
 
-    public function destroy(ProjectReport $projectReport)
+    public function destroy(Project $project, ProjectReport $projectReport)
     {
         //
-        $project = $projectReport->project();
+        Storage::delete($projectReport->report_file_path);
         $projectReport->delete();
         return to_route('projects.show', ['project' => $project]);
     }

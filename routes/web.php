@@ -71,9 +71,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     function(){
         Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
         Route::post('/create', [ProjectReportController::class, 'store'])->name('store');
-        Route::get('/{report}', [ProjectReportController::class, 'show'])->name('show');
         Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
-        Route::delete('/delete', [ProjectReportController::class, 'destroy'])->name('destroy');
+        Route::delete('/{projectReport}/destroy', [ProjectReportController::class, 'destroy'])->name('destroy');
     });
 });
 
