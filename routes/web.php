@@ -70,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::prefix('/projects/{project}/projectReports')->name('reports.')->group(
     function(){
         Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
+        Route::get('/{projectReport}/download', [ProjectReportController::class, 'download'])->name('download');
         Route::post('/create', [ProjectReportController::class, 'store'])->name('store');
         Route::get('/create', [ProjectReportController::class, 'create'])->name('create');
         Route::delete('/{projectReport}/destroy', [ProjectReportController::class, 'destroy'])->name('destroy');

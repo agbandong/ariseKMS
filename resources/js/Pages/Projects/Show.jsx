@@ -37,8 +37,9 @@ export default function Dashboard(props) {
                         <td>{report.name}</td>
                         <td>{report.description}</td>
                         <td>{report.report_file_path}</td>
-                        <a href={`/storage/${report.report_file_path}`}><td><SecondaryButton>Download</SecondaryButton></td></a>
-                        <Link href={route('reports.destroy', [props.project, report.id])} method='Delete'><td><SecondaryButton>Delete</SecondaryButton></td></Link>
+                        <td><a href={`/storage/${report.report_file_path}`}><SecondaryButton>View</SecondaryButton></a></td>
+                        <td><a href={route('reports.download', [props.project, report.id])}><SecondaryButton>Download</SecondaryButton></a></td>
+                        <td><Link href={route('reports.destroy', [props.project, report.id])} method='Delete'><SecondaryButton>Delete</SecondaryButton></Link></td>
                       </tr>
                     )}
                   </tbody>
