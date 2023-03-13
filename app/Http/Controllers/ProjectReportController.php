@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ProjectReportController extends Controller
 {
@@ -43,9 +44,14 @@ class ProjectReportController extends Controller
 
     public function destroy(Project $project, ProjectReport $projectReport)
     {
-        //
-        Storage::delete($projectReport->report_file_path);
-        $projectReport->delete();
-        return to_route('projects.show', ['project' => $project]);
+        //Check if the delete function works
+        if(File::exists('storage/'.$projectReport->report_file_path)){
+            Storage::delete('storage/'.$projectReport->report_file_path);
+            $projectReport->delete();
+            return to_route('projects.show', ['project' => $project]);
+        }
+        else{
+            return abort(404);
+        }
     }
 }
