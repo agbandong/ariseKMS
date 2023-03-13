@@ -46,8 +46,8 @@ export default function createReportForm({auth, project}) {
   return (
     <FormSection
       onSubmit={createReport}
-      title={'Project Details'}
-      description={'Create a new project in Arise.'}
+      title={'Report Details'}
+      description={'Submit a new report for the project.'}
       renderActions={() => (
         <>
           <PrimaryButton
@@ -58,22 +58,6 @@ export default function createReportForm({auth, project}) {
         </>
       )}
     >
-      <div className="col-span-6">
-        <InputLabel value="Reports Creator" />
-
-        <div className="flex items-center mt-2">
-          <img
-            className="w-12 h-12 rounded-full object-cover"
-            src={auth.user.profile_photo_url}
-            alt={auth.user.name}
-          />
-
-          <div className="ml-4 leading-tight">
-            <div>{auth.user.name}</div>
-            <div className="text-gray-700 text-sm">{auth.user.email}</div>
-          </div>
-        </div>
-      </div>
 
       <div className="col-span-6 sm:col-span-4">
         <InputLabel htmlFor="name" value="Project Report Name" />

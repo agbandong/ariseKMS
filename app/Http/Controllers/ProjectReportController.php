@@ -19,7 +19,7 @@ class ProjectReportController extends Controller
         $project = Project::where('id', $request->project)->get()->firstOrFail();
         $request->validate([
             'name' => ['required', 'unique:project_reports', 'max:64'],
-            'description' => ['required|max:124'],
+            'description' => ['required', 'max:124'],
             'report_file' => ['required', 'mimes:pdf', 'max:2048'],
         ]);
         //Error found cache problem
