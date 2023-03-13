@@ -34,10 +34,6 @@ export default function Settings(props){
         });
       }
     
-    function deleteProject(){
-        route('projects.delete', props.project);
-    }
-
     return (
     <AuthenticatedLayout
         auth={props.auth}
@@ -61,22 +57,6 @@ export default function Settings(props){
             </>
         )}
         >
-        <div className="col-span-6">
-            <InputLabel value="Project Manager" />
-
-            <div className="flex items-center mt-2">
-            <img
-                className="w-12 h-12 rounded-full object-cover"
-                src={props.auth.user.profile_photo_url}
-                alt={props.auth.user.name}
-            />
-
-            <div className="ml-4 leading-tight">
-                <div>{props.auth.user.name}</div>
-                <div className="text-gray-700 text-sm">{props.auth.user.email}</div>
-            </div>
-            </div>
-        </div>
 
         <div className="col-span-6 sm:col-span-4">
             <InputLabel htmlFor="name" value="Project Name" />
@@ -149,7 +129,7 @@ export default function Settings(props){
                 Save
             </PrimaryButton>
         </FormSection>
-        <button onClick={deleteProject}>Delete</button>
+        <PrimaryButton><Link href={route('projects.destroy', props.project)} method="delete">Delete</Link></PrimaryButton>
     </AuthenticatedLayout>
     );
 }
