@@ -19,7 +19,12 @@ class ProjectController extends Controller
     {
         //
         //Ignore error it works
-        $userProjects = Auth::user()->projects()->get()->all();
+        if(Auth::user()->role == 'admin'){
+            $userProjects = Project::get()->all();
+        }
+        else{
+            $userProjects = Auth::user()->projects()->get()->all();
+        }
         //return dd($userProjects);
         return Inertia::render('Projects/ShowAll', ['projects' => $userProjects]);
     }
@@ -72,12 +77,11 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         //
-        if (!$project->users->contains(Auth::id())){
-            return abort(403);
+        if ($project->users->contains(Auth::id()) || Auth::user()->role == 'admin'){
+            $reports = $project->reports()->get();
+            return Inertia::render('Projects/Show', ['project' => $project, 'reports' => $reports]);
         }
-
-        $reports = $project->reports()->get();
-        return Inertia::render('Projects/Show', ['project' => $project, 'reports' => $reports]);
+        return abort(403);
     }
 
     /**
@@ -116,7 +120,7 @@ class ProjectController extends Controller
         foreach($users as $user){
             $project->users()->attach($user->id(), ['role' => 'member',]);
         }
-        return to_route('projects.index');
+        return to_route('projects.showMembers', ['project' => $project]);
     }
 
     public function removeMembers(Project $project, $users){
@@ -133,9 +137,30 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
         //
+        if ($request->name == $project->name){
+            $nameValiation = 'max:64';
+        } else{
+            $nameValiation = 'required|unique:projects|max:64';
+        };
+        $request->validate([
+            'name' => $nameValiation,
+            'description' => 'required|max:124',
+            'location' => 'required|max:124',
+            'stage' => 'required',
+        ]);
+
+        $project->update([
+            'name' => $request->name,
+            'project_files_path' => '/projects/' . $request->project->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'stage' => $request->stage,
+        ]);
+
+        return to_route('projects.show', ['project' => $project]);
     }
 
     /**
