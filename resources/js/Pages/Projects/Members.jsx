@@ -3,14 +3,14 @@ import React from 'react';
 import { Link } from '@inertiajs/inertia-react';
 
 export default function Settings(props) {
-  const tableRows = ["Name", "Email"];
+  const tableRows = ["Name", "Email", "Role"];
   return (
     <AuthenticatedLayout
       auth={props.auth}
       errors={props.errors}
       header={
         <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-          Team Settings
+          Members
         </h2>
       }
       head={`${props.project.name} - Members`}
@@ -37,9 +37,6 @@ export default function Settings(props) {
               </div>
             </>
           ) : null}*/}
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Members
-          </h2>
           <div className='float-right mb-4'>
             <Link href={route(`projects.showAddMembers`, props.project)}>
               <button className={`border hover:bg-blue-400`}>
@@ -61,6 +58,7 @@ export default function Settings(props) {
                       <tr key={user.id}>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
+                        <td>{user.pivot.role}</td>
                         {/*<a href={`/storage/${user.id}`}><td><SecondaryButton>Remove</SecondaryButton></td></a>*/}
                       </tr>
                     )}
