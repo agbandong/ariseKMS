@@ -112,7 +112,7 @@ class ProjectController extends Controller
 
     public function showAddMembers(Project $project)
     {
-        $users = User::where('organization', Auth::user()->organization);
+        $users = User::where('organization_id', Auth::user()->organization_id)->get()->all();
 
         return Inertia::render('Projects/AddMembers', ['project' => $project, 'users' => $users]);
     }
